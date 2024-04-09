@@ -106,7 +106,7 @@ import="java.util.Random"%>
       <button type="submit">Register Account</button>
     </form>
 
-    <button><a href="/">Cancel Registration</a></button>
+    <button><a href="//">Cancel Registration</a></button>
     <% } %>
   </body>
 </html>
