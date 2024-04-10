@@ -95,7 +95,7 @@ import="java.util.Random"%>
         placeholder="password"
       />
       <label for="gender">Gender:</label>
-      <input name="gender" id="gender" placeholder="gender" />
+      <input name="gender" id="gender" placeholder="genderss" />
       <label for="favcol">Favourite Colour:</label>
       <input type="color" name="favcol" id="favcol" placeholder="favcol" />
       <br />
@@ -106,7 +106,7 @@ import="java.util.Random"%>
       <button type="submit">Register Account</button>
     </form>
 
-    <button><a href="//">Cancel Registration</a></button>
+    <button><a href="//">Cancel Registrationsss</a></button>
     <% } %>
   </body>
 </html>
