@@ -4,7 +4,7 @@ import="java.util.Random"%>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/src/main/webapp/css/index.css" />
+    <link rel="stylesheet" href="/css/index.css" />
     <title>IoT Bay</title>
   </head>
   <body>
@@ -18,15 +18,10 @@ import="java.util.Random"%>
       </nav>
     </header>
     <main>
-      <img src="135.sph" alt="loT Bay logo" id="logo" />
       <p>
         Explore incredible prices on all loT devices and discover more for less
         on our selected brands.
       </p>
     </main>
-    <footer>
-      <p>&copy; 2023 loT Bay. All rights reserved.</p>
-    </footer>
-    <script src="script.js"></script>
   </body>
 </html>
