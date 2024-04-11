@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
+<%@page import="uts.isd.*"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,13 +12,26 @@
     />
   </head>
   <body>
-    <% String email = request.getParameter("email"); String name =
-    request.getParameter("name"); String tos = request.getParameter("tos");
-    String submitted = request.getParameter("submitted"); if (submitted != null)
-    { %>
+    <% String email = request.getParameter("email");
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            String phone = request.getParameter("phoneNum");
+            String city = request.getParameter("city");
+            String country = request.getParameter("country");
+            String role = request.getParameter("role");
+            String tos = request.getParameter("tos");
+            String submitted = request.getParameter("submitted");
+
+            if (submitted != null){
+                User user = new User(email, name, password, phone, city, country, role);
+                session.setAttribute("user", user);
+            } %>
+
+    <% if (submitted !=null) { %>
     <h1>Welcome</h1>
-    <h2>Email: <%= email %></h2>
-    <h2>Name: <%= name %></h2>
+    <h2>Email: <%= email%></h2>
+    <h2>Name: <%= name%></h2>
+
     <% } else { %>
     <div class="container">
       <form action="/submit-form" method="post" class="registration-form">
@@ -24,12 +39,12 @@
 
         <div class="row">
           <div class="column">
-            <label for="full-name">Full Name</label>
-            <input type="text" id="full-name" name="fullname" required />
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
           </div>
           <div class="column">
-            <label for="personStat">Staff / Customer </label>
-            <select id="personStat" name="personStat" required>
+            <label for="role">Staff / Customer </label>
+            <select id="role" name="role" required>
               <option value="">Please Select</option>
               <!-- Placeholder for asking a choice -->
               <option value="staff">Staff</option>
@@ -44,8 +59,8 @@
             <input type="text" id="email" name="email" required />
           </div>
           <div class="column">
-            <label for="phoneNum">Phone Number</label>
-            <input type="text" id="phoneNum" name="phoneNum" required />
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" required />
           </div>
         </div>
 
@@ -62,17 +77,21 @@
 
         <div class="row">
           <div class="column">
-            <label for="Password">Password</label>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" required />
           </div>
           <div class="column">
-            <label for="ConfirmPassword">Confirm Password</label>
+            <label for="confirmPassword">Confirm Password</label>
             <input
               type="password"
-              id="ConfirmPassword"
-              name="ConfirmPassword"
+              id="confirmPassword"
+              name="confirmPassword"
               required
             />
+            <br>
+            <label for="tos">TOS:</label>
+              <input type="checkbox" name="tos" id="tos" placeholder="tos" />
+            <br />
           </div>
         </div>
 
