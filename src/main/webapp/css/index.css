@@ -2,7 +2,7 @@ body {
   font-family: Roboto;
   margin: 0;
   padding: 0;
-  background-image: url("Welcome.jpg");
+  background-image: url("/css/Welcome.jpg");
   background-size: cover;
 }
 
