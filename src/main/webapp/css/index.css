@@ -43,3 +43,8 @@ main p {
   flex-basis: 50%;
   margin-left: 2rem;
 }
+
+.main {
+    font-size: larger;
+    font-weight: bolder;
+}

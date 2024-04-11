@@ -7,6 +7,11 @@ import="java.util.Random"%>
     <link rel="stylesheet" href="/css/index.css" />
     <title>IoT Bay</title>
   </head>
+  <main>
+    <h1>
+      Welcome
+    </h1>
+  </main>
   <body>
   </body>
 </html>
