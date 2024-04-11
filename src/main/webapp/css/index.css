@@ -1,33 +1,78 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Roboto;
   margin: 0;
   padding: 0;
-  background-image: url("/css/Welcome.jpg");
+  background-image: url("Welcome.jpg");
   background-size: cover;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+main div {
+  width: 400px;
+  padding-left: 100px;
 }
 
-header h1 {
-  margin: 0;
+main div p {
+  font-size: 1rem;
+  color: #f1edeec3;
+  margin-top: -50px;
+  padding-left: 15px;
+  line-height: 1.5rem;
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2rem;
-}
-
-main p {
-  flex-basis: 50%;
-  margin-left: 2rem;
-}
-
-main h1 {
-  font-size: larger;
+main div h1 {
+  font-size: 100px;
+  color: #f1edee;
   font-weight: bolder;
+  padding-top: 110px;
 }
+
+main div button {
+  margin-left: 15px;
+  padding: 10px;
+  width: 150px;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+main div button:hover {
+  background-color: #db5461;
+  color: aliceblue;
+}
+
+/* Nav */
+header {
+    display: flex;
+    background-color: #f1edee;
+    overflow: hidden;
+    padding: 0.5%;
+  }
+
+  header h1 {
+    margin: 0;
+    margin-top: 5px;
+    padding-left: 50px;
+    font-family: Roboto;
+  }
+
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav ul li {
+    padding-inline: 20px;
+  }
+
+  nav ul li a {
+    color: #3d5467;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  nav ul li a:hover {
+    color: #db5461;
+  }
