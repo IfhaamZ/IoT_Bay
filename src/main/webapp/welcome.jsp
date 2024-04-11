@@ -18,7 +18,15 @@
         %>
         <h1>Welcome</h1>
         <h2>Email: <%= email%></h2>
-        <h2>Name: <%= name%></h2>     
+        <h2>Name: <%= name%></h2>
+        
+        <% String tos = user.getTos(); %>
+        <% if (tos != null) { %>
+            You have succesfully created an account!
+            
+        <% } else { %>
+            You have not accepted the terms of service!
+        <% } %>              
 
     </body>
 </html>

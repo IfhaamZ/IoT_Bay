@@ -79,7 +79,7 @@
             String submitted = request.getParameter("submitted");
 
             if (submitted != null){
-                User user = new User(email, name, phone, password, gender, favCol);
+                User user = new User(email, name, phone, password, gender, favCol, tos);
                 session.setAttribute("user", user);
             }
         %>
