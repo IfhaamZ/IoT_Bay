@@ -94,8 +94,8 @@ import="java.util.Random"%>
         id="password"
         placeholder="password"
       />
-      <label for="gender">Gender:</label>
-      <input name="gender" id="gender" placeholder="gender" />
+      <label for="gender">Genders:</label>
+      <input name="gender" id="gender" placeholder="genderss" />
       <label for="favcol">Favourite Colour:</label>
       <input type="color" name="favcol" id="favcol" placeholder="favcol" />
       <br />
