@@ -2,7 +2,9 @@ body {
   font-family: Roboto;
   margin: 0;
   padding: 0;
-  background-image: url("/css/Welcome.jpg");
+  background-image: url("Welcome.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -43,36 +45,36 @@ main div button:hover {
 
 /* Nav */
 header {
-    display: flex;
-    background-color: #f1edee;
-    overflow: hidden;
-    padding: 0.5%;
-  }
+  display: flex;
+  background-color: #f1edee;
+  overflow: hidden;
+  padding: 0.5%;
+}
 
-  header h1 {
-    margin: 0;
-    margin-top: 5px;
-    padding-left: 50px;
-    font-family: Roboto;
-  }
+header h1 {
+  margin: 0;
+  margin-top: 5px;
+  padding-left: 50px;
+  font-family: Roboto;
+}
 
-  nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  nav ul li {
-    padding-inline: 20px;
-  }
+nav ul li {
+  padding-inline: 20px;
+}
 
-  nav ul li a {
-    color: #3d5467;
-    font-weight: bold;
-    text-decoration: none;
-  }
+nav ul li a {
+  color: #3d5467;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-  nav ul li a:hover {
-    color: #db5461;
-  }
+nav ul li a:hover {
+  color: #db5461;
+}
