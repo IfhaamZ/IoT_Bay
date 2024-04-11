@@ -4,7 +4,6 @@ body {
   padding: 0;
   background-image: url("/css/Welcome.jpg");
   background-size: cover;
-  background-attachment: fixed;
 }
 
 header {
