@@ -37,6 +37,7 @@
     <div class="container">
       <form method="post" class="registration-form">
         <h2>Registration</h2>
+        <br>
 
         <div class="row">
           <div class="column">
