@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
-<%@page import="uts.isd.*"%>
+<%@page import="uts.isd.model.*"%>
 <!DOCTYPE html>
 <html>
     <head>
