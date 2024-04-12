@@ -11,9 +11,13 @@
         <%
             User user = (User) session.getAttribute("user");
             
-            String storedName = user.getName();
-            String storedPassword = user.getPassword();
+            String storedName = (user != null) ? user.getName() : null;
+            String storedPassword = (user != null) ? user.getPassword() : null;
             
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            boolean loginFailed = (name != null && password != null) && 
+                                 (storedName == null || !storedName.equals(name) || !storedPassword.equals(password));
         %>
 
         <form method="post">
@@ -26,19 +30,17 @@
         </form>
         
         <% 
-            String name = request.getParameter("name");
-            String password = request.getParameter("password");
-            if (name != null && password != null && storedName.equals(name) && storedPassword.equals(password)) {
-                response.sendRedirect("welcome.jsp");
-            } else {
+            if (loginFailed) {
             %>
                 <p>Please enter a valid name or password.</p>
                 <br>
                 <p> If you have not registered yet, please do so.</p>
                 <button><a href="/register.jsp">Registration</a></button>
             <%
-                }
+            } else if (name != null && password != null) {
+                response.sendRedirect("welcome.jsp");
+            }
             %>
 
     </body>
-</html>
+</html> 
