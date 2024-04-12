@@ -12,10 +12,11 @@
     />
   </head>
   <body>
-    <% String email = request.getParameter("email");
+    <% 
+            String email = request.getParameter("email");
             String name = request.getParameter("name");
             String password = request.getParameter("password");
-            String phone = request.getParameter("phoneNum");
+            String phone = request.getParameter("phone");
             String city = request.getParameter("city");
             String country = request.getParameter("country");
             String role = request.getParameter("role");
@@ -26,7 +27,7 @@
                 User user = new User(email, name, password, phone, city, country, role);
                 session.setAttribute("user", user);
             }
-             %>
+    %>
     <% if (submitted != null) { %>
             <h1>Welcome</h1>
             <h2>Email: <%= email%></h2>
@@ -94,7 +95,6 @@
             <br />
           </div>
         </div>
-
         <div class="button-container">
           <input type="hidden" name="submitted" id="submitted" value="true" />
           <button type="submit" class="submit-button">Register</button>
