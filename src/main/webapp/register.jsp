@@ -25,8 +25,9 @@
             if (submitted != null){
                 User user = new User(email, name, password, phone, city, country, role);
                 session.setAttribute("user", user);
+            }
              %>
-    <% } if (submitted != null) { %>
+    <% if (submitted != null) { %>
             <h1>Welcome</h1>
             <h2>Email: <%= email%></h2>
             <h2>Name: <%= name%></h2>
