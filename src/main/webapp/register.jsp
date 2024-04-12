@@ -11,7 +11,7 @@
       href="${pageContext.request.contextPath}/css/register.css"
     />
   </head>
-  <body backgroun>
+  <body>
     <% 
             String email = request.getParameter("email");
             String name = request.getParameter("name");
