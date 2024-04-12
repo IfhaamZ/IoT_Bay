@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Random"%>
+<%@page import="java.util.*"%>
 <%@page import="uts.isd.*"%>
 <!DOCTYPE html>
 <html>
@@ -25,16 +25,15 @@
             if (submitted != null){
                 User user = new User(email, name, password, phone, city, country, role);
                 session.setAttribute("user", user);
-            } %>
-
-    <% if (submitted !=null) { %>
-    <h1>Welcome</h1>
-    <h2>Email: <%= email%></h2>
-    <h2>Name: <%= name%></h2>
+             %>
+    <% } if (submitted != null) { %>
+            <h1>Welcome</h1>
+            <h2>Email: <%= email%></h2>
+            <h2>Name: <%= name%></h2>
 
     <% } else { %>
     <div class="container">
-      <form action="/submit-form" method="post" class="registration-form">
+      <form action="login.jsp" method="post" class="registration-form">
         <h2>Registration</h2>
 
         <div class="row">
@@ -96,13 +95,15 @@
         </div>
 
         <div class="button-container">
+          <input type="hidden" name="submitted" id="submitted" value="true" />
           <button type="submit" class="submit-button">Register</button>
-          <a href="${pageContext.request.contextPath}/" class="cancel-button"
-            >Cancel Registration</a
-          >
         </div>
       </form>
-    </div>
-    <% } %>
+
+      <div class="button-container">
+      <a href="${pageContext.request.contextPath}/" class="cancel-button"
+            >Cancel Registration</a
+          >
+      <% } %>
   </body>
 </html>
