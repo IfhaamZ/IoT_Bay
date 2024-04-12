@@ -73,6 +73,7 @@ nav ul li a {
   color: #087e8b;
   font-weight: bold;
   text-decoration: none;
+  font-size: 2rem;
 }
 
 nav ul li a:hover {
