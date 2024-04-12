@@ -23,7 +23,7 @@ main div p {
 
 main div h1 {
   font-size: 100px;
-  color: #f1edee;
+  color: #f5f5f5;
   font-weight: bolder;
   padding-top: 110px;
 }
@@ -40,13 +40,13 @@ main div button {
 
 main div button:hover {
   background-color: #db5461;
-  color: aliceblue;
+  color: #f5f5f5;
 }
 
 /* Nav */
 header {
   display: flex;
-  background-color: #f1edee;
+  background-color: #f5f5f5;
   overflow: hidden;
   padding: 0.5%;
 }
@@ -70,7 +70,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: #3d5467;
+  color: #087E8B;
   font-weight: bold;
   text-decoration: none;
 }
