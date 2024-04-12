@@ -16,7 +16,7 @@
             
         %>
 
-        <form action="login.jsp" method="post">
+        <form method="post">
                 <label for="name">Name:</label>
                 <input name="name" id="name" placeholder="name" />
                 <label for="password">Password:</label>

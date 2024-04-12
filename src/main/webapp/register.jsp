@@ -32,10 +32,13 @@
             <h1>Welcome</h1>
             <h2>Email: <%= email%></h2>
             <h2>Name: <%= name%></h2>
+            <button>
+              <a href="login.jsp">Login</a>
+            </button>
 
     <% } else { %>
     <div class="container">
-      <form action="login.jsp" method="post" class="registration-form">
+      <form method="post" class="registration-form">
         <h2>Registration</h2>
 
         <div class="row">

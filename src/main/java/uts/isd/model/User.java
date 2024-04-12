@@ -11,14 +11,14 @@ public class User implements Serializable {
     private String country;
     private String role;
 
-    public User(String email, String name, String password, String phone, String city, String country, String role) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
-        this.city = city;
-        this.country = country;
-        this.role = role;
+    public User(String _email, String _name, String _password, String _phone, String _city, String _country, String _role) {
+        this.email = _email;
+        this.name = _name;
+        this.password = _password;
+        this.phone = _phone;
+        this.city = _city;
+        this.country = _country;
+        this.role = _role;
     }
 
     public String getName() {
