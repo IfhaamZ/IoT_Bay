@@ -23,7 +23,10 @@
             String tos = request.getParameter("tos");
             String submitted = request.getParameter("submitted");
 
-            
+            if (submitted != null){
+                User user = new User(email, name, password, phone, city, country, role);
+                session.setAttribute("user", user);
+            }
     %>
     <% if (submitted != null) { %>
             <h1>Welcome</h1>
