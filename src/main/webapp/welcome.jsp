@@ -39,7 +39,9 @@ import="uts.isd.model.*"%>
           digital experience.
         </p>
         <br />
-        <button>Explore</button>
+        <a href="main.jsp">
+          <button>Explore</button>
+        </a>
       </div>
     </main>
   </body>

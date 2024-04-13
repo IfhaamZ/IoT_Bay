@@ -18,7 +18,6 @@ import="java.util.Random"%>
           <ul>
             <li><a href="register.jsp">Register</a></li>
             <li><a href="login.jsp">Login</a></li>
-            <!-- Add other navigation elements as needed -->
           </ul>
         </nav>
       </div>
@@ -31,7 +30,9 @@ import="java.util.Random"%>
           your life. Welcome to the future of connected living.
         </p>
         <br />
-        <button>Get Started</button>
+        <a href="main.jsp">
+          <button>Get Started</button>
+        </a>
       </div>
     </main>
   </body>
