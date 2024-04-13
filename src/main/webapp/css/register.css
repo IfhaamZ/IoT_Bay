@@ -3,7 +3,6 @@ body {
   background-color: #3c3c3c;
   margin: 0;
   padding: 20px;
-  /* background-image: url("https://fptsoftware.com/-/media/project/fpt-software/fso/services/over-view/iot-overview.png?extension=webp&modified=20230406102743"); */
 }
 
 .container {
@@ -73,8 +72,8 @@ body {
 .registration-form button,
 .cancel-button {
   padding: 10px 20px;
-  background-color: white;
-  color: black;
+  background-color: #087e8b;
+  color: #f5f5f5;
   border: 2px solid #ddd;
   border-radius: 20px;
   cursor: pointer;
@@ -83,7 +82,7 @@ body {
   display: inline-block;
   margin-top: 10px;
   font-size: 18px;
-  width: 700px;
+  width: 300px;
   text-align: center;
   font-weight: bold;
 }
@@ -95,7 +94,7 @@ body {
 
 .registration-form button:hover,
 .cancel-button:hover {
-  background-color: #087e8b;
+  background-color: #ff5a5f;
   color: #f5f5f5;
 }
 
@@ -153,7 +152,7 @@ body {
   font-family: Roboto;
 }
 
-.confirm-button {
+.login-button {
   padding: 10px 20px;
   background-color: #087e8b;
   color: #f5f5f5;
@@ -168,7 +167,7 @@ body {
   font-weight: bold;
 }
 
-.confirm-button:hover {
+.login-button:hover {
   background-color: #ff5a5f;
   color: #f5f5f5;
 }

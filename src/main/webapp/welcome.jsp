@@ -12,8 +12,9 @@ import="uts.isd.model.*"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Welcome</title>
   </head>
-  <% User user = (User) session.getAttribute("user"); %>
+  
   <body>
+    <% User user = (User) session.getAttribute("user"); %>
     <header>
       <div
         style="
@@ -35,7 +36,7 @@ import="uts.isd.model.*"%>
       </div>
     </header>
 
-    <% String email = user.getEmail(); String name = user.getName(); %>
+    <% String name = user.getName(); %>
     <main>
       <div>
         <h1>Welcome , <%= name%>!</h1>
