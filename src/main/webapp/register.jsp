@@ -10,6 +10,8 @@
       rel="stylesheet"
       href="${pageContext.request.contextPath}/css/register.css"
     />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/99df4661f3.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <% 
@@ -29,12 +31,21 @@
             }
     %>
     <% if (submitted != null) { %>
-            <h1>Welcome</h1>
-            <h2>Email: <%= email%></h2>
-            <h2>Name: <%= name%></h2>
-            <button>
-              <a href="login.jsp">Login</a>
-            </button>
+            <div class="confirmation">
+              <i class="fa-regular fa-circle-check" style="color: #63E6BE; font-size: 8rem; display: flex; justify-content: center; align-items:center;"></i>
+              <br>
+              <h1>Congratulations! 
+              <br>
+              <%= name%></h1>
+              <div>
+                  <p class="message">Your account has been successfully created. Please Log-in to continue</p>
+              </div>
+              <div class="button-container">
+              <button class="confirm-button">
+                <a href="login.jsp" style="text-decoration:none;color:#f5f5f5;">Login</a>
+              </button>
+              </div>
+            </div>
 
     <% } else { %>
     <div class="container">

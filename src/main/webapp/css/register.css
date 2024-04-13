@@ -126,7 +126,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   width: 98.5%;
-  background-color: white;
+  background-color: #f5f5f5;
 }
 
 .button-container {
@@ -134,4 +134,61 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+}
+
+.confirmation {
+  max-width: 1000px;
+  height: 450px;
+  margin: 0 auto;
+  margin-top: 80px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.275);
+}
+
+.confirmation h1 {
+  color: #63e6be;
+  text-align: center;
+  font-family: Roboto;
+}
+
+.confirm-button {
+  padding: 10px 20px;
+  background-color: #087e8b;
+  color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 50px;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.confirm-button:hover {
+  background-color: #ff5a5f;
+  color: #f5f5f5;
+}
+
+@media (min-width: 600px) {
+  .confirmation {
+    width: 50%;
+  }
+}
+
+@media (min-width: 900px) {
+  .confirmation {
+    width: 33%;
+  }
+}
+
+.message {
+  margin-top: 30px;
+  font-size: 17px;
+  text-align: center;
+  font-family: Roboto;
+  color: #3c3c3ca8;
 }
