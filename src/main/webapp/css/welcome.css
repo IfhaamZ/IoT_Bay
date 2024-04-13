@@ -45,15 +45,20 @@ body {
   background-size: cover;
 }
 
-button {
+.button-style {
   margin-left: 15px;
-  padding: 10px;
-  width: 150px;
+  padding: 10px 20px; /* Adjust padding for better spacing */
+  width: auto; /* Use 'auto' for width to accommodate the content */
   border-radius: 20px;
-  border: 0;
+  border: none; /* Remove border */
   font-size: 1rem;
   font-weight: bold;
-  color: teal;
+  background-color: white; /* Background color similar to 'Get Started' */
+  color: black; /* Text color */
+  text-align: center;
+  text-decoration: none; /* Remove underline from link */
+  display: inline-block; /* Allows width and height to be set */
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
 }
 
 main div {
