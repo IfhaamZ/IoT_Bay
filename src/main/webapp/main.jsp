@@ -4,13 +4,13 @@ import="uts.isd.model.*"%>
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/css/welcome.css" />
+    <link rel="stylesheet" href="/css/main.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
     />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Welcome</title>
+    <title>Main</title>
   </head>
   <% User user = (User) session.getAttribute("user"); %>
   <body>
@@ -34,18 +34,5 @@ import="uts.isd.model.*"%>
         </nav>
       </div>
     </header>
-
-    <% String email = user.getEmail(); String name = user.getName(); %>
-    <main>
-      <div>
-        <h1>Welcome , <%= name%>!</h1>
-        <p>
-          Explore our latest devices and technologies designed to enhance your
-          digital experience.
-        </p>
-        <br />
-        <a href="main.jsp" class="button-style">Explore</a>
-      </div>
-    </main>
   </body>
 </html>
