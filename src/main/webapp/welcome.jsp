@@ -1,4 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
+import="uts.isd.model.*"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +18,7 @@
     <% if (tos == null){ %>
     <h2>You have not accepted the terms of service!</h2>
     <% }else { %>
-    <h2>You have succesfully created an account!</h2>
+    <h2>You have succesfully created an accoutn!</h2>
     <% } %>
   </body>
 </html>
