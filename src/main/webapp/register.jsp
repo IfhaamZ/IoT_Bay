@@ -42,7 +42,7 @@
               </div>
               <div class="button-container">
               <button class="confirm-button">
-                <a href="login.jsp" style="text-decoration:none;color:#f5f5f5;">Login</a>
+                <a href="login.jsp" style="text-decoration:none;color:#000000;">Login</a>
               </button>
               </div>
             </div>
