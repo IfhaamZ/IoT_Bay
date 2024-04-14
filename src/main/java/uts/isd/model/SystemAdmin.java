@@ -13,6 +13,24 @@ public class SystemAdmin extends User {
         this.accessPrivileges = accessPrivileges;
     }
 
+    public boolean createStaffAccount() {
+      
+      return true; 
+    }
+  
+    public boolean removeStaffAccount() {
+      return true; 
+    }
+  
+    public boolean updateSystemSettings() {
+      return true; 
+    }
+  
+    public void auditSystem() {
+
+    }
+
+
     public int getAdminID() {
         return adminID;
     }
