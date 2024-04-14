@@ -18,6 +18,34 @@ public class Customer extends User {
         this.shipmentDetails = shipmentDetails;
     }
 
+     public List<Product> browseDevices() {
+        return new ArrayList<>();
+    }
+
+    public Product searchDevice() {
+        return null;
+    }
+
+    public Order placeOrder(int orderID, String datePlaced, String status, int customerID) {
+        Order newOrder = new Order(orderID, datePlaced, status, customerID);
+        return newOrder;
+    }
+
+    public String trackOrder() {
+        String status = "";
+        return status;
+    }
+
+    public void manageAccount() {
+        
+    }
+
+    public List<AccessLog> viewHistoryLogs() {
+        List<AccessLog> accessLog = new ArrayList<AccessLog>();
+        return accessLog;
+    }
+
+
     public int getCustomerID() {
         return customerID;
     }
