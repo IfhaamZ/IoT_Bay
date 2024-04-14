@@ -22,7 +22,7 @@
       <h1>Goodbye for now, <%= name %>!</h1>
       <br>
       <p class="message">
-        You've successfully logged out!<br>Click the link below to return back to Home.
+        You've successfully logged out!<br>Click the button below to return back to Home.
       </p>
       <br>
       <br>

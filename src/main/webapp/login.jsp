@@ -37,7 +37,7 @@ import="java.util.*"%> <%@page import="uts.isd.model.*"%>
         />
 
         <input type="hidden" name="login" id="login" value="true" />
-        <button type="submit">Login</button>
+        <button class="login-form" type="submit">Login</button>
       </form>
 
       <% if (loginFailed) { %>
