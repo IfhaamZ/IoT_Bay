@@ -12,24 +12,33 @@ import="uts.isd.model.*"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Main</title>
   </head>
-  <% User user = (User) session.getAttribute("user"); %>
+  <script>
+    const dropdownToggles = document.querySelectorAll('.dropdown-content');
+
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const dropdownMenu = toggle.nextElementSibling;
+    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+  });
+});
+  </script>
   <body>
+    <% User user = (User) session.getAttribute("user"); %>
+    <% String name = (user != null) ? user.getName() : ""; %>
     <header>
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          align-items: center;
-        "
-      >
+      <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
         <h1>TechTide</h1>
       </div>
       <div>
         <nav>
           <ul>
-            <li><a href="logout.jsp">Logout</a></li>
-            <!-- Add other navigation elements as needed -->
+            <% if (user != null) { %>
+              <li><a href="logout.jsp">Logout</a></li>
+              <li><%=name %></li>
+              <% } else { %>
+              <li><a href="register.jsp">Register</a></li>
+              <li><a href="index.jsp">Home</a></li>
+              <% } %>
           </ul>
         </nav>
       </div>

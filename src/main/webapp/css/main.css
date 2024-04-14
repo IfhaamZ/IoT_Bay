@@ -1,3 +1,10 @@
+body {
+  background-color: #3c3c3c;
+  font-family: Roboto;
+  margin: 0;
+  padding: 0;
+}
+
 /* Nav */
 header {
   display: flex;
@@ -22,6 +29,9 @@ nav ul {
 
 nav ul li {
   padding-inline: 20px;
+  color: #ff5a5f;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 nav ul li a {
