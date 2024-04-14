@@ -16,6 +16,23 @@ public class Staff extends User {
         this.accessLevel = accessLevel;
     }
 
+    public void manageDeviceCollection() {
+
+    }
+  
+    public void trackOrder() {
+      
+    }
+  
+    public void manageUsers() {
+      
+    }
+  
+    public List<AccessLog> viewAccessLogs() {
+      return null;
+    }
+
+
     public int getStaffID() {
         return staffID;
     }
