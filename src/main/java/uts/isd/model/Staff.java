@@ -1,5 +1,7 @@
 package uts.isd.model;
 
+import java.util.*;
+
 public class Staff extends User{
 
     public Staff(String _email, String _name, String _password, String _phone, String _city, String _country, String _role)

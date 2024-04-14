@@ -1,5 +1,6 @@
 package uts.isd.model;
 
+import java.util.*;
 import java.io.Serializable;
 
 public class User implements Serializable {
