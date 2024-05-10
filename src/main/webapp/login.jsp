@@ -24,7 +24,7 @@ import="java.util.*"%> <%@page import="uts.isd.model.*"%>
           name="name"
           id="name"
           required
-          placeholder="Enter your name"
+          placeholder="Enter your name!"
         />
 
         <label for="password">Password</label>
