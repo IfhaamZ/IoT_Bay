@@ -19,7 +19,7 @@
       "port": 33060,
       "driver": "MySQL",
       "name": "MySQL Local",
-      "database": "IDBD",
+      "database": "IBDB",
       "username": "root",
       "password": "isduts",
       "connectionTimeout": 100
