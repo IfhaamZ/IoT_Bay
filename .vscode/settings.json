@@ -7,5 +7,23 @@
   ],
   "cmake.configureOnOpen": false,
   "java.configuration.updateBuildConfiguration": "automatic",
-  "java.compile.nullAnalysis.mode": "disabled"
+  "java.compile.nullAnalysis.mode": "disabled",
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "xprotocol",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 33060,
+      "driver": "MySQL",
+      "name": "MySQL Local",
+      "database": "bro",
+      "username": "root",
+      "password": "isduts",
+      "connectionTimeout": 100
+    }
+  ],
+  "java.debug.settings.onBuildFailureProceed": true
 }
