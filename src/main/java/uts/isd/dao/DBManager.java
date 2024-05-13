@@ -7,10 +7,10 @@ import uts.isd.model.LineItem;
 import uts.isd.model.Order;
 import uts.isd.model.Product;
 
-
 public class DBManager {
 
     private Statement stmt;
+    private Connection conn;
 
     public DBManager(Connection conn) throws SQLException {
         stmt = conn.createStatement();
@@ -163,7 +163,7 @@ public class DBManager {
 
     public ArrayList<LineItem> getLineItems(int orderID) throws SQLException {
         String query = "SELECT * FROM orderLineItem WHERE orderID = ?";
-        Connection conn;
+
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, orderID);
             ResultSet rs = pstmt.executeQuery();
