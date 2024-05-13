@@ -6,9 +6,10 @@ body {
 }
 
 .container {
-  max-width: 1300px;
-  height: 610px;
+  max-width: 450px;
+  height: 450px;
   margin: 0 auto;
+  margin-top: 70px;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -18,12 +19,15 @@ body {
 .login-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .login-form h2 {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
 }
 
 .login-form label {
@@ -31,6 +35,8 @@ body {
   color: #333;
   margin-bottom: 5px;
   font-weight: bold;
+  align-self: flex-start;
+  padding-left: 80px;
 }
 
 .login-form input[type="text"],
@@ -40,13 +46,13 @@ body {
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 95%;
+  width: 60%;
 }
 
 .login-form button {
   padding: 10px 20px;
-  background-color: white;
-  color: black;
+  background-color: #087e8b;
+  color: #f5f5f5;
   border: 2px solid #ddd;
   border-radius: 20px;
   cursor: pointer;
@@ -54,14 +60,13 @@ body {
   display: inline-block;
   margin-top: 10px;
   font-size: 18px;
-  width: 700px;
+  width: 200px;
   text-align: center;
   font-weight: bold;
 }
 
 .login-form button:hover {
-  background-color: #087e8b;
-  color: #f5f5f5;
+  color: #ff5a5f;
 }
 
 .message {
@@ -74,29 +79,24 @@ body {
 
 .link-button a {
   text-decoration: none;
-  color: black;
+  color: #464343;
+  margin-left: 150px;
 }
 
 .link-button {
   padding: 10px 20px;
-  background-color: #087e8b;
-  color: #f5f5f5;
+  background-color: #fff;
+  color: #464343;
   border: none;
-  border-radius: 20px;
-}
-
-.login-form button {
-  padding: 10px 20px;
-  background-color: white;
-  color: black;
-  border: 2px solid #ddd;
-  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  display: block;
-  margin: 10px auto;
+  display: inline-block;
+  margin-top: 10px;
   font-size: 18px;
-  width: 700px;
+  width: 200px;
   text-align: center;
   font-weight: bold;
+}
+
+.link-button:hover {
+  color: #ff5a5f;
 }

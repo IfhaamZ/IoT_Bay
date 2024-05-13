@@ -8,12 +8,12 @@ import="java.util.*"%> <%@page import="uts.isd.model.*"%>
     <link rel="stylesheet" href="css/login.css" />
   </head>
   <body>
-    <% User user = (User) session.getAttribute("user"); String storedName =
-    (user != null) ? user.getName() : null; String storedPassword = (user !=
-    null) ? user.getPassword() : null; String name =
-    request.getParameter("name"); String password =
-    request.getParameter("password"); boolean loginFailed = (name != null &&
-    password != null) && (storedName == null || !storedName.equals(name) ||
+    <% User user = (User) session.getAttribute("user"); 
+    String storedName = (user != null) ? user.getName() : null; String storedPassword = (user !=
+    null) ? user.getPassword() : null; 
+    String name = request.getParameter("name");
+    String password = request.getParameter("password"); 
+    boolean loginFailed = (name != null && password != null) && (storedName == null || !storedName.equals(name) ||
     !storedPassword.equals(password)); %>
     <div class="container">
       <form method="post" class="login-form">
@@ -37,7 +37,7 @@ import="java.util.*"%> <%@page import="uts.isd.model.*"%>
         />
 
         <input type="hidden" name="login" id="login" value="true" />
-        <button type="submit">Login</button>
+        <button class="login-form" type="submit">Login</button>
       </form>
 
       <% if (loginFailed) { %>

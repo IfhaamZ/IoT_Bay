@@ -41,9 +41,7 @@
                   <p class="message">Your account has been successfully created. Please Log-in to continue</p>
               </div>
               <div class="button-container">
-              <button class="confirm-button">
-                <a href="login.jsp" style="text-decoration:none;color:#f5f5f5;">Login</a>
-              </button>
+                <a class="login-button" href="login.jsp" style="text-decoration:none;color:#f5f5f5;">Login</a>
               </div>
             </div>
 
@@ -120,6 +118,7 @@
       <a href="${pageContext.request.contextPath}/" class="cancel-button"
             >Cancel Registration</a
           >
+      <div>
       <% } %>
   </body>
 </html>
