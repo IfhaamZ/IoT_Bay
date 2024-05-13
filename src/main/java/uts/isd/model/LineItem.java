@@ -40,4 +40,24 @@ public class LineItem {
     private float calculateTotal() {
       return quantity;
     }
+
+    public int getProductQuantity() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProductQuantity'");
+    }
+
+    public float getLineItemPrice() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLineItemPrice'");
+    }
+
+    public String getProductSKU() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProductSKU'");
+    }
+
+    public String getLineItemStatus() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLineItemStatus'");
+    }
   }

@@ -1,5 +1,7 @@
 package uts.isd.model;
 
+import java.util.ArrayList;
+
 public class Order {
     
 
@@ -62,5 +64,55 @@ public class Order {
   
     public void setCustomerID(int customerID) {
       this.customerID = customerID;
+    }
+
+    public String getShippingAddress() {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'getShippingAddress'");
+    }
+
+    public String getCreatedBy() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCreatedBy'");
+    }
+
+    public String getCreatedDate() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCreatedDate'");
+    }
+
+    public String getBillingAddress() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getBillingAddress'");
+    }
+
+    public LineItem[] getLineItems() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLineItems'");
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setShippingAddress'");
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setBillingAddress'");
+    }
+
+    public void setCreatedBy(String createdBy) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCreatedBy'");
+    }
+
+    public void setCreatedDate(String createdDate) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCreatedDate'");
+    }
+
+    public void setLineItems(ArrayList<LineItem> lineItems) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setLineItems'");
     }
   }
