@@ -21,7 +21,7 @@
       "name": "MySQL Local",
       "database": "IBDB",
       "username": "root",
-      "password": "isduts",
+      "password": "password123",
       "connectionTimeout": 100
     }
   ],
