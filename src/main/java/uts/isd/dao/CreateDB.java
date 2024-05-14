@@ -9,7 +9,7 @@ public class CreateDB {
 
     protected static final String db_url = "jdbc:mysql://localhost:3306/";   
     protected static final String db_user = "root";
-    protected static final String db_pass = "isduts";
+    protected static final String db_pass = "Lama1234!";
     protected static final String db_name = "IBDB";
 
     public static void main(String[] args){
