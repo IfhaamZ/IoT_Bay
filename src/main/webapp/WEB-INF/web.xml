@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-      version="3.1">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
+
+  <display-name>Staff Management Application</display-name>
+
+  <!-- DB Connection Parameters -->
+  <context-param>
+    <param-name>jdbcURL</param-name>
+    <param-value>jdbc:mysql://localhost:3306/yourDatabaseName</param-value>
+  </context-param>
+  <context-param>
+    <param-name>jdbcUsername</param-name>
+    <param-value>yourUsername</param-value>
+  </context-param>
+  <context-param>
+    <param-name>jdbcPassword</param-name>
+    <param-value>yourPassword</param-value>
+  </context-param>
+
+  <!-- Controller Servlet -->
   <servlet>
-    <servlet-name>index.jsp</servlet-name>
-    <jsp-file>/index.jsp</jsp-file>
-    <load-on-startup>1</load-on-startup>
+    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-class>uts.isd.controller.ControllerServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
-   <servlet-name>index.jsp</servlet-name>
-   <url-pattern>/index/*</url-pattern>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/ControllerServlet</url-pattern>
+    <url-pattern>/staffnew</url-pattern>
+    <url-pattern>/staffinsert</url-pattern>
+    <url-pattern>/staffdelete</url-pattern>
+    <url-pattern>/staffedit</url-pattern>
+    <url-pattern>/staffupdate</url-pattern>
+    <url-pattern>/stafflist</url-pattern>
   </servlet-mapping>
+
 </web-app>

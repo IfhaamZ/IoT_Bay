@@ -15,7 +15,7 @@ public class DBManager {
     // Staff
     // Create
     public static boolean insertStaff(Staff staff) throws SQLException {
-        String sql = "INSERT INTO staff (email, name, password, phone, city, country, role, department) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO staff (email, name, password, phone, city, country, role, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, staff.getEmail());
