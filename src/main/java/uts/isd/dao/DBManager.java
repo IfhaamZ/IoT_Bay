@@ -2,8 +2,7 @@ package uts.isd.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
-import uts.isd.model.Staff;
-
+import uts.isd.model.*;
 
 public class DBManager {
     

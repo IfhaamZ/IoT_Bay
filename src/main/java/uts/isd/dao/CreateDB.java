@@ -45,11 +45,13 @@ public class CreateDB {
         try (Statement stmt = conn.createStatement()){
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS staff ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                + "username VARCHAR(50) UNIQUE,"
+                + "email VARCHAR(50) UNIQUE,"
                 + "name VARCHAR(30),"
-                + "email VARCHAR(30) UNIQUE,"
-                + "password VARCHAR(100),"
-                + "position VARCHAR(20),"
+                + "password VARCHAR(30) UNIQUE,"
+                + "phone VARCHAR(20),"
+                + "city VARCHAR(100),"
+                + "country VARCHAR(20),"
+                + "role VARCHAR(20),"
                 + "department VARCHAR(20)"
                 + ")");
             System.out.println("Staff table creation successful.");
