@@ -6,13 +6,13 @@ import uts.isd.model.Product;
 
 
 public class DBManager {
-<<<<<<< Updated upstream
     
     private Statement stmt;
     
-    public DBManager(Connection conn) throws SQLException{
+    public DBManager(Connection conn) throws SQLException {
         stmt = conn.createStatement();
-=======
+    }
+
     // Staff
     public static void insertStaff(String username, String name, String email, String password, String position, String department) {
         String sql = "INSERT INTO staff (username, name, email, password, position, department) VALUES (?, ?, ?, ?, ?, ?)";
@@ -28,7 +28,6 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
->>>>>>> Stashed changes
     }
     // SystemAdmin
     public void insertStaff(String username, String name, String email, String password, String position, String department) throws SQLException {
