@@ -12,23 +12,6 @@ public class Staff extends User {
         this.department = _department;
     }
 
-    // Methods
-    public void manageDeviceCollection() {
-
-    }
-
-    public void trackOrder() {
-
-    }
-
-    public void manageUsers() {
-
-    }
-
-    public List<AccessLog> viewAccessLogs() {
-        return null;
-    }
-
     // Getters And Setters
 
     public String getDepartment() {
