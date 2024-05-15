@@ -1,4 +1,4 @@
-package uts.isd.dao;
+package uts.isd.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,8 +9,8 @@ public class CreateDB {
 
     protected static final String db_url = "jdbc:mysql://localhost:3306/";   
     protected static final String db_user = "root";
-    protected static final String db_pass = "Lama1234!";
-    protected static final String db_name = "IBDB";
+    protected static final String db_pass = "Password";
+    protected static final String db_name = "database";
 
     public static void main(String[] args){
         try(Connection conn = DriverManager.getConnection(db_url, db_user, db_pass);
@@ -27,6 +27,20 @@ public class CreateDB {
     }
 
     private static void createTables(Connection conn) throws SQLException {
+        //create user table
+        try (Statement stmt = conn.createStatement()){
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS user ("
+                + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "name VARCHAR(30),"
+                + "email VARCHAR(30) UNIQUE,"
+                + "password VARCHAR(100),"
+                + "phone VARCHAR(20),"
+                + "city VARCHAR(20),"
+                + "country VARCHAR(20),"
+                + "role VARCHAR(20),"
+                + ")");
+            System.out.println("User table creation successful.");
+        }
         //create customer table
         try (Statement stmt = conn.createStatement()){
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS customer ("

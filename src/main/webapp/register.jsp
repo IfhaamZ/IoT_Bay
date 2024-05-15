@@ -47,7 +47,7 @@
 
     <% } else { %>
     <div class="container">
-      <form method="post" class="registration-form">
+      <form method="post" class="registration-form" action="/insert">
         <h2>Registration</h2>
         <br>
 

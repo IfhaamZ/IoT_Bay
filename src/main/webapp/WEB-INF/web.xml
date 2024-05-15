@@ -4,6 +4,8 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
       version="3.1">
+  
+  <!-- JSP File Mapping -->
   <servlet>
     <servlet-name>index.jsp</servlet-name>
     <jsp-file>/index.jsp</jsp-file>
@@ -12,5 +14,36 @@
   <servlet-mapping>
    <servlet-name>index.jsp</servlet-name>
    <url-pattern>/index/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- Controller Servlet Mapping -->
+  <servlet>
+    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-class>uts.isd.controller.ControllerServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/insert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
 </web-app>
