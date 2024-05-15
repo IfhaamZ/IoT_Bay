@@ -37,6 +37,7 @@ public class ControllerServlet extends HttpServlet {
 
         try {
             switch (action) {
+                //staff
                 case "/staffnew":
                     showNewForm(request, response);
                     break;
@@ -64,12 +65,16 @@ public class ControllerServlet extends HttpServlet {
                 default:
                     listStaff(request, response);
                     break;
+                //user
+                //product
+                //order
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
 
+    // Staff
     private void listStaff(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Staff> listStaff = dbManager.fetchStaff();
@@ -160,4 +165,8 @@ public class ControllerServlet extends HttpServlet {
         dbManager.deleteStaff(email);
         response.sendRedirect("stafflist");
     }
+
+    // User
+    // Order
+    // Product
 }
