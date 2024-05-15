@@ -25,10 +25,19 @@
     <servlet-name>ControllerServlet</servlet-name>
     <servlet-class>uts.isd.controller.ControllerServlet</servlet-class>
   </servlet>
+  <servlet-mapping>
+  <servlet-name>ControllerServlet</servlet-name>
+  <url-pattern>/ControllerServlet</url-pattern>
+  <url-pattern>/staff</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StaffServlet</servlet-name>
+    <servlet-class>uts.isd.controller.StaffServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/ControllerServlet</url-pattern>
+    <servlet-name>StaffServlet</servlet-name>
     <url-pattern>/staffnew</url-pattern>
     <url-pattern>/staffinsert</url-pattern>
     <url-pattern>/staffdelete</url-pattern>
