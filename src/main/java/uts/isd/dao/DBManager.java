@@ -129,7 +129,7 @@ public class DBManager {
             }
             return products;
         }
-
+        // Insert new product
         public static boolean insertProduct(Product p) throws SQLException {
             String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (Connection connection = DBConnector.getConnection();

@@ -6,7 +6,7 @@ body {
     -o-background-size: cover;
     background-size: cover;  
     */
-	width: 200px;
+	width: 100px;
 	height: 200px;
 	background-size: contain;
 	border-radius: 50%;

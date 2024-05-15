@@ -1,26 +1,48 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
+import="uts.isd.model.*"%>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome</title>
-    </head>
-    <% 
-       String favcol = request.getParameter("favcol");
-    %>
-    <body bgcolor="<%= favcol%>" >
-        <%
-            String email = request.getParameter("email");
-            String name = request.getParameter("name");
-            String tos = request.getParameter("tos");
-        %>
-        <h1>Welcome</h1>
-        <h2>Email: <%= email%></h2>
-        <h2>Name: <%= name%></h2>
-        <% if (tos == null){ %>
-                <h2>You have not accepted the terms of service!</h2>
-        <% }else { %>
-                <h2>You have succesfully created an accoutn!</h2>
-        <% } %>
-    </body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/welcome.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Welcome</title>
+  </head>
+  
+  <body>
+    <% User user = (User) session.getAttribute("user"); %>
+    <header>
+      <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <h1>TechTide</h1>
+      </div>
+      <div>
+        <nav>
+          <ul>
+            <li><a href="logout.jsp">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <% String name = user.getName(); %>
+
+    <main>
+      <div>
+        <h1>Welcome, <%= name%>!</h1>
+        <p>
+          Explore our latest devices and technologies designed to enhance your
+          digital experience.
+        </p>
+        <br />
+        <a href="main.jsp">
+          <button>Explore</button>
+        </a>
+      </div>
+    </main>
+  </body>
 </html>

@@ -1,0 +1,102 @@
+body {
+  font-family: "Arial", Helvetica, sans-serif;
+  background-color: #3c3c3c;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  margin-top: 70px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.login-form label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: bold;
+  align-self: flex-start;
+  padding-left: 80px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 60%;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #087e8b;
+  color: #f5f5f5;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.login-form button:hover {
+  color: #ff5a5f;
+}
+
+.message {
+  font-size: 17px;
+  color: #ff5a5f;
+  text-align: center;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.link-button a {
+  text-decoration: none;
+  color: #464343;
+  margin-left: 150px;
+}
+
+.link-button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #464343;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 18px;
+  width: 200px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.link-button:hover {
+  color: #ff5a5f;
+}
