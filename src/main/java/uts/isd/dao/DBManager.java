@@ -85,14 +85,14 @@ public class DBManager {
         String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ? WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, staff.getEmail());
-            st.setString(2, staff.getName());
-            st.setString(3, staff.getPassword());
-            st.setString(4, staff.getPhone());
-            st.setString(5, staff.getCity());
-            st.setString(6, staff.getCountry());
-            st.setString(7, staff.getRole());
-            st.setString(8, staff.getDepartment());
+            st.setString(8, staff.getEmail());
+            st.setString(1, staff.getName());
+            st.setString(2, staff.getPassword());
+            st.setString(3, staff.getPhone());
+            st.setString(4, staff.getCity());
+            st.setString(5, staff.getCountry());
+            st.setString(6, staff.getRole());
+            st.setString(7, staff.getDepartment());
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
         } catch (SQLException e) {
@@ -113,7 +113,7 @@ public class DBManager {
     }
 
     // Product
-    public ArrayList<Product> displayAllProducts() throws SQLException {
+    public ArrayList<Product> displayProducts() throws SQLException {
         ResultSet result = stmt.executeQuery("SELECT * FROM product");
         ArrayList<Product> products = new ArrayList<>();
             while (result.next()) {
@@ -129,6 +129,79 @@ public class DBManager {
             }
             return products;
         }
+        // Insert new product
+        public static boolean insertProduct(Product p) throws SQLException {
+            String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            try (Connection connection = DBConnector.getConnection();
+                    PreparedStatement st = connection.prepareStatement(sql)) {
+                st.setString(1, p.getProductID());
+                st.setString(2, p.getName());
+                st.setString(3, p.getDescription());
+                st.setFloat(4, p.getPrice());
+                st.setInt(5, p.getStockQuantity());
+                st.setString(6, p.getSupplier());
+                st.setString(7, p.getCategory());
+                st.setDate(8, p.getManuDate());
+                boolean rowInserted = st.executeUpdate() > 0;
+                return rowInserted;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+    // Delete product
+    public boolean deleteProduct(String productID) throws SQLException {
+        String sql = "DELETE FROM product WHERE productID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, productID);
+            boolean rowDeleted = st.executeUpdate() > 0;
+            return rowDeleted;
+        }
+    }
+    // Get product 
+    public Product getProduct(String productID) throws SQLException {
+        String sql = "SELECT productID, productName, description, price, stock, category, supplier, manuDate FROM product WHERE productID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, productID);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    return new Product(
+                            rs.getString("productID"),
+                            rs.getString("productName"),
+                            rs.getString("description"),
+                            rs.getFloat("price"),
+                            rs.getInt("stock"),
+                            rs.getString("category"),
+                            rs.getString("supplier"),
+                            rs.getDate("manuDate"));
+                }
+            }
+        }
+        return null;
+    }
+    
+    // Update
+    public static boolean updateProduct(Product p) {
+        String sql = "UPDATE product SET productName = ?, description = ?, price = ?, stock = ?, supplier = ?, category = ?, manuDate = ? WHERE productID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, p.getName());
+            st.setString(2, p.getDescription());
+            st.setFloat(3, p.getPrice());
+            st.setInt(4, p.getStockQuantity());
+            st.setString(5, p.getSupplier());
+            st.setString(6, p.getCategory());
+            st.setDate(7, p.getManuDate());
+            st.setString(8, p.getProductID());
+            boolean rowUpdated = st.executeUpdate() > 0;
+            return rowUpdated;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     //Customer
 
@@ -137,3 +210,4 @@ public class DBManager {
     //LineItem
 
     }
+

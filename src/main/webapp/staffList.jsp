@@ -43,9 +43,9 @@
                             <td><%= staff.getRole() %></td>
                             <td><%= staff.getDepartment() %></td>
                             <td>
-                                <a href="edit?email=<%= staff.getEmail() %>">Edit</a>
+                                <a href="staffedit?email=<%= staff.getEmail() %>">Edit</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="delete?email=<%= staff.getEmail() %>" onclick="return confirm('Are you sure you want to delete this staff member?')">Delete</a>
+                                <a href="staffdelete?email=<%= staff.getEmail() %>" onclick="return confirm('Are you sure you want to delete this staff member?')">Delete</a>
                             </td>
                         </tr>
                     <%

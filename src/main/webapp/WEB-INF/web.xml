@@ -37,4 +37,20 @@
     <url-pattern>/stafflist</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>InventoryServlet</servlet-name>
+    <servlet-class>uts.isd.controller.InventoryServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>InventoryServlet</servlet-name>
+    <url-pattern>/InventoryServlet</url-pattern>
+    <url-pattern>/productnew</url-pattern>
+    <url-pattern>/productinsert</url-pattern>
+    <url-pattern>/productdelete</url-pattern>
+    <url-pattern>/productedit</url-pattern>
+    <url-pattern>/productupdate</url-pattern>
+    <url-pattern>/productslist</url-pattern>
+  </servlet-mapping>
+
 </web-app>

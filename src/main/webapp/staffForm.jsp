@@ -17,7 +17,7 @@
                 Staff staff = (Staff) request.getAttribute("staff");
                 boolean isUpdate = staff != null;
             %>
-            <form action="<%= isUpdate ? "update" : "insert" %>" method="post">
+            <form action="<%= isUpdate ? "staffupdate" : "staffinsert" %>" method="post">
                 <h2><%= isUpdate ? "Edit Staff" : "Add New Staff" %></h2>
                 <% if (isUpdate) { %>
                     <input type="hidden" name="email" value="<%= staff.getEmail() %>" />
