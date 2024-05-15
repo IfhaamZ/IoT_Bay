@@ -35,6 +35,9 @@
     <url-pattern>/staffedit</url-pattern>
     <url-pattern>/staffupdate</url-pattern>
     <url-pattern>/stafflist</url-pattern>
+    <url-pattern>/staffsearch</url-pattern>
+    <url-pattern>/staffactivate</url-pattern>
+    <url-pattern>/staffdeactivate</url-pattern>
   </servlet-mapping>
 
 </web-app>

@@ -2,6 +2,8 @@ package uts.isd.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+
 import uts.isd.model.*;
 
 public class DBManager {
@@ -15,7 +17,7 @@ public class DBManager {
     // Staff
     // Create
     public static boolean insertStaff(Staff staff) throws SQLException {
-        String sql = "INSERT INTO staff (email, name, password, phone, city, country, role, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO staff (email, name, password, phone, city, country, role, department, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, staff.getEmail());
@@ -26,6 +28,7 @@ public class DBManager {
             st.setString(6, staff.getCountry());
             st.setString(7, staff.getRole());
             st.setString(8, staff.getDepartment());
+            st.setBoolean(9, staff.isActive());
             boolean rowInserted = st.executeUpdate() > 0;
             return rowInserted;
         } catch (SQLException e) {
@@ -37,7 +40,7 @@ public class DBManager {
     // Read
     public ArrayList<Staff> fetchStaff() throws SQLException {
         ArrayList<Staff> ListOfStaff = new ArrayList<>();
-        String sql = "SELECT email, name, password, phone, city, country, role, department FROM staff";
+        String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql);
                 ResultSet rs = st.executeQuery()) {
@@ -50,16 +53,45 @@ public class DBManager {
                         rs.getString("city"),
                         rs.getString("country"),
                         rs.getString("role"),
-                        rs.getString("department"));
+                        rs.getString("department"),
+                        rs.getBoolean("status"));
                 ListOfStaff.add(staff);
             }
         }
         return ListOfStaff;
     }
 
+    // Search staff by name, role and department
+     public List<Staff> searchStaff(String name, String role, String department) throws SQLException {
+        List<Staff> staffList = new ArrayList<>();
+        String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff WHERE name LIKE ? AND role LIKE ? AND department LIKE ?";
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, "%" + name + "%");
+            st.setString(2, "%" + role + "%");
+            st.setString(3, "%" + department + "%");
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Staff staff = new Staff(
+                            rs.getString("email"),
+                            rs.getString("name"),
+                            rs.getString("password"),
+                            rs.getString("phone"),
+                            rs.getString("city"),
+                            rs.getString("country"),
+                            rs.getString("role"),
+                            rs.getString("department"),
+                            rs.getBoolean("status"));
+                    staffList.add(staff);
+                }
+            }
+        }
+        return staffList;
+    }
+
     // Get Staff by Email
     public Staff getStaff(String email) throws SQLException {
-        String sql = "SELECT email, name, password, phone, city, country, role, department FROM staff WHERE email = ?";
+        String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, email);
@@ -73,7 +105,8 @@ public class DBManager {
                             rs.getString("city"),
                             rs.getString("country"),
                             rs.getString("role"),
-                            rs.getString("department"));
+                            rs.getString("department"),
+                            rs.getBoolean("status"));
                 }
             }
         }
@@ -82,17 +115,18 @@ public class DBManager {
     
     // Update
     public static boolean updateStaff(Staff staff) {
-        String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ? WHERE email = ?";
+        String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ?, status = ? WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, staff.getEmail());
-            st.setString(2, staff.getName());
-            st.setString(3, staff.getPassword());
-            st.setString(4, staff.getPhone());
-            st.setString(5, staff.getCity());
-            st.setString(6, staff.getCountry());
-            st.setString(7, staff.getRole());
-            st.setString(8, staff.getDepartment());
+            st.setString(1, staff.getName());
+            st.setString(2, staff.getPassword());
+            st.setString(3, staff.getPhone());
+            st.setString(4, staff.getCity());
+            st.setString(5, staff.getCountry());
+            st.setString(6, staff.getRole());
+            st.setString(7, staff.getDepartment());
+            st.setBoolean(8, staff.isActive());
+            st.setString(9, staff.getEmail());
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
         } catch (SQLException e) {
@@ -101,7 +135,29 @@ public class DBManager {
         }
     }
 
-    // Delete
+    // Activate staff
+    public static boolean activateStaff(String email) throws SQLException {
+        String sql = "UPDATE staff SET status = true WHERE email = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, email);
+            int rowsUpdated = st.executeUpdate();
+            return rowsUpdated > 0;
+        }
+    }
+
+    // Deactivate staff
+    public static boolean deactivateStaff(String email) throws SQLException {
+        String sql = "UPDATE staff SET status = false WHERE email = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, email);
+            int rowsUpdated = st.executeUpdate();
+            return rowsUpdated > 0;
+        }
+    }
+
+    // Delete Staff
     public boolean deleteStaff(String email) throws SQLException {
         String sql = "DELETE FROM staff WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();

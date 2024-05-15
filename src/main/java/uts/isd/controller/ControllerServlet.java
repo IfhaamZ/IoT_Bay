@@ -52,6 +52,15 @@ public class ControllerServlet extends HttpServlet {
                 case "/staffupdate":
                     updateStaff(request, response);
                     break;
+                case "/staffsearch":
+                    searchStaff(request, response);
+                    break;
+                case "/staffactivate":
+                    activateStaff(request, response);
+                    break;
+                case "/staffdeactivate":
+                    deactivateStaff(request, response);
+                    break;
                 default:
                     listStaff(request, response);
                     break;
@@ -94,8 +103,9 @@ public class ControllerServlet extends HttpServlet {
         String country = request.getParameter("country");
         String role = request.getParameter("role");
         String department = request.getParameter("department");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
 
-        Staff newStaff = new Staff(email, name, password, phone, city, country, role, department);
+        Staff newStaff = new Staff(email, name, password, phone, city, country, role, department, status);
         DBManager.insertStaff(newStaff);
         response.sendRedirect("stafflist");
     }
@@ -110,9 +120,36 @@ public class ControllerServlet extends HttpServlet {
         String country = request.getParameter("country");
         String role = request.getParameter("role");
         String department = request.getParameter("department");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
 
-        Staff staff = new Staff(email, name, password, phone, city, country, role, department);
-        DBManager.updateStaff(staff);
+        Staff updateStaff = new Staff(email, name, password, phone, city, country, role, department, status);
+        DBManager.updateStaff(updateStaff);
+        response.sendRedirect("stafflist");
+    }
+
+    private void searchStaff(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String name = request.getParameter("name");
+        String role = request.getParameter("role");
+        String department = request.getParameter("department");
+
+        List<Staff> searchResults = dbManager.searchStaff(name, role, department);
+        request.setAttribute("ListOfStaff", searchResults);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("staffList.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void activateStaff(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        String email = request.getParameter("email");
+        DBManager.activateStaff(email);
+        response.sendRedirect("stafflist");
+    }
+
+    private void deactivateStaff(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        String email = request.getParameter("email");
+        DBManager.deactivateStaff(email);
         response.sendRedirect("stafflist");
     }
 

@@ -11,13 +11,14 @@
         <div class="nav-links">
             <a href="staffnew">Add New Staff</a>
             <a href="stafflist">List All Staff</a>
+            <a href="searchStaff.jsp">Search Staff</a>
         </div>
         <div class="form-container">
             <%
                 Staff staff = (Staff) request.getAttribute("staff");
                 boolean isUpdate = staff != null;
             %>
-            <form action="<%= isUpdate ? "update" : "insert" %>" method="post">
+            <form action="<%= isUpdate ? "staffupdate" : "staffinsert" %>" method="post">
                 <h2><%= isUpdate ? "Edit Staff" : "Add New Staff" %></h2>
                 <% if (isUpdate) { %>
                     <input type="hidden" name="email" value="<%= staff.getEmail() %>" />
@@ -48,7 +49,7 @@
                 
                 <div class="form-buttons">
                     <input type="submit" value="Save">
-                    <button type="button" onclick="window.location.href='staffList.jsp';">Cancel</button>
+                    <button type="button" onclick="window.location.href='stafflist';">Cancel</button>
                 </div>
             </form>
         </div>
