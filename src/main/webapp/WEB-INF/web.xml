@@ -51,6 +51,7 @@
     <url-pattern>/productedit</url-pattern>
     <url-pattern>/productupdate</url-pattern>
     <url-pattern>/productslist</url-pattern>
+    <url-pattern>/productview</url-pattern>
   </servlet-mapping>
 
 </web-app>

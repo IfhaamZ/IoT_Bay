@@ -52,6 +52,9 @@ public class InventoryServlet extends HttpServlet {
                 case "/productupdate":
                     updateProduct(request, response);
                     break;
+                case "/productview":
+                    listProducts(request, response);
+                    break;
                 default:
                     listInventory(request, response);
                     break;
@@ -65,6 +68,14 @@ public class InventoryServlet extends HttpServlet {
         ArrayList<Product> products = dbManager.displayProducts();
         request.setAttribute("productslist", products);
         RequestDispatcher dispatcher = request.getRequestDispatcher("displayProducts.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listProducts(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        ArrayList<Product> products = dbManager.displayProducts();
+        request.setAttribute("productview", products);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("displayProductsC.jsp");
         dispatcher.forward(request, response);
     }
 
