@@ -26,7 +26,7 @@
         <url-pattern>/CreateOrderServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- View Order Servlet
+    <!-- View Order Servlet -->
     <servlet>
         <servlet-name>ViewOrderServlet</servlet-name>
         <servlet-class>uts.isd.controller.ViewOrderServlet</servlet-class>
@@ -34,17 +34,17 @@
     <servlet-mapping>
         <servlet-name>ViewOrderServlet</servlet-name>
         <url-pattern>/ViewOrderServlet</url-pattern>
-    </servlet-mapping> -->
+    </servlet-mapping>
 
     <!-- Update Order Servlet -->
-    <!-- <servlet>
+    <servlet>
         <servlet-name>UpdateOrderServlet</servlet-name>
         <servlet-class>uts.isd.controller.UpdateOrderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateOrderServlet</servlet-name>
         <url-pattern>/UpdateOrderServlet</url-pattern>
-    </servlet-mapping> -->
+    </servlet-mapping>
 
     <!-- Delete Order Servlet -->
     <servlet>

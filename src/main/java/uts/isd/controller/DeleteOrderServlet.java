@@ -10,14 +10,15 @@ import uts.isd.dao.DBManager;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
-@WebServlet("/UpdateOrderServlet")
+// @WebServlet("/UpdateOrderServlet")
 public class DeleteOrderServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         DBManager manager = (DBManager) session.getAttribute("manager");
-        
+
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         try {

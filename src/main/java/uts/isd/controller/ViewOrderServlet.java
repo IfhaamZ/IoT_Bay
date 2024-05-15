@@ -11,7 +11,7 @@ import uts.isd.dao.DBManager;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
-@WebServlet("/ViewOrderServlet")
+// @WebServlet("/ViewOrderServlet")
 public class ViewOrderServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
