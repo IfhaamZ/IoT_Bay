@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
@@ -16,44 +15,14 @@
         <url-pattern>/index/*</url-pattern>
     </servlet-mapping>
 
-    <!-- Create Order Servlet -->
+    <!-- Order Servlet for create, view, update, and delete operations -->
     <servlet>
-        <servlet-name>CreateOrderServlet</servlet-name>
-        <servlet-class>uts.isd.controller.CreateOrderServlet</servlet-class>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.OrderServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CreateOrderServlet</servlet-name>
-        <url-pattern>/CreateOrderServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- View Order Servlet -->
-    <servlet>
-        <servlet-name>ViewOrderServlet</servlet-name>
-        <servlet-class>uts.isd.controller.ViewOrderServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewOrderServlet</servlet-name>
-        <url-pattern>/ViewOrderServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- Update Order Servlet -->
-    <servlet>
-        <servlet-name>UpdateOrderServlet</servlet-name>
-        <servlet-class>uts.isd.controller.UpdateOrderServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdateOrderServlet</servlet-name>
-        <url-pattern>/UpdateOrderServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- Delete Order Servlet -->
-    <servlet>
-        <servlet-name>DeleteOrderServlet</servlet-name>
-        <servlet-class>uts.isd.controller.DeleteOrderServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteOrderServlet</servlet-name>
-        <url-pattern>/DeleteOrderServlet</url-pattern>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>
