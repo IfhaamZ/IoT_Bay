@@ -13,4 +13,22 @@
    <servlet-name>index.jsp</servlet-name>
    <url-pattern>/index/*</url-pattern>
   </servlet-mapping>
+<<<<<<< Updated upstream
 </web-app>
+=======
+
+  <servlet>
+    <servlet-name>InventoryServlet</servlet-name>
+    <servlet-class>uts.isd.controller.InventoryServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>InventoryServlet</servlet-name>
+    <url-pattern>/InventoryServlet</url-pattern>
+    <url-pattern>/productnew</url-pattern>
+    <url-pattern>/productinsert</url-pattern>
+    <url-pattern>/productslist</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+>>>>>>> Stashed changes
