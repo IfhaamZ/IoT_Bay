@@ -3,7 +3,6 @@ package uts.isd.controller;
 import uts.isd.dao.DBConnector;
 import uts.isd.dao.DBManager;
 import uts.isd.model.Product;
-import uts.isd.model.Staff;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class InventoryServlet extends HttpServlet {
     private DBManager dbManager;
@@ -44,16 +42,7 @@ public class InventoryServlet extends HttpServlet {
                 case "/productinsert":
                     insertProduct(request, response);
                     break;
-                case "/staffdelete":
-                    deleteStaff(request, response);
-                    break;
-                // case "/productedit":
-                //     showEditForm(request, response);
-                //     break;
-                case "/staffupdate":
-                    updateStaff(request, response);
-                    break;
-                default://302
+                default:
                     listInventory(request, response);
                     break;
             }
@@ -61,7 +50,6 @@ public class InventoryServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-//302
     private void listInventory(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         ArrayList<Product> products = dbManager.displayProducts();
@@ -75,15 +63,6 @@ public class InventoryServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("productForm.jsp");
         dispatcher.forward(request, response);
     }
-
-    // private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-    //         throws SQLException, ServletException, IOException {
-    //     String productID = request.getParameter("productID");
-    //     Product existingProduct = dbManager.getProduct(productID);
-    //     RequestDispatcher dispatcher = request.getRequestDispatcher("productForm.jsp");
-    //     request.setAttribute("staff", existingProduct);
-    //     dispatcher.forward(request, response);
-    // }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
@@ -99,29 +78,5 @@ public class InventoryServlet extends HttpServlet {
         Product newProduct = new Product(productID, productName, description, price, stock, category, supplier, manuDate);
         DBManager.insertProduct(newProduct);
         response.sendRedirect("productslist");
-    }
-
-    private void updateStaff(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        String email = request.getParameter("email");
-        String name = request.getParameter("name");
-        String password = request.getParameter("password");
-        String phone = request.getParameter("phone");
-        String city = request.getParameter("city");
-        String country = request.getParameter("country");
-        String role = request.getParameter("role");
-        String department = request.getParameter("department");
-
-        Staff staff = new Staff(email, name, password, phone, city, country, role, department);
-        DBManager.updateStaff(staff);
-        response.sendRedirect("stafflist");
-    }
-
-    private void deleteStaff(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        String email = request.getParameter("email");
-
-        dbManager.deleteStaff(email);
-        response.sendRedirect("stafflist");
     }
 }
