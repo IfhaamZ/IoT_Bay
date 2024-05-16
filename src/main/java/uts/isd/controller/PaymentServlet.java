@@ -100,8 +100,8 @@ public class PaymentServlet extends HttpServlet {
 
         Payment newPayment = new Payment(method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
                 paymentDate);
-        dbManager.CreatePayment(newPayment);
-        response.sendRedirect("paymentListing.jsp");
+        dbManager.createPayment(newPayment);
+        response.sendRedirect("paymentlist");
     }
 
     private void updatePayment(HttpServletRequest request, HttpServletResponse response)
@@ -120,7 +120,7 @@ public class PaymentServlet extends HttpServlet {
         Payment payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
                 paymentDate);
         dbManager.updatePayment(payment);
-        response.sendRedirect("paymentListing.jsp");
+        response.sendRedirect("paymentlist");
     }
 
     private void deletePayment(HttpServletRequest request, HttpServletResponse response)
@@ -131,7 +131,7 @@ public class PaymentServlet extends HttpServlet {
         // paymentDate, it errors and requires 9
         Payment payment = new Payment(paymentID);
         dbManager.deletePayment(payment);
-        response.sendRedirect("paymentListing.jsp");
+        response.sendRedirect("paymentlist");
 
     }
 

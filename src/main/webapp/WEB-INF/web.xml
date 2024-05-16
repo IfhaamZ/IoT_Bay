@@ -31,6 +31,7 @@
   <url-pattern>/staff</url-pattern>
   </servlet-mapping>
 
+  <!-- Staff Servlet -->
   <servlet>
     <servlet-name>StaffServlet</servlet-name>
     <servlet-class>uts.isd.controller.StaffServlet</servlet-class>
@@ -49,6 +50,7 @@
     <url-pattern>/staffdeactivate</url-pattern>
   </servlet-mapping>
 
+  <!-- Inventory Servlet -->
   <servlet>
     <servlet-name>InventoryServlet</servlet-name>
     <servlet-class>uts.isd.controller.InventoryServlet</servlet-class>
@@ -66,6 +68,23 @@
     <url-pattern>/productview</url-pattern>
     <url-pattern>/productsearch</url-pattern>
     <url-pattern>/productsearchC</url-pattern>
+  </servlet-mapping>
+
+  <!-- Payment Servlet -->
+  <servlet>
+    <servlet-name>PaymentServlet</servlet-name>
+    <servlet-class>uts.isd.controller.PaymentServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PaymentServlet</servlet-name>
+    <url-pattern>/PaymentServlet</url-pattern>
+    <url-pattern>/paymentnew</url-pattern>
+    <url-pattern>/paymentinsert</url-pattern>
+    <url-pattern>/paymentdelete</url-pattern>
+    <url-pattern>/paymentedit</url-pattern>
+    <url-pattern>/paymentupdate</url-pattern>
+    <url-pattern>/paymentlist</url-pattern>
   </servlet-mapping>
 
 </web-app>

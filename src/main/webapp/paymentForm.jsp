@@ -9,9 +9,9 @@
     <center>
         <h1>Payment Management</h1>
         <h2>
-            <a href="/paymentForm.jsp">Add New Payment</a>
+            <a href="paymentnew">Add New Payment</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="/paymentListing.jsp">List All Payments</a>
+            <a href="paymentlist">List All Payments</a>
              
         </h2>
     </center>
