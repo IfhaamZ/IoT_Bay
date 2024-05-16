@@ -1,81 +1,123 @@
 package uts.isd.controller;
 
-import java.io.IOException;
+import uts.isd.dao.DBConnector;
+import uts.isd.dao.DBManager;
+import uts.isd.model.Order;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import uts.isd.model.Order;
-import uts.isd.dao.DBManager;
-import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
-// @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private DBManager dbManager;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if ("view".equals(action)) {
-            viewOrder(request, response);
+    public void init() throws ServletException {
+        try {
+            Connection conn = DBConnector.getConnection();
+            dbManager = new DBManager(conn);
+        } catch (SQLException e) {
+            throw new ServletException(e);
         }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        switch (action) {
-            case "create":
-                createOrder(request, response);
-                break;
-            case "update":
-                updateOrder(request, response);
-                break;
-            case "delete":
-                deleteOrder(request, response);
-                break;
-            default:
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getPathInfo();  // Use getPathInfo() to retrieve the action part of the URL
+
+        try {
+            switch (action) {
+                case "/ordernew":
+                    showNewForm(request, response);
+                    break;
+                case "/orderinsert":
+                    insertOrder(request, response);
+                    break;
+                case "/orderdelete":
+                    deleteOrder(request, response);
+                    break;
+                case "/orderedit":
+                    showEditForm(request, response);
+                    break;
+                case "/orderupdate":
+                    updateOrder(request, response);
+                    break;
+                case "/ordersearch":
+                    searchOrder(request, response);
+                    break;
+                case "/orderlist":
+                    listOrder(request, response);
+                    break;
+                default:
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
     }
 
-    private void createOrder(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        DBManager manager = (DBManager) session.getAttribute("manager");
+    // List Orders
+    private void listOrder(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int customerID = Integer.parseInt(request.getParameter("customerID"));
+        List<Order> listOrder = dbManager.getOrdersByCustomerID(customerID);
+        request.setAttribute("listOrder", listOrder);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
+        dispatcher.forward(request, response);
+    }
 
+    // Show New Order Form
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderForm.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    // Show Edit Order Form
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int orderID = Integer.parseInt(request.getParameter("orderID"));
+        Order existingOrder = dbManager.getOrder(orderID);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderForm.jsp");
+        request.setAttribute("order", existingOrder);
+        dispatcher.forward(request, response);
+    }
+
+    // Insert Order
+    private void insertOrder(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
         int customerID = Integer.parseInt(request.getParameter("customerID"));
         String datePlaced = request.getParameter("datePlaced");
-        String status = "pending"; // Initial status
+        String status = request.getParameter("status");
         String shippingAddress = request.getParameter("shippingAddress");
         String billingAddress = request.getParameter("billingAddress");
         String createdBy = request.getParameter("createdBy");
         String createdDate = request.getParameter("createdDate");
 
-        Order order = new Order(0, datePlaced, status, customerID);
-        order.setShippingAddress(shippingAddress);
-        order.setBillingAddress(billingAddress);
-        order.setCreatedBy(createdBy);
-        order.setCreatedDate(createdDate);
+        Order newOrder = new Order(0, datePlaced, status, customerID);
+        newOrder.setShippingAddress(shippingAddress);
+        newOrder.setBillingAddress(billingAddress);
+        newOrder.setCreatedBy(createdBy);
+        newOrder.setCreatedDate(createdDate);
 
-        try {
-            manager.insertOrder(order);
-            session.setAttribute("order", order);
-            request.getRequestDispatcher("orderSuccess.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error creating order");
-            request.getRequestDispatcher("createOrder.jsp").forward(request, response);
-        }
+        dbManager.insertOrder(newOrder);
+        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + customerID);
     }
 
+    // Update Order
     private void updateOrder(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        DBManager manager = (DBManager) session.getAttribute("manager");
-
+            throws SQLException, IOException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         String datePlaced = request.getParameter("datePlaced");
         String status = request.getParameter("status");
@@ -84,61 +126,33 @@ public class OrderServlet extends HttpServlet {
         String createdBy = request.getParameter("createdBy");
         String createdDate = request.getParameter("createdDate");
 
-        try {
-            Order order = manager.getOrder(orderID);
-            if (order != null) {
-                order.setDatePlaced(datePlaced);
-                order.setStatus(status);
-                order.setShippingAddress(shippingAddress);
-                order.setBillingAddress(billingAddress);
-                order.setCreatedBy(createdBy);
-                order.setCreatedDate(createdDate);
-                manager.updateOrder(order);
-                session.setAttribute("order", order);
-                request.getRequestDispatcher("orderUpdateSuccess.jsp").forward(request, response);
-            } else {
-                request.setAttribute("error", "Order not found");
-                request.getRequestDispatcher("updateOrder.jsp").forward(request, response);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error updating order");
-            request.getRequestDispatcher("updateOrder.jsp").forward(request, response);
-        }
+        Order updateOrder = new Order(orderID, datePlaced, status, 0);
+        updateOrder.setShippingAddress(shippingAddress);
+        updateOrder.setBillingAddress(billingAddress);
+        updateOrder.setCreatedBy(createdBy);
+        updateOrder.setCreatedDate(createdDate);
+
+        dbManager.updateOrder(updateOrder);
+        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + request.getParameter("customerID"));
     }
 
+    // Search Order
+    private void searchOrder(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int customerID = Integer.parseInt(request.getParameter("customerID"));
+
+        List<Order> searchResults = dbManager.getOrdersByCustomerID(customerID);
+        request.setAttribute("listOrder", searchResults);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    // Delete Order
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        DBManager manager = (DBManager) session.getAttribute("manager");
-
+            throws SQLException, IOException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
-        try {
-            manager.deleteOrder(orderID);
-            request.getRequestDispatcher("orderDeleteSuccess.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error deleting order");
-            request.getRequestDispatcher("deleteOrder.jsp").forward(request, response);
-        }
+        dbManager.deleteOrder(orderID);
+        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + request.getParameter("customerID"));
     }
-
-    private void viewOrder(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        DBManager manager = (DBManager) session.getAttribute("manager");
-
-        int orderID = Integer.parseInt(request.getParameter("orderID"));
-        try {
-            Order order = manager.getOrder(orderID);
-            session.setAttribute("order", order);
-            request.getRequestDispatcher("viewOrder.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error fetching order details");
-            request.getRequestDispatcher("viewOrder.jsp").forward(request, response);
-        }
-    }
-
 }
