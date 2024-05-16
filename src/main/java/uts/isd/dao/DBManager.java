@@ -118,10 +118,7 @@ public class DBManager {
         String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ?, status = ? WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
-<<<<<<< HEAD
             st.setString(8, staff.getEmail());
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
             st.setString(1, staff.getName());
             st.setString(2, staff.getPassword());
             st.setString(3, staff.getPhone());
@@ -129,11 +126,6 @@ public class DBManager {
             st.setString(5, staff.getCountry());
             st.setString(6, staff.getRole());
             st.setString(7, staff.getDepartment());
-<<<<<<< HEAD
-=======
-            st.setBoolean(8, staff.isActive());
-            st.setString(9, staff.getEmail());
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
         } catch (SQLException e) {
@@ -176,21 +168,23 @@ public class DBManager {
     }
 
     // Product
+    // Display product
     public ArrayList<Product> displayProducts() throws SQLException {
-        ResultSet result = stmt.executeQuery("SELECT * FROM product");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM product");
         ArrayList<Product> products = new ArrayList<>();
-        while (result.next()) {
-            String productID = result.getString("productID");
-            String productName = result.getString("productName");
-            String description = result.getString("description");
-            float price = result.getFloat("price");
-            int stock = result.getInt("stock");
-            String category = result.getString("category");
-            String supplier = result.getString("supplier");
-            Date manuDate = result.getDate("manuDate");
+        while (rs.next()) {
+            String productID = rs.getString("productID");
+            String productName = rs.getString("productName");
+            String description = rs.getString("description");
+            float price = rs.getFloat("price");
+            int stock = rs.getInt("stock");
+            String category = rs.getString("category");
+            String supplier = rs.getString("supplier");
+            Date manuDate = rs.getDate("manuDate");
             products.add(new Product(productID, productName, description, price, stock, category, supplier, manuDate));
         }
-<<<<<<< HEAD
+        return products;
+    }
         // Insert new product
         public static boolean insertProduct(Product p) throws SQLException {
             String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -259,37 +253,18 @@ public class DBManager {
             st.setString(8, p.getProductID());
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
-=======
-        return products;
-    }
-
-    // Insert new product
-    public static boolean insertProduct(Product p) throws SQLException {
-        String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = DBConnector.getConnection();
-                PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(1, p.getProductID());
-            st.setString(2, p.getName());
-            st.setString(3, p.getDescription());
-            st.setFloat(4, p.getPrice());
-            st.setInt(5, p.getStockQuantity());
-            st.setString(6, p.getSupplier());
-            st.setString(7, p.getCategory());
-            st.setDate(8, p.getManuDate());
-            boolean rowInserted = st.executeUpdate() > 0;
-            return rowInserted;
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
+    
     //Customer
 
     //Order
     
     //LineItem
 
-    }
+}
+
 

@@ -1,9 +1,5 @@
 package uts.isd.controller;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
 import uts.isd.dao.DBConnector;
 import uts.isd.dao.DBManager;
 import uts.isd.model.Product;
@@ -46,7 +42,6 @@ public class InventoryServlet extends HttpServlet {
                 case "/productinsert":
                     insertProduct(request, response);
                     break;
-<<<<<<< HEAD
                 case "/productdelete":
                     deleteProduct(request, response);
                     break;
@@ -59,8 +54,6 @@ public class InventoryServlet extends HttpServlet {
                 case "/productview":
                     listProducts(request, response);
                     break;
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
                 default:
                     listInventory(request, response);
                     break;
@@ -77,7 +70,6 @@ public class InventoryServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-<<<<<<< HEAD
     private void listProducts(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         ArrayList<Product> products = dbManager.displayProducts();
@@ -86,15 +78,12 @@ public class InventoryServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("productForm.jsp");
         dispatcher.forward(request, response);
     }
 
-<<<<<<< HEAD
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         String productID = request.getParameter("productID");
@@ -104,8 +93,6 @@ public class InventoryServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
     private void insertProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String productID = request.getParameter("productID");
@@ -121,7 +108,6 @@ public class InventoryServlet extends HttpServlet {
         DBManager.insertProduct(newProduct);
         response.sendRedirect("productslist");
     }
-<<<<<<< HEAD
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String productID = request.getParameter("productID");
@@ -143,6 +129,4 @@ public class InventoryServlet extends HttpServlet {
         DBManager.updateProduct(product);
         response.sendRedirect("productslist");
     }
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
 }

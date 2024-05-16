@@ -26,10 +26,7 @@
                         <th>Category</th>
                         <th>Supplier</th>
                         <th>Manufacture Date</th>
-<<<<<<< HEAD
                         <th>Actions</th>
-=======
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
                     </tr>
                 </thead>
                 <tbody>
@@ -46,16 +43,15 @@
                             <td><%= p.getStockQuantity() %></td>
                             <td><%= p.getSupplier() %></td>
                             <td><%= p.getCategory() %></td>
-<<<<<<< HEAD
                             <td><%= p.getManuDate() %></td>
                             <td>
-                                <a href="productedit?productID=<%= p.getProductID() %>">Edit</a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="productdelete?productID=<%= p.getProductID() %>" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                                <a href="productedit?productID=<%= p.getProductID() %>" class="edit">Edit</a>
+                                <br>
+                                <br>
+                                <a href="productdelete?productID=<%= p.getProductID() %>" class="delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                                <br>
+                                <br>
                             </td>
-=======
-                            <td><%= p.getManuDate() %></td>      
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
                         </tr>
                     <%
                             }

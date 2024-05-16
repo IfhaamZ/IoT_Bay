@@ -48,11 +48,6 @@
                             <td><%= staff.getDepartment() %></td>
                             <td><%= staff.isActive() ? "Active" : "Inactive" %></td>
                             <td>
-<<<<<<< HEAD
-                                <a href="staffedit?email=<%= staff.getEmail() %>">Edit</a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="staffdelete?email=<%= staff.getEmail() %>" onclick="return confirm('Are you sure you want to delete this staff member?')">Delete</a>
-=======
                                 <a href="staffedit?email=<%= staff.getEmail() %>" class="edit">Edit</a>
                                 <br>
                                 <br>
@@ -64,7 +59,6 @@
                                 <% } else { %>
                                     <a href="staffactivate?email=<%= staff.getEmail() %>" class="activate">Activate</a>
                                 <% } %>
->>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
                             </td>
                         </tr>
                     <%
