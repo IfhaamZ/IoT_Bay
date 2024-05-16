@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class OrderServlet extends HttpServlet {
     private DBManager dbManager;
+    private static final Logger logger = Logger.getLogger(OrderServlet.class.getName());
 
     public void init() throws ServletException {
         try {
@@ -32,46 +34,47 @@ public class OrderServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getPathInfo();  // Use getPathInfo() to retrieve the action part of the URL
+    throws ServletException, IOException {
+    String action = request.getServletPath();
 
-        try {
-            switch (action) {
-                case "/ordernew":
-                    showNewForm(request, response);
-                    break;
-                case "/orderinsert":
-                    insertOrder(request, response);
-                    break;
-                case "/orderdelete":
-                    deleteOrder(request, response);
-                    break;
-                case "/orderedit":
-                    showEditForm(request, response);
-                    break;
-                case "/orderupdate":
-                    updateOrder(request, response);
-                    break;
-                case "/ordersearch":
-                    searchOrder(request, response);
-                    break;
-                case "/orderlist":
-                    listOrder(request, response);
-                    break;
-                default:
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                    break;
-            }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
+    try {
+        switch (action) {
+            case "/ordernew":
+                showNewForm(request, response);
+                break;
+            case "/orderinsert":
+                insertOrder(request, response);
+                break;
+            case "/orderdelete":
+                deleteOrder(request, response);
+                break;
+            case "/orderedit":
+                showEditForm(request, response);
+                break;
+            case "/orderupdate":
+                updateOrder(request, response);
+                break;
+            case "/ordersearch":
+                searchOrder(request, response);
+                break;
+            case "/orderlist":
+                listOrder(request, response);
+                break;
+            default:
+                listOrder(request, response);
+                break;
         }
+    } catch (SQLException ex) {
+        throw new ServletException(ex);
     }
+}
+
+
 
     // List Orders
     private void listOrder(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        int customerID = Integer.parseInt(request.getParameter("customerID"));
-        List<Order> listOrder = dbManager.getOrdersByCustomerID(customerID);
+        List<Order> listOrder = dbManager.getOrdersByCustomerID(Integer.parseInt(request.getParameter("customerID")));
         request.setAttribute("listOrder", listOrder);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
         dispatcher.forward(request, response);
@@ -111,8 +114,8 @@ public class OrderServlet extends HttpServlet {
         newOrder.setCreatedBy(createdBy);
         newOrder.setCreatedDate(createdDate);
 
-        dbManager.insertOrder(newOrder);
-        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + customerID);
+        DBManager.insertOrder(newOrder);
+        response.sendRedirect("orderlist");
     }
 
     // Update Order
@@ -132,8 +135,8 @@ public class OrderServlet extends HttpServlet {
         updateOrder.setCreatedBy(createdBy);
         updateOrder.setCreatedDate(createdDate);
 
-        dbManager.updateOrder(updateOrder);
-        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + request.getParameter("customerID"));
+        dbManager.updateOrder(updateOrder); // Use instance method call
+        response.sendRedirect("orderlist");
     }
 
     // Search Order
@@ -153,6 +156,6 @@ public class OrderServlet extends HttpServlet {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         dbManager.deleteOrder(orderID);
-        response.sendRedirect(request.getContextPath() + "/order/orderlist?customerID=" + request.getParameter("customerID"));
+        response.sendRedirect("orderlist");
     }
 }

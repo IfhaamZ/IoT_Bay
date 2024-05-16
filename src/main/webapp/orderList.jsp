@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Order List</title>
@@ -32,6 +33,7 @@
             <td>
                 <a href="orderedit?orderID=${order.orderID}">Edit</a>
                 <a href="orderdelete?orderID=${order.orderID}" onclick="return confirm('Are you sure?')">Delete</a>
+                <a href="orderview?orderID=${order.orderID}">View</a>
             </td>
         </tr>
     </c:forEach>

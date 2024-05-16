@@ -22,7 +22,14 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
-        <url-pattern>/order/*</url-pattern>
+        <url-pattern>/OrderServlet</url-pattern>
+        <url-pattern>/ordernew</url-pattern>
+        <url-pattern>/orderinsert</url-pattern>
+        <url-pattern>/orderupdate</url-pattern>
+        <url-pattern>/orderdelete</url-pattern>
+        <url-pattern>/orderedit</url-pattern>
+        <url-pattern>/orderlist</url-pattern>
+
     </servlet-mapping>
 
 </web-app>
