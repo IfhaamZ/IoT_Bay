@@ -82,7 +82,7 @@ public class PaymentDAO {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            int paymentID = resultSet.getInt("paymentID");
+            String paymentID = resultSet.getString("paymentID");
             String method = resultSet.getString("method");
             String cardNum = resultSet.getString("cardNum");
             String expMonth = resultSet.getString("expMonth");
@@ -106,13 +106,13 @@ public class PaymentDAO {
         return listPayments;
     }
 
-    public boolean deletePayment(Payment payment) throws SQLException {
+    public boolean deletePayment(String paymentID) throws SQLException {
         String sql = "DELETE FROM PaymentManagement where paymentID = ?";
 
         connect();
 
         PreparedStatement statement = con.prepareStatement(sql);
-        statement.setInt(1, payment.getPaymentID());
+        statement.setString(1, paymentID);
 
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
@@ -135,7 +135,7 @@ public class PaymentDAO {
         statement.setString(7, payment.getPIN());
         statement.setString(8, payment.getPaymentAmount());
         statement.setString(9, payment.getPaymentDate());
-        statement.setInt(10, payment.getPaymentID());
+        statement.setString(10, payment.getPaymentID());
 
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
@@ -143,14 +143,14 @@ public class PaymentDAO {
         return rowUpdated;
     }
 
-    public Payment getPayment(int paymentID) throws SQLException {
+    public Payment getPayment(String paymentID) throws SQLException {
         Payment payment = null;
         String sql = "SELECT * FROM PaymentManagement WHERE paymentID = ?";
 
         connect();
 
         PreparedStatement statement = con.prepareStatement(sql);
-        statement.setInt(1, paymentID);
+        statement.setString(1, paymentID);
 
         ResultSet resultSet = statement.executeQuery();
 
