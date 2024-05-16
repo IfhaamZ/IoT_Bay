@@ -186,27 +186,6 @@ public class DBManager {
         }
         return products;
     }
-<<<<<<< HEAD
-        // Insert new product
-        public static boolean insertProduct(Product p) throws SQLException {
-            String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try (Connection conn = DBConnector.getConnection();
-                    PreparedStatement st = conn.prepareStatement(sql)){
-                st.setString(1, p.getProductID());
-                st.setString(2, p.getName());
-                st.setString(3, p.getDescription());
-                st.setFloat(4, p.getPrice());
-                st.setInt(5, p.getStockQuantity());
-                st.setString(6, p.getSupplier());
-                st.setString(7, p.getCategory());
-                st.setDate(8, p.getManuDate());
-                boolean rowInserted = st.executeUpdate() > 0;
-                return rowInserted;
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-            }
-=======
 
     // Insert new product
     public static boolean insertProduct(Product p) throws SQLException {
@@ -226,7 +205,6 @@ public class DBManager {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
->>>>>>> Ifhaam-branch
         }
     }
 
