@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.List;
- 
+
+import java.sql.Connection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import uts.isd.model.User;
-import uts.isd.model.dao.UserDAO;
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.DBManager;
 
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserDAO userDAO;
- 
+    private DBManager dbManager;
+
+    
+    /*old init
     public void init() {
         String db_url = getServletContext().getInitParameter("jdbc:mysql://localhost:3306/database");
         String db_user = getServletContext().getInitParameter("root");
@@ -25,6 +29,16 @@ public class UserServlet extends HttpServlet {
  
         userDAO = new UserDAO(db_url, db_user, db_pass);
  
+    }
+*/
+    //new init
+        public void init() throws ServletException {
+        try {
+            Connection conn = DBConnector.getConnection();
+            dbManager = new DBManager(conn);
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
     }
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +87,7 @@ public class UserServlet extends HttpServlet {
  
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<User> listUser = userDAO.listAllUsers();
+        List<User> listUser = dbManager.listAllUsers();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("UserManagement.jsp");
         dispatcher.forward(request, response);
@@ -88,7 +102,7 @@ public class UserServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("AccountID"));
-        User existingUser = userDAO.getUser(id);
+        User existingUser = dbManager.getUser(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("UserForm.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -102,7 +116,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
  
         User newUser = new User(0, name, password, email);
-        userDAO.insertUser(newUser);
+        dbManager.insertUser(newUser);
         String redirectURL = "register.jsp";
         response.sendRedirect(redirectURL);
     } 
@@ -115,7 +129,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
  
         User user = new User(id, name, password, email);
-        userDAO.updateUser(user);
+        dbManager.updateUser(user);
         response.sendRedirect("userlist");
     }
 
@@ -124,7 +138,7 @@ public class UserServlet extends HttpServlet {
     String name = request.getParameter("name");
     String phone = request.getParameter("phone");
 
-    List<User> searchResults = userDAO.searchUser(name, phone);
+    List<User> searchResults = dbManager.searchUser(name, phone);
     request.setAttribute("listUser", searchResults);
     RequestDispatcher dispatcher = request.getRequestDispatcher("SearchUser.jsp");
     dispatcher.forward(request, response);
@@ -135,7 +149,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("AccountID"));
  
         User user = new User(id);
-        userDAO.deleteUser(user);
+        dbManager.deleteUser(user);
         response.sendRedirect("userlist");
  
     }
@@ -143,14 +157,14 @@ public class UserServlet extends HttpServlet {
     private void activateUser(HttpServletRequest request, HttpServletResponse response)
     throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("AccountID"));
-        userDAO.activateUser(id);
+        dbManager.activateUser(id);
         response.sendRedirect("userlist");
     }
 
     private void deactivateUser(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException {
             int id = Integer.parseInt(request.getParameter("AccountID"));
-            userDAO.deactivateUser(id);
+            dbManager.deactivateUser(id);
             response.sendRedirect("userlist");
         }
     }

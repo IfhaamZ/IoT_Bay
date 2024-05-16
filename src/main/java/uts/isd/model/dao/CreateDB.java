@@ -38,6 +38,7 @@ public class CreateDB {
                 + "city VARCHAR(20),"
                 + "country VARCHAR(20),"
                 + "role VARCHAR(20),"
+                + "status TINYINT(1),"
                 + ")");
             System.out.println("User table creation successful.");
         }
