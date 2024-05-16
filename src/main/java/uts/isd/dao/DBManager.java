@@ -169,22 +169,43 @@ public class DBManager {
     }
 
     // Product
-    public ArrayList<Product> displayAllProducts() throws SQLException {
+    public ArrayList<Product> displayProducts() throws SQLException {
         ResultSet result = stmt.executeQuery("SELECT * FROM product");
         ArrayList<Product> products = new ArrayList<>();
-            while (result.next()) {
-                String productID = result.getString("productID");
-                String productName = result.getString("productName");
-                String description = result.getString("description");
-                float price = result.getFloat("price");
-                int stock = result.getInt("stock");
-                String category = result.getString("category");
-                String supplier = result.getString("supplier");
-                Date manuDate = result.getDate("manuDate");
-                products.add(new Product(productID, productName, description, price, stock, category, supplier, manuDate));
-            }
-            return products;
+        while (result.next()) {
+            String productID = result.getString("productID");
+            String productName = result.getString("productName");
+            String description = result.getString("description");
+            float price = result.getFloat("price");
+            int stock = result.getInt("stock");
+            String category = result.getString("category");
+            String supplier = result.getString("supplier");
+            Date manuDate = result.getDate("manuDate");
+            products.add(new Product(productID, productName, description, price, stock, category, supplier, manuDate));
         }
+        return products;
+    }
+
+    // Insert new product
+    public static boolean insertProduct(Product p) throws SQLException {
+        String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, p.getProductID());
+            st.setString(2, p.getName());
+            st.setString(3, p.getDescription());
+            st.setFloat(4, p.getPrice());
+            st.setInt(5, p.getStockQuantity());
+            st.setString(6, p.getSupplier());
+            st.setString(7, p.getCategory());
+            st.setDate(8, p.getManuDate());
+            boolean rowInserted = st.executeUpdate() > 0;
+            return rowInserted;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     //Customer
 
