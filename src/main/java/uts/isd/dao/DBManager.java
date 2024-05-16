@@ -184,6 +184,29 @@ public class DBManager {
         }
     }
 
-    // LineItem
+    public void updateOrder(Order order) throws SQLException {
+        String sql = "UPDATE `order` SET " +
+                "orderDate = ?, " +
+                "orderStatus = ?, " +
+                "shippingAddress = ?, " +
+                "billingAddress = ?, " +
+                "createdBy = ?, " +
+                "createdDate = ? " +
+                "WHERE orderID = ?";
 
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, order.getDatePlaced());
+            pstmt.setString(2, order.getStatus());
+            pstmt.setString(3, order.getShippingAddress());
+            pstmt.setString(4, order.getBillingAddress());
+            pstmt.setString(5, order.getCreatedBy());
+            pstmt.setString(6, order.getCreatedDate());
+            pstmt.setInt(7, order.getOrderID());
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Updating order failed, no rows affected.");
+            }
+        }
+    }
 }
