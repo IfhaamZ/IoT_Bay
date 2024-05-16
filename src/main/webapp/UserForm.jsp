@@ -11,8 +11,9 @@
         <h2>
             <a href="/new">Add New User</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="/list">List All User</a>
-             
+            <a href="/list">List All Users</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="SearchUser.jsp">Search User</a>
         </h2>
     </center>
     <div align="center">
@@ -55,7 +56,7 @@
             <tr>
                 <th>Email: </th>
                 <td>
-                    <input type="text" name="email" size="5"
+                    <input type="text" name="email" size="45"
                             value="<c:out value='${user.email}' />"
                     />
                 </td>

@@ -12,14 +12,31 @@ public class User implements Serializable {
     private String city;
     private String country;
     private String role;
+    private boolean status;
+
+    public User(int _id, String _name, String _password, String _email, boolean _status) {
+        this.id = _id;
+        this.name = _name;
+        this.password = _password;
+        this.email = _email;
+        this.status = _status;
+    }
 
     public User(int _id, String _name, String _password, String _email) {
         this.id = _id;
         this.name = _name;
         this.password = _password;
         this.email = _email;
+    }
 
+    public boolean isActive() {
+        return status;
+    }
 
+    public User(String _name, String _password, String _email) {
+        this.name = _name;
+        this.password = _password;
+        this.email = _email;
     }
 
     public User(String _email, String _name, String _password, String _phone, String _city, String _country,
@@ -96,6 +113,14 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     

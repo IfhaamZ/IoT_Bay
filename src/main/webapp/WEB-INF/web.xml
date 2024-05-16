@@ -46,4 +46,16 @@
     <servlet-name>ControllerServlet</servlet-name>
     <url-pattern>/list</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/usersearch</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/useractivate</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/userdeactivate</url-pattern>
+  </servlet-mapping>
 </web-app>

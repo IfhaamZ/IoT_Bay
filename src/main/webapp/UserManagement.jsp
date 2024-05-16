@@ -12,7 +12,8 @@
             <a href="/new">Add New User</a>
             &nbsp;&nbsp;&nbsp;
             <a href="/list">List All Users</a>
-             
+            &nbsp;&nbsp;&nbsp;
+            <a href="SearchUser.jsp">Search User</a>
         </h2>
     </center>
     <div align="center">
@@ -23,6 +24,7 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Email</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
@@ -31,10 +33,19 @@
                     <td><c:out value="${user.name}" /></td>
                     <td><c:out value="${user.password}" /></td>
                     <td><c:out value="${user.email}" /></td>
+                    <td><c:out value="${user.status}" /></td>
                     <td>
                         <a href="/edit?AccountID=<c:out value='${user.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/delete?AccountID=<c:out value='${user.id}' />">Delete</a>                     
+                        <br>
+                        <br>
+                        <a href="/delete?AccountID=<c:out value='${user.id}' />">Delete</a>
+                        <br>
+                        <br>
+                        <a href="/edit?AccountID=<c:out value='${user.id}' />">Edit</a>
+
+                        <a href="/useractivate?AccountID=<c:out value='${user.id}' />">Activate</a>    
+
+                        <a href="/userdeactivate?AccountID=<c:out value='${user.id}' />">Deactivate</a>
                     </td>
                 </tr>
             </c:forEach>

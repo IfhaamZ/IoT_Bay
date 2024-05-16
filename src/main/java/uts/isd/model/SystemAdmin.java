@@ -7,8 +7,8 @@ public class SystemAdmin extends User {
     private String accessPrivileges;
     
     public SystemAdmin(String _email, String _name, String _password, String _phone, String _city, String _country,
-            String _role, int adminID, String accessPrivileges) {
-        super(adminID, _email, _name, _password);
+            String _role, int adminID, String accessPrivileges, boolean _status) {
+        super(adminID, _email, _name, _password, _status);
         this.adminID = adminID;
         this.accessPrivileges = accessPrivileges;
     }

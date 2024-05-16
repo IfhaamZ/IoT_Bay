@@ -53,6 +53,15 @@ public class ControllerServlet extends HttpServlet {
             case "/update":
                 updateUser(request, response);
                 break;
+            case "/useractivate":
+                activateUser(request, response);
+                break;
+            case "/userdeactivate":
+                deactivateUser(request, response);
+                break;
+            case "/usersearch":
+                searchUser(request, response);
+                break;
             default:
                 listUser(request, response);
                 break;
@@ -109,6 +118,17 @@ public class ControllerServlet extends HttpServlet {
         userDAO.updateUser(user);
         response.sendRedirect("list");
     }
+
+    private void searchUser(HttpServletRequest request, HttpServletResponse response)
+    throws SQLException, IOException, ServletException {
+    String name = request.getParameter("name");
+    String phone = request.getParameter("phone");
+
+    List<User> searchResults = userDAO.searchUser(name, phone);
+    request.setAttribute("listUser", searchResults);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("SearchUser.jsp");
+    dispatcher.forward(request, response);
+    }
  
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
@@ -119,4 +139,18 @@ public class ControllerServlet extends HttpServlet {
         response.sendRedirect("list");
  
     }
-}
+
+    private void activateUser(HttpServletRequest request, HttpServletResponse response)
+    throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("AccountID"));
+        userDAO.activateUser(id);
+        response.sendRedirect("list");
+    }
+
+    private void deactivateUser(HttpServletRequest request, HttpServletResponse response)
+        throws SQLException, IOException {
+            int id = Integer.parseInt(request.getParameter("AccountID"));
+            userDAO.deactivateUser(id);
+            response.sendRedirect("list");
+        }
+    }
