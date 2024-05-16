@@ -1,6 +1,7 @@
 package uts.isd.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,20 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uts.isd.dao.DBConnector;
+import uts.isd.dao.DBManager;
 import uts.isd.model.Payment;
-import uts.isd.model.dao.PaymentDAO;
 
 public class PaymentServlet extends HttpServlet {
 
-    private PaymentDAO paymentDAO;
+    private DBManager dbManager;
 
-    public void init() {
-        String jdbcURL = getServletContext().getInitParameter("jdbcURL");
-        String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
-        String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
-
-        paymentDAO = new PaymentDAO(jdbcURL, jdbcUsername, jdbcPassword);
-
+    public void init() throws ServletException {
+        try {
+            Connection conn = DBConnector.getConnection();
+            dbManager = new DBManager(conn);
+        } catch (SQLException e) {
+            throw new ServletException(e);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -63,7 +65,7 @@ public class PaymentServlet extends HttpServlet {
 
     private void listPayments(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Payment> listPayments = paymentDAO.listAllPayments();
+        List<Payment> listPayments = dbManager.listAllPayments();
         request.setAttribute("listPayments", listPayments);
         RequestDispatcher dispatcher = request.getRequestDispatcher("paymentListing.jsp");
         dispatcher.forward(request, response);
@@ -78,7 +80,7 @@ public class PaymentServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int paymentID = Integer.parseInt(request.getParameter("paymentID"));
-        Payment existingPayment = paymentDAO.getPayment(paymentID);
+        Payment existingPayment = dbManager.getPayment(paymentID);
         RequestDispatcher dispatcher = request.getRequestDispatcher("paymentForm.jsp");
         request.setAttribute("payment", existingPayment);
         dispatcher.forward(request, response);
@@ -98,7 +100,7 @@ public class PaymentServlet extends HttpServlet {
 
         Payment newPayment = new Payment(method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
                 paymentDate);
-        paymentDAO.CreatePayment(newPayment);
+        dbManager.CreatePayment(newPayment);
         response.sendRedirect("paymentListing.jsp");
     }
 
@@ -117,7 +119,7 @@ public class PaymentServlet extends HttpServlet {
 
         Payment payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
                 paymentDate);
-        paymentDAO.updatePayment(payment);
+        dbManager.updatePayment(payment);
         response.sendRedirect("paymentListing.jsp");
     }
 
@@ -128,7 +130,7 @@ public class PaymentServlet extends HttpServlet {
         // Need help with this method. Particularly the next line if only takes one
         // paymentDate, it errors and requires 9
         Payment payment = new Payment(paymentID);
-        paymentDAO.deletePayment(payment);
+        dbManager.deletePayment(payment);
         response.sendRedirect("paymentListing.jsp");
 
     }
