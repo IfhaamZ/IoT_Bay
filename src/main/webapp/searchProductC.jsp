@@ -4,23 +4,25 @@
 <html>
 <head>
     <title>Product Search</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/staffSearch.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productSearchC.css">
 </head>
 <body>
     <div class="container">
-        <h1>IoTBay Products</h1>
+        <h1>IoTBay</h1>
+        <br>
+        <br>
         <div class="nav-links">
             <a href="productview">Return to All Products List</a>
         </div>
-        <br>
         <div class="search-container">
             <h2>Search Products</h2>
             <form action="productsearchC" method="get">
                 <input type="hidden" name="action" value="search">
-                <label for="productName">Product Name:</label>
+                <b><label for="productName">Product Name:</label></b>
                 <input type="text" id="productName" name="productName">
-                <label for="category">Category:</label>
+                <b><label for="category">Category:</label></b>
                 <input type="text" id="category" name="category">
+                &nbsp;&nbsp;&nbsp;
                 <input type="submit" value="Search">
             </form>
         </div>

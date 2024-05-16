@@ -189,8 +189,8 @@ public class DBManager {
         // Insert new product
         public static boolean insertProduct(Product p) throws SQLException {
             String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try (Connection connection = DBConnector.getConnection();
-                    PreparedStatement st = connection.prepareStatement(sql)) {
+            try (Connection conn = DBConnector.getConnection();
+                    PreparedStatement st = conn.prepareStatement(sql)){
                 st.setString(1, p.getProductID());
                 st.setString(2, p.getName());
                 st.setString(3, p.getDescription());
@@ -209,8 +209,8 @@ public class DBManager {
     // Delete product
     public boolean deleteProduct(String productID) throws SQLException {
         String sql = "DELETE FROM product WHERE productID = ?";
-        try (Connection connection = DBConnector.getConnection();
-                PreparedStatement st = connection.prepareStatement(sql)) {
+        try (Connection conn = DBConnector.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql)) {
             st.setString(1, productID);
             boolean rowDeleted = st.executeUpdate() > 0;
             return rowDeleted;
@@ -219,8 +219,8 @@ public class DBManager {
     // Get product 
     public Product getProduct(String productID) throws SQLException {
         String sql = "SELECT productID, productName, description, price, stock, category, supplier, manuDate FROM product WHERE productID = ?";
-        try (Connection connection = DBConnector.getConnection();
-                PreparedStatement st = connection.prepareStatement(sql)) {
+        try (Connection conn = DBConnector.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql)) {
             st.setString(1, productID);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
@@ -242,8 +242,8 @@ public class DBManager {
     // Update
     public static boolean updateProduct(Product p) {
         String sql = "UPDATE product SET productName = ?, description = ?, price = ?, stock = ?, supplier = ?, category = ?, manuDate = ? WHERE productID = ?";
-        try (Connection connection = DBConnector.getConnection();
-                PreparedStatement st = connection.prepareStatement(sql)) {
+        try (Connection conn = DBConnector.getConnection();
+                PreparedStatement st = conn.prepareStatement(sql)) {
             st.setString(1, p.getName());
             st.setString(2, p.getDescription());
             st.setFloat(3, p.getPrice());

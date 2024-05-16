@@ -8,20 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Inventory Management</h1>
+        <br>
+        <br>
         <div class="nav-links">
-            <a href="productnew">Add New Product</a>
             <a href="productslist">Return to All Products List</a>
         </div>
-        <br>
         <div class="search-container">
+            <br>
             <h2>Search Products</h2>
             <form action="productsearch" method="get">
                 <input type="hidden" name="action" value="search">
-                <label for="productName">Product Name:</label>
+                <b><label for="productName">Product Name:</label></b>
                 <input type="text" id="productName" name="productName">
-                <label for="category">Category:</label>
+                <b><label for="category">Category:</label></b>
                 <input type="text" id="category" name="category">
+                &nbsp;&nbsp;&nbsp;
                 <input type="submit" value="Search">
             </form>
         </div>

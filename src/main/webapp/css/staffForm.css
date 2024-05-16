@@ -98,3 +98,9 @@ input[type="submit"]:hover {
     justify-content: center;
     margin-top: 20px;
 }
+
+.error-message {
+    margin-top: 0;
+    display: inline-block;
+    color:#f44336;
+ }

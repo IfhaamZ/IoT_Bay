@@ -3,19 +3,38 @@
 <%@ page import="uts.isd.model.Product" %>
 <html>
 <head>
-    <title>Products</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/staffList.css">
+    <title>IoTBay Catalogue</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/productListC.css">
+    <style>
+        .lowstock-popup {
+            background-color: #f44336;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function togglePopup(stockElement, popupElement) {
+            if (parseInt(stockElement.textContent) < 10) {
+                popupElement.style.display = 'inline';
+            } else {
+                popupElement.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>IoTBay Products</h1>
+        <h1>IoTBay</h1>
+        <br>
         <div class="nav-links">
             <a href="productview">Display All Products</a>
             <a href="searchProductC.jsp">Search Products</a>
         </div>
+        <% if (request.getAttribute("productview") != null) { %>
         <div class="table-container">
             <table>
-                <caption>List of Products</caption>
+                <caption>Products Catalogue</caption>
                 <thead>
                     <tr>
                         <th>Product ID</th>
@@ -38,10 +57,14 @@
                             <td><%= p.getProductID() %></td>
                             <td><%= p.getName() %></td>
                             <td><%= p.getDescription() %></td>
-                            <td><%= p.getPrice() %></td>
-                            <td><%= p.getStockQuantity() %></td>
-                            <td><%= p.getSupplier() %></td>
+                            <td>$<%= p.getPrice() %></td>
+                            <td><span id="stock_<%= p.getProductID() %>"><%= p.getStockQuantity() %></span>
+                                <span class="lowstock-popup" id="popup_<%= p.getProductID() %>">Low Stock</span>
+                                <script>
+                                    togglePopup(document.getElementById('stock_<%= p.getProductID() %>'), document.getElementById('popup_<%= p.getProductID() %>'));
+                                </script></td>
                             <td><%= p.getCategory() %></td>
+                            <td><%= p.getSupplier() %></td>
                             <td><%= p.getManuDate() %></td>
                         </tr>
                     <%
@@ -51,6 +74,7 @@
                 </tbody>
             </table>
         </div>
+        <% } %>
     </div>
 </body>
 </html>

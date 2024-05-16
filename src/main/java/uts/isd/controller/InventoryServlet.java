@@ -101,7 +101,7 @@ public class InventoryServlet extends HttpServlet {
     }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         String productID = request.getParameter("productID");
         String productName = request.getParameter("productName");
         String description = request.getParameter("description");
@@ -111,10 +111,18 @@ public class InventoryServlet extends HttpServlet {
         String supplier = request.getParameter("supplier");
         Date manuDate = Date.valueOf(request.getParameter("manuDate"));
 
-        Product newProduct = new Product(productID, productName, description, price, stock, category, supplier, manuDate);
-        DBManager.insertProduct(newProduct);
-        response.sendRedirect("productslist");
+        if (dbManager.getProduct(productID) != null) {
+            request.setAttribute("error", "duplicateID");
+            request.getRequestDispatcher("productForm.jsp").forward(request, response);
+            return;
+        }
+
+        if (DBManager.insertProduct(new Product(productID, productName, description, price, stock, category, supplier, manuDate))){
+            response.sendRedirect("productslist");
+            return;
+        }
     }
+
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String productID = request.getParameter("productID");
@@ -156,4 +164,5 @@ public class InventoryServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("displayProductsC.jsp");
         dispatcher.forward(request, response);
     }
+    
 }
