@@ -5,10 +5,48 @@
 <head>
     <title>Books Store Application</title>
 </head>
+<style>
+    header {
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  padding: 0.5%;
+}
+
+header h1 {
+  margin: 0;
+  margin-top: 5px;
+  padding-left: 50px;
+  font-family: Roboto;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  padding-inline: 20px;
+}
+
+nav ul li a {
+  color: #087e8b;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+  color: #ff5a5f;
+}
+</style>
 <body>
     <center>
         <h1>Payment Management</h1>
         <h2>
+            <a href="welcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="paymentnew">Add New Payment</a>
             &nbsp;&nbsp;&nbsp;
             <a href="paymentlist">List All Payments</a>

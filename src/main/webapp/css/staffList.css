@@ -138,3 +138,42 @@ td a.deactivate:hover {
   background-color: #c82333;
   text-decoration: none;
 }
+
+header {
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  padding: 0.5%;
+}
+
+header h1 {
+  margin: 0;
+  margin-top: 5px;
+  padding-left: 50px;
+  font-family: Roboto;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  padding-inline: 20px;
+  color: #ff5a5f;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+nav ul li a {
+  color: #087e8b;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+  color: #ff5a5f;
+}

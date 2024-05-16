@@ -10,6 +10,7 @@
     <div class="container">
         <h1>Staff Management</h1>
         <div class="nav-links">
+            <a href="adminWelcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="staffnew">Add New Staff</a>
             <a href="stafflist">List All Staff</a>
             <a href="searchStaff.jsp">Search Staff</a>

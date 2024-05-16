@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="uts.isd.model.Product" %>
+<%@page import="uts.isd.model.*"%>
 <html>
 <head>
     <title>Inventory Management</title>
@@ -24,10 +25,32 @@
     </script>
 </head>
 <body>
+<body>
+<% User user = (User) session.getAttribute("user"); %>
+<% String name = (user != null) ? user.getName() : ""; %>
+<header>
+    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <h1>TechTide</h1>
+    </div>
+    <div>
+        <nav>
+            <ul>
+                <% if (user != null) { %>
+                    <li><a href="logout.jsp">Logout</a></li>
+                    <li><%=name %></li>
+                <% } else { %>
+                    <li><a href="register.jsp">Register</a></li>
+                    <li><a href="index.jsp">Home</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</header>
     <div class="container">
         <h1>Inventory Management Options</h1>
         <br>
         <div class="nav-links">
+            <a href="staffWelcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="productnew">➕ Add New Product</a>
             <a href="productslist">👓 Display All Products</a>
             <a href="searchProduct.jsp">🔍 Search Products</a>
