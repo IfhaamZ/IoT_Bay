@@ -72,10 +72,24 @@ public class OrderServlet extends HttpServlet {
     // List Orders
     private void listOrder(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Order> listOrder = dbManager.getOrdersByCustomerID(Integer.parseInt(request.getParameter("customerID")));
-        request.setAttribute("listOrder", listOrder);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("orderList.jsp");
-        dispatcher.forward(request, response);
+        String customerIDStr = request.getParameter("customerID");
+        if (customerIDStr == null || customerIDStr.isEmpty()) {
+            // Use a default customerID for testing
+            customerIDStr = "1"; // Replace with a valid customerID for testing
+        }
+        try {
+            int customerID = Integer.parseInt(customerIDStr);
+            List<Order> listOrder = dbManager.getOrdersByCustomerID(customerID);
+            request.setAttribute("listOrder", listOrder);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("orderList.jsp");
+            dispatcher.forward(request, response);
+        } catch (NumberFormatException e) {
+            // Handle the case where customerID is not a valid integer
+            request.setAttribute("error", "Invalid Customer ID format.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("errorPage.jsp"); // Create an error page if
+                                                                                          // needed
+            dispatcher.forward(request, response);
+        }
     }
 
     // Show New Order Form
@@ -97,28 +111,46 @@ public class OrderServlet extends HttpServlet {
 
     // Insert Order
     private void insertOrder(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        int customerID = Integer.parseInt(request.getParameter("customerID"));
-        String datePlaced = request.getParameter("datePlaced");
-        String status = request.getParameter("status");
-        String shippingAddress = request.getParameter("shippingAddress");
-        String billingAddress = request.getParameter("billingAddress");
-        String createdBy = request.getParameter("createdBy");
-        String createdDate = request.getParameter("createdDate");
+            throws SQLException, IOException, ServletException {
+        String customerIDStr = request.getParameter("customerID");
+        if (customerIDStr == null || customerIDStr.isEmpty()) {
+            // Handle the case where customerID is not provided
+            request.setAttribute("error", "Customer ID is required to insert an order.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("errorPage.jsp"); // Create an error page if
+                                                                                          // needed
+            dispatcher.forward(request, response);
+            return;
+        }
 
-        Order newOrder = new Order(0, datePlaced, status, customerID);
-        newOrder.setShippingAddress(shippingAddress);
-        newOrder.setBillingAddress(billingAddress);
-        newOrder.setCreatedBy(createdBy);
-        newOrder.setCreatedDate(createdDate);
+        try {
+            int customerID = Integer.parseInt(customerIDStr);
+            String datePlaced = request.getParameter("datePlaced");
+            String status = request.getParameter("status");
+            String shippingAddress = request.getParameter("shippingAddress");
+            String billingAddress = request.getParameter("billingAddress");
+            String createdBy = request.getParameter("createdBy");
+            String createdDate = request.getParameter("createdDate");
 
-        DBManager.insertOrder(newOrder);
-        response.sendRedirect("orderlist");
+            Order newOrder = new Order(0, datePlaced, status, customerID);
+            newOrder.setShippingAddress(shippingAddress);
+            newOrder.setBillingAddress(billingAddress);
+            newOrder.setCreatedBy(createdBy);
+            newOrder.setCreatedDate(createdDate);
+
+            DBManager.insertOrder(newOrder);
+            response.sendRedirect("orderlist");
+        } catch (NumberFormatException e) {
+            // Handle the case where customerID is not a valid integer
+            request.setAttribute("error", "Invalid Customer ID format.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("errorPage.jsp"); // Create an error page if
+                                                                                          // needed
+            dispatcher.forward(request, response);
+        }
     }
 
     // Update Order
     private void updateOrder(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         String datePlaced = request.getParameter("datePlaced");
         String status = request.getParameter("status");
@@ -133,7 +165,7 @@ public class OrderServlet extends HttpServlet {
         updateOrder.setCreatedBy(createdBy);
         updateOrder.setCreatedDate(createdDate);
 
-        dbManager.updateOrder(updateOrder); // Use instance method call
+        dbManager.updateOrder(updateOrder);
         response.sendRedirect("orderlist");
     }
 
@@ -150,7 +182,7 @@ public class OrderServlet extends HttpServlet {
 
     // Delete Order
     private void deleteOrder(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         dbManager.deleteOrder(orderID);

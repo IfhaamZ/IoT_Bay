@@ -29,19 +29,25 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <td>${order.customerID}</td>
           <td>${order.datePlaced}</td>
           <td>${order.status}</td>
-          <td>${order.orderTotal}</td>
+          <td>${order.calculateTotal()}</td>
           <td>${order.shippingAddress}</td>
           <td>${order.billingAddress}</td>
           <td>${order.createdBy}</td>
           <td>${order.createdDate}</td>
           <td>
-            <a href="orderedit?orderID=${order.orderID}">Edit</a>
             <a
-              href="orderdelete?orderID=${order.orderID}"
+              href="orderedit?orderID=${order.orderID}&customerID=${order.customerID}"
+              >Edit</a
+            >
+            <a
+              href="orderdelete?orderID=${order.orderID}&customerID=${order.customerID}"
               onclick="return confirm('Are you sure?')"
               >Delete</a
             >
-            <a href="orderview?orderID=${order.orderID}">View</a>
+            <a
+              href="orderview?orderID=${order.orderID}&customerID=${order.customerID}"
+              >View</a
+            >
           </td>
         </tr>
       </c:forEach>

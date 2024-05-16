@@ -22,9 +22,11 @@
                 <h2><%= isUpdate ? "Edit Order" : "Add New Order" %></h2>
                 <% if (isUpdate) { %>
                     <input type="hidden" name="orderID" value="<%= order.getOrderID() %>" />
+                    <input type="hidden" name="customerID" value="<%= order.getCustomerID() %>" />
+                <% } else { %>
+                    <label for="customerID">Customer ID:</label>
+                    <input type="text" id="customerID" name="customerID" value="" required>
                 <% } %>
-                <label for="customerID">Customer ID:</label>
-                <input type="text" id="customerID" name="customerID" value="<%= isUpdate ? order.getCustomerID() : "" %>" required>
                 
                 <label for="datePlaced">Date Placed:</label>
                 <input type="text" id="datePlaced" name="datePlaced" value="<%= isUpdate ? order.getDatePlaced() : "" %>" required>
