@@ -17,10 +17,10 @@
     </center>
     <div align="center">
         <c:if test="${payment != null}">
-            <form action="update" method="post">
+            <form action="paymentupdate" method="post">
         </c:if>
         <c:if test="${payment == null}">
-            <form action="insert" method="post">
+            <form action="paymentinsert" method="post">
         </c:if>
         <table border="1" cellpadding="5">
             <caption>

@@ -79,7 +79,7 @@ public class PaymentServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int paymentID = Integer.parseInt(request.getParameter("paymentID"));
+        String paymentID = request.getParameter("paymentID");
         Payment existingPayment = dbManager.getPayment(paymentID);
         RequestDispatcher dispatcher = request.getRequestDispatcher("paymentForm.jsp");
         request.setAttribute("payment", existingPayment);
@@ -106,7 +106,7 @@ public class PaymentServlet extends HttpServlet {
 
     private void updatePayment(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int paymentID = Integer.parseInt(request.getParameter("paymentID"));
+        String paymentID = request.getParameter("paymentID");
         String method = request.getParameter("method");
         String cardNum = request.getParameter("cardNum");
         String expMonth = request.getParameter("expMonth");
@@ -126,7 +126,7 @@ public class PaymentServlet extends HttpServlet {
     private void deletePayment(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         // String paymentDate = request.getParameter("paymentDate");
-        int paymentID = Integer.parseInt(request.getParameter("paymentID"));
+        String paymentID = request.getParameter("paymentID");
         // Need help with this method. Particularly the next line if only takes one
         // paymentDate, it errors and requires 9
         Payment payment = new Payment(paymentID);

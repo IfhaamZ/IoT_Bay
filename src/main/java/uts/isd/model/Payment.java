@@ -3,7 +3,7 @@ package uts.isd.model;
 import java.io.Serializable;
 
 public class Payment implements Serializable {
-    protected int paymentID;
+    protected String paymentID;
     protected String method;
     protected String cardNum;
     protected String expMonth;
@@ -17,11 +17,11 @@ public class Payment implements Serializable {
     public Payment() {
     }
 
-    public Payment(int paymentID) {
+    public Payment(String paymentID) {
         this.paymentID = paymentID;
     }
 
-    public Payment(int paymentID, String method, String cardNum, String expMonth, String expYear, String cvn,
+    public Payment(String paymentID, String method, String cardNum, String expMonth, String expYear, String cvn,
             String GCNum, String pin, String paymentAmount, String paymentDate) {
         this(method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate);
         this.paymentID = paymentID;
@@ -40,11 +40,11 @@ public class Payment implements Serializable {
         this.paymentDate = paymentDate;
     }
 
-    public int getPaymentID() {
+    public String getPaymentID() {
         return this.paymentID;
     }
 
-    public void setPaymentID(int paymentID) {
+    public void setPaymentID(String paymentID) {
         this.paymentID = paymentID;
     }
 

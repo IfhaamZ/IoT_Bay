@@ -305,7 +305,7 @@ public class DBManager {
             statement.setString(6, payment.getGCNum());
             statement.setString(7, payment.getPIN());
             statement.setString(8, payment.getPaymentAmount());
-            statement.setString(5, payment.getPaymentDate());
+            statement.setString(9, payment.getPaymentDate());
 
             boolean rowInserted = statement.executeUpdate() > 0;
             return rowInserted;
@@ -322,7 +322,7 @@ public class DBManager {
                 PreparedStatement st = connection.prepareStatement(sql);
                 ResultSet resultSet = st.executeQuery()) {
             while (resultSet.next()) {
-                int paymentID = resultSet.getInt("paymentID");
+                String paymentID = resultSet.getString("paymentID");
                 String method = resultSet.getString("method");
                 String cardNum = resultSet.getString("cardNum");
                 String expMonth = resultSet.getString("expMonth");
@@ -346,7 +346,7 @@ public class DBManager {
         String sql = "DELETE FROM payment where paymentID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, payment.getPaymentID());
+            statement.setString(1, payment.getPaymentID());
             boolean rowDeleted = statement.executeUpdate() > 0;
             return rowDeleted;
         }
@@ -366,7 +366,7 @@ public class DBManager {
             statement.setString(7, payment.getPIN());
             statement.setString(8, payment.getPaymentAmount());
             statement.setString(9, payment.getPaymentDate());
-            statement.setInt(10, payment.getPaymentID());
+            statement.setString(10, payment.getPaymentID());
 
             boolean rowUpdated = statement.executeUpdate() > 0;
             return rowUpdated;
@@ -376,14 +376,14 @@ public class DBManager {
         }
     }
 
-    public Payment getPayment(int paymentID) throws SQLException {
+    public Payment getPayment(String paymentID) throws SQLException {
         Payment payment = null;
         String sql = "SELECT * FROM payment WHERE paymentID = ?";
 
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {        
                 
-            statement.setInt(1, paymentID);
+            statement.setString(1, paymentID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String method = resultSet.getString("method");
