@@ -70,6 +70,25 @@
     <url-pattern>/productsearchC</url-pattern>
   </servlet-mapping>
 
+  <!-- User Servlet -->
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>uts.isd.controller.UserServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/usernew</url-pattern>
+    <url-pattern>/userinsert</url-pattern>
+    <url-pattern>/userdelete</url-pattern>
+    <url-pattern>/useredit</url-pattern>
+    <url-pattern>/userupdate</url-pattern>
+    <url-pattern>/userlist</url-pattern>
+    <url-pattern>/usersearch</url-pattern>
+    <url-pattern>/useractivate</url-pattern>
+    <url-pattern>/userdeactivate</url-pattern>
+  </servlet-mapping>
+
   <!-- Payment Servlet -->
   <servlet>
     <servlet-name>PaymentServlet</servlet-name>

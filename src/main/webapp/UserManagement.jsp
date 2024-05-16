@@ -9,6 +9,7 @@
     <center>
         <h1>User Management</h1>
         <h2>
+            <a href="adminWelcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
             <a href="/userlist">List All Users</a>
@@ -35,13 +36,13 @@
                     <td><c:out value="${user.email}" /></td>
                     <td><c:out value="${user.status}" /></td>
                     <td>
-                        <a href="/useredit?AccountID=<c:out value='${user.id}' />">Edit</a>
+                        <a href="/useredit?email=<c:out value='${user.email}' />">Edit</a>
                         <br>
-                        <a href="/userdelete?AccountID=<c:out value='${user.id}' />">Delete</a>
+                        <a href="/userdelete?email=<c:out value='${user.email}' />">Delete</a>
                         <br>
-                        <a href="/useractivate?AccountID=<c:out value='${user.id}' />">Activate</a>    
+                        <a href="/useractivate?email=<c:out value='${user.email}' />">Activate</a>    
 
-                        <a href="/userdeactivate?AccountID=<c:out value='${user.id}' />">Deactivate</a>
+                        <a href="/userdeactivate?email=<c:out value='${user.email}' />">Deactivate</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -9,6 +9,7 @@
     <center>
         <h1>User Form</h1>
         <h2>
+            <a href="adminWelcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
             <a href="/userlist">List All Users</a>
