@@ -289,7 +289,130 @@ public class DBManager {
 
     //Order
     
-    //LineItem
+    //Payment
+    public boolean CreatePayment(Payment payment) throws SQLException {
+        String sql = "INSERT INTO PaymentManagement (method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate) VALUES (?,?,?,?,?,?,?,?,?)";
+        connect();
+
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setString(1, payment.getMethod());
+        statement.setString(2, payment.getCardNum());
+        statement.setString(3, payment.getExpMonth());
+        statement.setString(4, payment.getExpYear());
+        statement.setString(5, payment.getCVN());
+        statement.setString(6, payment.getGCNum());
+        statement.setString(7, payment.getPIN());
+        statement.setString(8, payment.getPaymentAmount());
+        statement.setString(5, payment.getPaymentDate());
+
+        boolean rowInserted = statement.executeUpdate() > 0;
+        statement.close();
+        disconnect();
+        return rowInserted;
+    }
+
+    public List<Payment> listAllPayments() throws SQLException {
+        List<Payment> listPayments = new ArrayList<>();
+
+        String sql = "SELECT * FROM book";
+
+        connect();
+
+        Statement statement = con.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            int paymentID = resultSet.getInt("paymentID");
+            String method = resultSet.getString("method");
+            String cardNum = resultSet.getString("cardNum");
+            String expMonth = resultSet.getString("expMonth");
+            String expYear = resultSet.getString("expYear");
+            String cvn = resultSet.getString("cvn");
+            String GCNum = resultSet.getString("GCNum");
+            String pin = resultSet.getString("pin");
+            String paymentAmount = resultSet.getString("paymentAmount");
+            String paymentDate = resultSet.getString("paymentDate");
+
+            Payment payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
+                    paymentDate);
+            listPayments.add(payment);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        disconnect();
+
+        return listPayments;
+    }
+
+    public boolean deletePayment(Payment payment) throws SQLException {
+        String sql = "DELETE FROM PaymentManagement where paymentID = ?";
+
+        connect();
+
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setInt(1, payment.getPaymentID());
+
+        boolean rowDeleted = statement.executeUpdate() > 0;
+        statement.close();
+        disconnect();
+        return rowDeleted;
+    }
+
+    public boolean updatePayment(Payment payment) throws SQLException {
+        String sql = "UPDATE PaymentManagement SET method = ?, cardNum = ?, expMonth = ?, expYear = ?, cvn = ?, GCNum = ?, pin = ?, paymentAmount = ?, paymentDate = ?";
+        sql += " WHERE paymentID = ?";
+        connect();
+
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setString(1, payment.getMethod());
+        statement.setString(2, payment.getCardNum());
+        statement.setString(3, payment.getExpMonth());
+        statement.setString(4, payment.getExpYear());
+        statement.setString(5, payment.getCVN());
+        statement.setString(6, payment.getGCNum());
+        statement.setString(7, payment.getPIN());
+        statement.setString(8, payment.getPaymentAmount());
+        statement.setString(9, payment.getPaymentDate());
+        statement.setInt(10, payment.getPaymentID());
+
+        boolean rowUpdated = statement.executeUpdate() > 0;
+        statement.close();
+        disconnect();
+        return rowUpdated;
+    }
+
+    public Payment getPayment(int paymentID) throws SQLException {
+        Payment payment = null;
+        String sql = "SELECT * FROM PaymentManagement WHERE paymentID = ?";
+
+        connect();
+
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setInt(1, paymentID);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            String method = resultSet.getString("method");
+            String cardNum = resultSet.getString("cardNum");
+            String expMonth = resultSet.getString("expMonth");
+            String expYear = resultSet.getString("expYear");
+            String cvn = resultSet.getString("cvn");
+            String GCNum = resultSet.getString("GCNum");
+            String pin = resultSet.getString("pin");
+            String paymentAmount = resultSet.getString("paymentAmount");
+            String paymentDate = resultSet.getString("paymentDate");
+            payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
+                    paymentDate);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        return payment;
+    }
 
 }
 
