@@ -7,9 +7,9 @@ import java.util.List;
 import uts.isd.model.*;
 
 public class DBManager {
-    
+
     private Statement stmt;
-    
+
     public DBManager(Connection conn) throws SQLException {
         stmt = conn.createStatement();
     }
@@ -36,7 +36,7 @@ public class DBManager {
             return false;
         }
     }
-    
+
     // Read
     public ArrayList<Staff> fetchStaff() throws SQLException {
         ArrayList<Staff> ListOfStaff = new ArrayList<>();
@@ -62,11 +62,11 @@ public class DBManager {
     }
 
     // Search staff by name, role and department
-     public List<Staff> searchStaff(String name, String role, String department) throws SQLException {
+    public List<Staff> searchStaff(String name, String role, String department) throws SQLException {
         List<Staff> staffList = new ArrayList<>();
         String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff WHERE name LIKE ? AND role LIKE ? AND department LIKE ?";
         try (Connection connection = DBConnector.getConnection();
-             PreparedStatement st = connection.prepareStatement(sql)) {
+                PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, "%" + name + "%");
             st.setString(2, "%" + role + "%");
             st.setString(3, "%" + department + "%");
@@ -112,7 +112,7 @@ public class DBManager {
         }
         return null;
     }
-    
+
     // Update
     public static boolean updateStaff(Staff staff) {
         String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ?, status = ? WHERE email = ?";
@@ -186,6 +186,7 @@ public class DBManager {
         }
         return products;
     }
+<<<<<<< HEAD
         // Insert new product
         public static boolean insertProduct(Product p) throws SQLException {
             String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -205,7 +206,30 @@ public class DBManager {
                 e.printStackTrace();
                 return false;
             }
+=======
+
+    // Insert new product
+    public static boolean insertProduct(Product p) throws SQLException {
+        String sql = "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, p.getProductID());
+            st.setString(2, p.getName());
+            st.setString(3, p.getDescription());
+            st.setFloat(4, p.getPrice());
+            st.setInt(5, p.getStockQuantity());
+            st.setString(6, p.getSupplier());
+            st.setString(7, p.getCategory());
+            st.setDate(8, p.getManuDate());
+            boolean rowInserted = st.executeUpdate() > 0;
+            return rowInserted;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+>>>>>>> Ifhaam-branch
         }
+    }
+
     // Delete product
     public boolean deleteProduct(String productID) throws SQLException {
         String sql = "DELETE FROM product WHERE productID = ?";
@@ -216,6 +240,7 @@ public class DBManager {
             return rowDeleted;
         }
     }
+
     // Get product 
     public Product getProduct(String productID) throws SQLException {
         String sql = "SELECT productID, productName, description, price, stock, category, supplier, manuDate FROM product WHERE productID = ?";
@@ -238,7 +263,7 @@ public class DBManager {
         }
         return null;
     }
-    
+
     // Update
     public static boolean updateProduct(Product p) {
         String sql = "UPDATE product SET productName = ?, description = ?, price = ?, stock = ?, supplier = ?, category = ?, manuDate = ? WHERE productID = ?";
@@ -264,32 +289,142 @@ public class DBManager {
         List<Product> productView = new ArrayList<>();
         String sql = "SELECT productID, productName, description, price, stock, category, supplier, manuDate FROM product WHERE productName LIKE ? AND category LIKE ?";
         try (Connection connection = DBConnector.getConnection();
-             PreparedStatement st = connection.prepareStatement(sql)) {
+                PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, "%" + name + "%");
             st.setString(2, "%" + category + "%");
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
                     Product p = new Product(
-                        rs.getString("productID"),
-                        rs.getString("productName"),
-                        rs.getString("description"),
-                        rs.getFloat("price"),
-                        rs.getInt("stock"),
-                        rs.getString("category"),
-                        rs.getString("supplier"),
-                        rs.getDate("manuDate"));
+                            rs.getString("productID"),
+                            rs.getString("productName"),
+                            rs.getString("description"),
+                            rs.getFloat("price"),
+                            rs.getInt("stock"),
+                            rs.getString("category"),
+                            rs.getString("supplier"),
+                            rs.getDate("manuDate"));
                     productView.add(p);
                 }
             }
         }
         return productView;
     }
-    
+
     //Customer
 
     //Order
-    
-    //LineItem
+
+    //Payment
+    public boolean createPayment(Payment payment) throws SQLException {
+        String sql = "INSERT INTO payment (method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate) VALUES (?,?,?,?,?,?,?,?,?)";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, payment.getMethod());
+            statement.setString(2, payment.getCardNum());
+            statement.setString(3, payment.getExpMonth());
+            statement.setString(4, payment.getExpYear());
+            statement.setString(5, payment.getCVN());
+            statement.setString(6, payment.getGCNum());
+            statement.setString(7, payment.getPIN());
+            statement.setString(8, payment.getPaymentAmount());
+            statement.setString(9, payment.getPaymentDate());
+
+            boolean rowInserted = statement.executeUpdate() > 0;
+            return rowInserted;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Payment> listAllPayments() throws SQLException {
+        List<Payment> listPayments = new ArrayList<>();
+        String sql = "SELECT * FROM payment";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql);
+                ResultSet resultSet = st.executeQuery()) {
+            while (resultSet.next()) {
+                String paymentID = resultSet.getString("paymentID");
+                String method = resultSet.getString("method");
+                String cardNum = resultSet.getString("cardNum");
+                String expMonth = resultSet.getString("expMonth");
+                String expYear = resultSet.getString("expYear");
+                String cvn = resultSet.getString("cvn");
+                String GCNum = resultSet.getString("GCNum");
+                String pin = resultSet.getString("pin");
+                String paymentAmount = resultSet.getString("paymentAmount");
+                String paymentDate = resultSet.getString("paymentDate");
+
+                Payment payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin,
+                        paymentAmount,
+                        paymentDate);
+                listPayments.add(payment);
+            }
+        }
+        return listPayments;
+    }
+
+    public boolean deletePayment(Payment payment) throws SQLException {
+        String sql = "DELETE FROM payment where paymentID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, payment.getPaymentID());
+            boolean rowDeleted = statement.executeUpdate() > 0;
+            return rowDeleted;
+        }
+    }
+
+    public boolean updatePayment(Payment payment) throws SQLException {
+        String sql = "UPDATE payment SET method = ?, cardNum = ?, expMonth = ?, expYear = ?, cvn = ?, GCNum = ?, pin = ?, paymentAmount = ?, paymentDate = ?";
+        sql += " WHERE paymentID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, payment.getMethod());
+            statement.setString(2, payment.getCardNum());
+            statement.setString(3, payment.getExpMonth());
+            statement.setString(4, payment.getExpYear());
+            statement.setString(5, payment.getCVN());
+            statement.setString(6, payment.getGCNum());
+            statement.setString(7, payment.getPIN());
+            statement.setString(8, payment.getPaymentAmount());
+            statement.setString(9, payment.getPaymentDate());
+            statement.setString(10, payment.getPaymentID());
+
+            boolean rowUpdated = statement.executeUpdate() > 0;
+            return rowUpdated;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Payment getPayment(String paymentID) throws SQLException {
+        Payment payment = null;
+        String sql = "SELECT * FROM payment WHERE paymentID = ?";
+
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)) {        
+                
+            statement.setString(1, paymentID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String method = resultSet.getString("method");
+                    String cardNum = resultSet.getString("cardNum");
+                    String expMonth = resultSet.getString("expMonth");
+                    String expYear = resultSet.getString("expYear");
+                    String cvn = resultSet.getString("cvn");
+                    String GCNum = resultSet.getString("GCNum");
+                    String pin = resultSet.getString("pin");
+                    String paymentAmount = resultSet.getString("paymentAmount");
+                    String paymentDate = resultSet.getString("paymentDate");
+                    payment = new Payment(paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
+                            paymentDate);
+                    return payment;
+                }
+            }
+        }
+        return null;
+    }
 
 }
 

@@ -28,6 +28,9 @@ public class ControllerServlet extends HttpServlet {
                 case "/product":
                     handleProductRequests(request, response);
                     break;
+                case "/payment":
+                    handlePaymentRequests(request, response);
+                    break;
                 default:
                     showDefaultPage(request, response);
                     break;
@@ -49,8 +52,11 @@ public class ControllerServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    // Add more methods to handle other entities (e.g., handleProductRequests,
-    // handleOrderRequests)
+    private void handlePaymentRequests(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/PaymentServlet");
+        dispatcher.forward(request, response);
+    }
 
     private void showDefaultPage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
