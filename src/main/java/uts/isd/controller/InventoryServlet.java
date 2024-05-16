@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InventoryServlet extends HttpServlet {
     private DBManager dbManager;
@@ -53,6 +54,12 @@ public class InventoryServlet extends HttpServlet {
                     break;
                 case "/productview":
                     listProducts(request, response);
+                    break;
+                case "/productsearch":
+                    searchProduct(request, response);
+                    break;
+                case "/productsearchC":
+                    searchProductC(request, response);
                     break;
                 default:
                     listInventory(request, response);
@@ -128,5 +135,25 @@ public class InventoryServlet extends HttpServlet {
         Product product = new Product(productID, productName, description, price, stock, category, supplier, manuDate);
         DBManager.updateProduct(product);
         response.sendRedirect("productslist");
+    }
+    private void searchProduct(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String name = request.getParameter("productName");
+        String category = request.getParameter("category");
+
+        List<Product> searchResults = dbManager.searchProduct(name, category);
+        request.setAttribute("productslist", searchResults);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("displayProducts.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void searchProductC(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String name = request.getParameter("productName");
+        String category = request.getParameter("category");
+
+        List<Product> searchResults = dbManager.searchProduct(name, category);
+        request.setAttribute("productview", searchResults);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("displayProductsC.jsp");
+        dispatcher.forward(request, response);
     }
 }

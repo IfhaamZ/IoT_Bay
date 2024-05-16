@@ -259,6 +259,31 @@ public class DBManager {
             return false;
         }
     }
+
+    public List<Product> searchProduct(String name, String category) throws SQLException {
+        List<Product> productView = new ArrayList<>();
+        String sql = "SELECT productID, productName, description, price, stock, category, supplier, manuDate FROM product WHERE productName LIKE ? AND category LIKE ?";
+        try (Connection connection = DBConnector.getConnection();
+             PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setString(1, "%" + name + "%");
+            st.setString(2, "%" + category + "%");
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Product p = new Product(
+                        rs.getString("productID"),
+                        rs.getString("productName"),
+                        rs.getString("description"),
+                        rs.getFloat("price"),
+                        rs.getInt("stock"),
+                        rs.getString("category"),
+                        rs.getString("supplier"),
+                        rs.getDate("manuDate"));
+                    productView.add(p);
+                }
+            }
+        }
+        return productView;
+    }
     
     //Customer
 

@@ -3,33 +3,30 @@
 <%@ page import="uts.isd.model.Product" %>
 <html>
 <head>
-    <title>Inventory</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/staffList.css">
+    <title>Product Search</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/staffSearch.css">
 </head>
 <body>
     <div class="container">
-        <h1>Inventory</h1>
+        <h1>Inventory Management</h1>
         <div class="nav-links">
             <a href="productnew">Add New Product</a>
-            <a href="productslist">Display All Products</a>
-            <a href="searchProduct.jsp">Search Products</a>
+            <a href="productslist">Return to All Products List</a>
+        </div>
+        <br>
+        <div class="search-container">
+            <h2>Search Products</h2>
+            <form action="productsearch" method="get">
+                <input type="hidden" name="action" value="search">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName">
+                <label for="category">Category:</label>
+                <input type="text" id="category" name="category">
+                <input type="submit" value="Search">
+            </form>
         </div>
         <div class="table-container">
             <table>
-                <caption>List of Products</caption>
-                <thead>
-                    <tr>
-                        <th>Product ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Stock Quantity</th>
-                        <th>Category</th>
-                        <th>Supplier</th>
-                        <th>Manufacture Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <%
                         ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("productslist");
@@ -47,11 +44,8 @@
                             <td><%= p.getManuDate() %></td>
                             <td>
                                 <a href="productedit?productID=<%= p.getProductID() %>" class="edit">Edit</a>
-                                <br>
-                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="productdelete?productID=<%= p.getProductID() %>" class="delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
-                                <br>
-                                <br>
                             </td>
                         </tr>
                     <%
