@@ -57,12 +57,13 @@
             <input type="text" id="name" name="name" required />
           </div>
           <div class="column">
-            <label for="role">Staff / Customer </label>
+            <label for="role">Staff / Customer / Admin</label>
             <select id="role" name="role" required>
               <option value="">Please Select</option>
               <!-- Placeholder for asking a choice -->
               <option value="staff">Staff</option>
               <option value="customer">Customer</option>
+              <option value="admin">Admin</option>
             </select>
           </div>
         </div>
