@@ -118,7 +118,6 @@ public class DBManager {
         String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ?, status = ? WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
-            st.setString(8, staff.getEmail());
             st.setString(1, staff.getName());
             st.setString(2, staff.getPassword());
             st.setString(3, staff.getPhone());
@@ -126,6 +125,8 @@ public class DBManager {
             st.setString(5, staff.getCountry());
             st.setString(6, staff.getRole());
             st.setString(7, staff.getDepartment());
+            st.setBoolean(8, staff.isActive());
+            st.setString(9, staff.getEmail());
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
         } catch (SQLException e) {
