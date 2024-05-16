@@ -4,6 +4,8 @@ import java.util.*;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    public int id;
+
     private String email;
     private String name;
     private String password;
@@ -11,8 +13,10 @@ public class User implements Serializable {
     private String city;
     private String country;
     private String role;
+    private boolean status;
 
-    public User(String _email, String _name, String _password, String _phone, String _city, String _country, String _role) {
+    public User(String _email, String _name, String _password, String _phone, String _city, String _country,
+            String _role) {
         this.email = _email;
         this.name = _name;
         this.password = _password;
@@ -20,6 +24,21 @@ public class User implements Serializable {
         this.city = _city;
         this.country = _country;
         this.role = _role;
+    }
+    
+    public User(int _id, String _name, String _password, String _email, boolean _status) {
+        this.id = _id;
+        this.name = _name;
+        this.password = _password;
+        this.email = _email;
+        this.status = _status;
+    }
+
+    public User(int _id, String _name, String _password, String _email) {
+        this.id = _id;
+        this.name = _name;
+        this.password = _password;
+        this.email = _email;
     }
 
     public String getName() {
@@ -78,7 +97,21 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
 
 }
