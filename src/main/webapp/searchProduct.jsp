@@ -11,7 +11,7 @@
         <br>
         <br>
         <div class="nav-links">
-            <a href="productslist">Return to All Products List</a>
+            <a href="productslist">↩️ Return to All Products List</a>
         </div>
         <div class="search-container">
             <br>
@@ -23,7 +23,7 @@
                 <b><label for="category">Category:</label></b>
                 <input type="text" id="category" name="category">
                 &nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Search">
+                <input type="submit" value="🔍 Search">
             </form>
         </div>
         <div class="table-container">

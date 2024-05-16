@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Inventory Management</h1>
         <div class="nav-links">
-            <a href="productslist">Display All Products</a>
+            <a href="productslist">↩️ Return to Inventory List</a>
         </div>
         <div class="form-container">
             <%

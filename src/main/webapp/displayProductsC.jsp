@@ -26,18 +26,18 @@
 <body>
     <div class="container">
         <h1>IoTBay</h1>
-        <br>
+        <h2 style="text-align: center;">Start browsing 🌐</h2><br>
         <div class="nav-links">
-            <a href="productview">Display All Products</a>
-            <a href="searchProductC.jsp">Search Products</a>
+            <a href="productview">👓 Display All Products</a>
+            <a href="searchProductC.jsp">🔍 Search Products</a>
+            <a href="index.jsp">🏠 Return Home</a>
         </div>
         <% if (request.getAttribute("productview") != null) { %>
         <div class="table-container">
-            <table>
-                <caption>Products Catalogue</caption>
+            <table><br>
+                <caption>Products Catalogue 📰</caption>
                 <thead>
                     <tr>
-                        <th>Product ID</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
@@ -54,12 +54,11 @@
                             for (Product p : products) {
                     %>
                         <tr>
-                            <td><%= p.getProductID() %></td>
                             <td><%= p.getName() %></td>
                             <td><%= p.getDescription() %></td>
-                            <td>$<%= p.getPrice() %></td>
-                            <td><span id="stock_<%= p.getProductID() %>"><%= p.getStockQuantity() %></span>
-                                <span class="lowstock-popup" id="popup_<%= p.getProductID() %>">Low Stock</span>
+                            <td>AU$<%= p.getPrice() %></td>
+                            <td><span id="stock_<%= p.getProductID() %>"><%= p.getStockQuantity() %></span>&nbsp;&nbsp;
+                                <span class="lowstock-popup" id="popup_<%= p.getProductID() %>">Low Stock 📉</span>
                                 <script>
                                     togglePopup(document.getElementById('stock_<%= p.getProductID() %>'), document.getElementById('popup_<%= p.getProductID() %>'));
                                 </script></td>

@@ -10,9 +10,8 @@
     <div class="container">
         <h1>IoTBay</h1>
         <br>
-        <br>
         <div class="nav-links">
-            <a href="productview">Return to All Products List</a>
+            <a href="productview">↩️ Return to All Products List</a>
         </div>
         <div class="search-container">
             <h2>Search Products</h2>
@@ -23,7 +22,7 @@
                 <b><label for="category">Category:</label></b>
                 <input type="text" id="category" name="category">
                 &nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Search">
+                <input type="submit" value="🔍 Search">
             </form>
         </div>
         <div class="table-container">

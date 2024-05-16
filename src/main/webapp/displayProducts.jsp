@@ -28,9 +28,9 @@
         <h1>Inventory Management Options</h1>
         <br>
         <div class="nav-links">
-            <a href="productnew">Add New Product</a>
-            <a href="productslist">Display All Products</a>
-            <a href="searchProduct.jsp">Search Products</a>
+            <a href="productnew">➕ Add New Product</a>
+            <a href="productslist">👓 Display All Products</a>
+            <a href="searchProduct.jsp">🔍 Search Products</a>
         </div>
         <% if (request.getAttribute("productslist") != null) { %>
         <div class="table-container">
@@ -60,9 +60,9 @@
                             <td><%= p.getProductID() %></td>
                             <td><%= p.getName() %></td>
                             <td><%= p.getDescription() %></td>
-                            <td>$<%= p.getPrice() %></td>
-                            <td><span id="stock_<%= p.getProductID() %>"><%= p.getStockQuantity() %></span>
-                                <span class="lowstock-popup" id="popup_<%= p.getProductID() %>">Low Stock</span>
+                            <td>AU$<%= p.getPrice() %></td>
+                            <td><span id="stock_<%= p.getProductID() %>"><%= p.getStockQuantity() %></span>&nbsp;&nbsp;
+                                <span class="lowstock-popup" id="popup_<%= p.getProductID() %>">Low Stock 📉</span>
                                 <script>
                                     togglePopup(document.getElementById('stock_<%= p.getProductID() %>'), document.getElementById('popup_<%= p.getProductID() %>'));
                                 </script></td>
@@ -70,10 +70,10 @@
                             <td><%= p.getSupplier() %></td>
                             <td><%= p.getManuDate() %></td>
                             <td>
-                                <a href="productedit?productID=<%= p.getProductID() %>" class="edit">Edit</a>
+                                <a href="productedit?productID=<%= p.getProductID() %>" class="edit">✏️ Edit</a>
                                 <br>
                                 <br>
-                                <a href="productdelete?productID=<%= p.getProductID() %>" class="delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                                <a href="productdelete?productID=<%= p.getProductID() %>" class="delete" onclick="return confirm('Are you sure you want to delete this product?')">🗑️ Delete</a>
                                 <br>
                                 <br>
                             </td>
