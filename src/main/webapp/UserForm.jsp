@@ -9,19 +9,19 @@
     <center>
         <h1>User Form</h1>
         <h2>
-            <a href="/new">Add New User</a>
+            <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="/list">List All Users</a>
+            <a href="/userlist">List All Users</a>
             &nbsp;&nbsp;&nbsp;
             <a href="SearchUser.jsp">Search User</a>
         </h2>
     </center>
     <div align="center">
         <c:if test="${user != null}">
-            <form action="/update" method="post">
+            <form action="/userupdate" method="post">
         </c:if>
         <c:if test="${user == null}">
-            <form action="/insert" method="post">
+            <form action="/userinsert" method="post">
         </c:if>
         <table border="1" cellpadding="5">
             <caption>

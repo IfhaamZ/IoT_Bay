@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import uts.isd.model.User;
 import uts.isd.model.dao.UserDAO;
 
-public class ControllerServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
  
@@ -38,19 +38,19 @@ public class ControllerServlet extends HttpServlet {
  
         try {
             switch (action) {
-            case "/new":
+            case "/usernew":
                 showNewForm(request, response);
                 break;
-            case "/insert":
+            case "/userinsert":
                 insertUser(request, response);
                 break;
-            case "/delete":
+            case "/userdelete":
                 deleteUser(request, response);
                 break;
-            case "/edit":
+            case "/useredit":
                 showEditForm(request, response);
                 break;
-            case "/update":
+            case "/userupdate":
                 updateUser(request, response);
                 break;
             case "/useractivate":
@@ -116,7 +116,7 @@ public class ControllerServlet extends HttpServlet {
  
         User user = new User(id, name, password, email);
         userDAO.updateUser(user);
-        response.sendRedirect("list");
+        response.sendRedirect("userlist");
     }
 
     private void searchUser(HttpServletRequest request, HttpServletResponse response)
@@ -136,7 +136,7 @@ public class ControllerServlet extends HttpServlet {
  
         User user = new User(id);
         userDAO.deleteUser(user);
-        response.sendRedirect("list");
+        response.sendRedirect("userlist");
  
     }
 
@@ -144,13 +144,13 @@ public class ControllerServlet extends HttpServlet {
     throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("AccountID"));
         userDAO.activateUser(id);
-        response.sendRedirect("list");
+        response.sendRedirect("userlist");
     }
 
     private void deactivateUser(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException {
             int id = Integer.parseInt(request.getParameter("AccountID"));
             userDAO.deactivateUser(id);
-            response.sendRedirect("list");
+            response.sendRedirect("userlist");
         }
     }

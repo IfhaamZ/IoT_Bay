@@ -9,9 +9,9 @@
     <center>
         <h1>User Management</h1>
         <h2>
-            <a href="/new">Add New User</a>
+            <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="/list">List All Users</a>
+            <a href="/userlist">List All Users</a>
             &nbsp;&nbsp;&nbsp;
             <a href="SearchUser.jsp">Search User</a>
         </h2>
@@ -35,14 +35,10 @@
                     <td><c:out value="${user.email}" /></td>
                     <td><c:out value="${user.status}" /></td>
                     <td>
-                        <a href="/edit?AccountID=<c:out value='${user.id}' />">Edit</a>
+                        <a href="/useredit?AccountID=<c:out value='${user.id}' />">Edit</a>
                         <br>
+                        <a href="/userdelete?AccountID=<c:out value='${user.id}' />">Delete</a>
                         <br>
-                        <a href="/delete?AccountID=<c:out value='${user.id}' />">Delete</a>
-                        <br>
-                        <br>
-                        <a href="/edit?AccountID=<c:out value='${user.id}' />">Edit</a>
-
                         <a href="/useractivate?AccountID=<c:out value='${user.id}' />">Activate</a>    
 
                         <a href="/userdeactivate?AccountID=<c:out value='${user.id}' />">Deactivate</a>
