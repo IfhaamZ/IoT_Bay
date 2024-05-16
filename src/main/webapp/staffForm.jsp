@@ -11,6 +11,7 @@
         <div class="nav-links">
             <a href="staffnew">Add New Staff</a>
             <a href="stafflist">List All Staff</a>
+            <a href="searchStaff.jsp">Search Staff</a>
         </div>
         <div class="form-container">
             <%
@@ -48,7 +49,7 @@
                 
                 <div class="form-buttons">
                     <input type="submit" value="Save">
-                    <button type="button" onclick="window.location.href='staffList.jsp';">Cancel</button>
+                    <button type="button" onclick="window.location.href='stafflist';">Cancel</button>
                 </div>
             </form>
         </div>

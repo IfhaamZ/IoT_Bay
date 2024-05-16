@@ -17,7 +17,11 @@
                 Product p = (Product) request.getAttribute("product");
                 boolean isUpdate = p != null;
             %>
+<<<<<<< HEAD
             <form action="<%= isUpdate ? "productupdate" : "productinsert" %>" method="post">
+=======
+            <form action="<%= isUpdate ? "update" : "productinsert" %>" method="post">
+>>>>>>> 3d2044a617155110454948b14ca8cbd8211819c7
                 <h2><%= isUpdate ? "Edit Products" : "Add New Product" %></h2>
                 <% if (isUpdate) { %>
                     <input type="hidden" name="productID" value="<%= p.getProductID() %>" />
