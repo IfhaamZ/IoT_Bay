@@ -16,46 +16,22 @@
    <url-pattern>/index/*</url-pattern>
   </servlet-mapping>
 
-  <!-- Controller Servlet Mapping -->
+   <!-- User Servlet -->
   <servlet>
-    <servlet-name>ControllerServlet</servlet-name>
-    <servlet-class>uts.isd.controller.ControllerServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>uts.isd.controller.UserServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/new</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/insert</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/delete</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/edit</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/update</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/list</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/usernew</url-pattern>
+    <url-pattern>/userinsert</url-pattern>
+    <url-pattern>/userdelete</url-pattern>
+    <url-pattern>/useredit</url-pattern>
+    <url-pattern>/userupdate</url-pattern>
+    <url-pattern>/userlist</url-pattern>
     <url-pattern>/usersearch</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
     <url-pattern>/useractivate</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-    <servlet-name>ControllerServlet</servlet-name>
     <url-pattern>/userdeactivate</url-pattern>
   </servlet-mapping>
 </web-app>
