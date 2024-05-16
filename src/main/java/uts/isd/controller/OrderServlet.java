@@ -34,56 +34,54 @@ public class OrderServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-    String action = request.getServletPath();
+            throws ServletException, IOException {
+        String action = request.getServletPath();
 
-    try {
-        switch (action) {
-            case "/ordernew":
-                showNewForm(request, response);
-                break;
-            case "/orderinsert":
-                insertOrder(request, response);
-                break;
-            case "/orderdelete":
-                deleteOrder(request, response);
-                break;
-            case "/orderedit":
-                showEditForm(request, response);
-                break;
-            case "/orderupdate":
-                updateOrder(request, response);
-                break;
-            case "/ordersearch":
-                searchOrder(request, response);
-                break;
-            case "/orderlist":
-                listOrder(request, response);
-                break;
-            default:
-                listOrder(request, response);
-                break;
+        try {
+            switch (action) {
+                case "/ordernew":
+                    showNewForm(request, response);
+                    break;
+                case "/orderinsert":
+                    insertOrder(request, response);
+                    break;
+                case "/orderdelete":
+                    deleteOrder(request, response);
+                    break;
+                case "/orderedit":
+                    showEditForm(request, response);
+                    break;
+                case "/orderupdate":
+                    updateOrder(request, response);
+                    break;
+                case "/ordersearch":
+                    searchOrder(request, response);
+                    break;
+                case "/orderlist":
+                    listOrder(request, response);
+                    break;
+                default:
+                    listOrder(request, response);
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
-    } catch (SQLException ex) {
-        throw new ServletException(ex);
     }
-}
-
-
 
     // List Orders
     private void listOrder(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Order> listOrder = dbManager.getOrdersByCustomerID(Integer.parseInt(request.getParameter("customerID")));
         request.setAttribute("listOrder", listOrder);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderList.jsp");
         dispatcher.forward(request, response);
     }
 
     // Show New Order Form
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -92,7 +90,7 @@ public class OrderServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         Order existingOrder = dbManager.getOrder(orderID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderForm.jsp");
         request.setAttribute("order", existingOrder);
         dispatcher.forward(request, response);
     }
@@ -146,7 +144,7 @@ public class OrderServlet extends HttpServlet {
 
         List<Order> searchResults = dbManager.getOrdersByCustomerID(customerID);
         request.setAttribute("listOrder", searchResults);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orderList.jsp");
         dispatcher.forward(request, response);
     }
 
