@@ -11,5 +11,6 @@
     <body onload="startTime()" >
         <h1>Home Page</h1>
         <a href="/register.jsp">Register an Account</a>
+        <a href="/paymentListing.jsp">Payment Listing</a>
     </body>
 </html>
