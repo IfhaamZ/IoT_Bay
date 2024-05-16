@@ -2,12 +2,12 @@
 <%@ page import="uts.isd.model.Product" %>
 <html>
 <head>
-    <title>Staff Management Application</title>
+    <title>Inventory Management Application</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/staffForm.css">
 </head>
 <body>
     <div class="container">
-        <h1>Staff Management</h1>
+        <h1>Inventory Management</h1>
         <div class="nav-links">
             <a href="productnew">Add New Product</a>
             <a href="productslist">List All Products</a>
