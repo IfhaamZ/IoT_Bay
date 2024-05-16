@@ -20,6 +20,7 @@
             <caption><h2>List of Payment History</h2></caption>
             <tr>
                 <th>ID</th>
+                <th>OrderID</th>
                 <th>Payment Method</th>
                 <th>Card Number</th>
                 <th>Expiry Month</th>
@@ -29,10 +30,14 @@
                 <th>PIN</th>
                 <th>Amount</th>
                 <th>Date</th>
+                <th>Actions</th>
             </tr>
             <c:forEach var="payment" items="${listPayments}">
                 <tr>
                     <td><c:out value="${payment.paymentID}" /></td>
+                    <!-- Order ID  -->
+                    <td></td>
+                    <!-- Order ID -->
                     <td><c:out value="${payment.method}" /></td>
                     <td><c:out value="${payment.cardNum}" /></td>
                     <td><c:out value="${payment.expMonth}" /></td>
