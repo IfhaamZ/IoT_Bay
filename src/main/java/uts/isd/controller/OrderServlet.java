@@ -130,7 +130,7 @@ public class OrderServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         int customerID = Integer.parseInt(request.getParameter("customerID"));
 
-        List<Order> searchResults = dbManager.getOrdersByCustomerID(customerID);
+        List<Order> searchResults = dbManager.searchOrdersByCustomerID(customerID);
         request.setAttribute("listOrder", searchResults);
         RequestDispatcher dispatcher = request.getRequestDispatcher("orderList.jsp");
         dispatcher.forward(request, response);
