@@ -10,6 +10,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h2>Order List</h2>
+    <div class="nav-links">
+      <a href="ordernew">Add New Order</a>
+      <a href="orderlist">List All Orders</a>
+      <a href="searchOrder.jsp">Search Orders</a>
+    </div>
     <table border="1">
       <tr>
         <th>Order ID</th>
