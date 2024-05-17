@@ -21,6 +21,15 @@ public class Order {
     this.lineItems = new ArrayList<>();
   }
 
+  public Order(int orderID, String datePlaced, String status, int customerID, String shippingAddress,
+      String billingAddress, String createdBy, String createdDate) {
+    this(orderID, datePlaced, status, customerID);
+    this.shippingAddress = shippingAddress;
+    this.billingAddress = billingAddress;
+    this.createdBy = createdBy;
+    this.createdDate = createdDate;
+  }
+
   public boolean addLineItem(LineItem lineItem) {
     return lineItems.add(lineItem);
   }
