@@ -10,6 +10,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     />
   </head>
   <body>
+  <% User user = (User) session.getAttribute("user"); %>
+  <% String name = (user != null) ? user.getName() : ""; %>
     <h2>Order List</h2>
     <div class="nav-links">
       <a href="main.jsp">Go Back</a>

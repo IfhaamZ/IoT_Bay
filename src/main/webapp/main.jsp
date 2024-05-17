@@ -34,6 +34,7 @@
     <div class="button-container">
         <button class="nav-button" onclick="location.href='orderlist'">Order Management</button>
         <button class="nav-button" onclick="location.href='paymentlist'">Payment Management</button>
+        <button class="nav-button" onclick="location.href='displayProductsC.jsp'">Display Product</button>
     </div>
 </div>
 </body>
