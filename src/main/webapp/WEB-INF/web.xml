@@ -106,4 +106,21 @@
     <url-pattern>/paymentlist</url-pattern>
   </servlet-mapping>
 
+    <!-- Order Servlet -->
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/OrderServlet</url-pattern>
+        <url-pattern>/ordernew</url-pattern>
+        <url-pattern>/orderinsert</url-pattern>
+        <url-pattern>/orderupdate</url-pattern>
+        <url-pattern>/orderdelete</url-pattern>
+        <url-pattern>/orderedit</url-pattern>
+        <url-pattern>/orderlist</url-pattern>
+        <url-pattern>/ordersearch</url-pattern>
+
+    </servlet-mapping>
 </web-app>

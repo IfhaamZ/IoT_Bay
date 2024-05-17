@@ -12,6 +12,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <body>
     <h2>Order List</h2>
     <div class="nav-links">
+      <a href="main.jsp">Go Back</a>
       <a href="ordernew">Add New Order</a>
       <a href="orderlist">List All Orders</a>
       <a href="searchOrder.jsp">Search Orders</a>
