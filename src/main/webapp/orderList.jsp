@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
@@ -40,16 +41,16 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <td>${order.createdBy}</td>
           <td>${order.createdDate}</td>
           <td>
-            <a
+            <a style="color:black;"
               href="orderedit?orderID=${order.orderID}&customerID=${order.customerID}"
               >Edit</a
             >
-            <a
+            <a style="color:black;"
               href="orderdelete?orderID=${order.orderID}&customerID=${order.customerID}"
               onclick="return confirm('Are you sure?')"
               >Delete</a
             >
-            <a
+            <a style="color:black;"
               href="orderview?orderID=${order.orderID}&customerID=${order.customerID}"
               >View</a
             >

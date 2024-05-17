@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <h2>Create Order</h2>
-    <form action="CreateOrderServlet" method="post">
+    <form action="ordernew" method="post">
       <label for="customerID">Customer ID:</label>
       <input type="text" id="customerID" name="customerID" required /><br />
 
