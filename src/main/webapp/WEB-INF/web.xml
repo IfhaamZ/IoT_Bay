@@ -29,6 +29,7 @@
         <url-pattern>/orderdelete</url-pattern>
         <url-pattern>/orderedit</url-pattern>
         <url-pattern>/orderlist</url-pattern>
+        <url-pattern>/ordersearch</url-pattern>
 
     </servlet-mapping>
 

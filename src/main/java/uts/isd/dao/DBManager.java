@@ -140,7 +140,7 @@ public class DBManager {
     // Search orders by customerID
     public List<Order> searchOrdersByCustomerID(int customerID) throws SQLException {
         List<Order> orderList = new ArrayList<>();
-        String sql = "SELECT * FROM `orders` WHERE customerID = ?";
+        String sql = "SELECT * FROM `order` WHERE customerID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, customerID);
