@@ -435,18 +435,20 @@ public class DBManager {
 
     //Payment
     public boolean createPayment(Payment payment) throws SQLException {
-        String sql = "INSERT INTO payment (method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO payment (paymentID, method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, payment.getMethod());
-            statement.setString(2, payment.getCardNum());
-            statement.setString(3, payment.getExpMonth());
-            statement.setString(4, payment.getExpYear());
-            statement.setString(5, payment.getCVN());
-            statement.setString(6, payment.getGCNum());
-            statement.setString(7, payment.getPIN());
-            statement.setString(8, payment.getPaymentAmount());
-            statement.setString(9, payment.getPaymentDate());
+
+            statement.setString(1, payment.getPaymentID());
+            statement.setString(2, payment.getMethod());
+            statement.setString(3, payment.getCardNum());
+            statement.setString(4, payment.getExpMonth());
+            statement.setString(5, payment.getExpYear());
+            statement.setString(6, payment.getCVN());
+            statement.setString(7, payment.getGCNum());
+            statement.setString(8, payment.getPIN());
+            statement.setString(9, payment.getPaymentAmount());
+            statement.setString(10, payment.getPaymentDate());
 
             boolean rowInserted = statement.executeUpdate() > 0;
             return rowInserted;

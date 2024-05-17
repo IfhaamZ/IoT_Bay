@@ -88,6 +88,8 @@ public class PaymentServlet extends HttpServlet {
 
     private void CreatePayment(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
+            
+        String paymentID = request.getParameter("paymentID");
         String method = request.getParameter("method");
         String cardNum = request.getParameter("cardNum");
         String expMonth = request.getParameter("expMonth");
@@ -98,7 +100,8 @@ public class PaymentServlet extends HttpServlet {
         String paymentAmount = request.getParameter("paymentAmount");
         String paymentDate = request.getParameter("paymentDate");
 
-        Payment newPayment = new Payment(method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
+        Payment newPayment = new Payment(
+                paymentID,method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount,
                 paymentDate);
         dbManager.createPayment(newPayment);
         response.sendRedirect("paymentlist");

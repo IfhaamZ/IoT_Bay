@@ -87,6 +87,13 @@ nav ul li a:hover {
                     </label>
                 </td>
             </tr>
+                <th>PaymentID: </th>
+                <td>
+                    <label>
+                        <input type="text" name="paymentID" value="" id="paymentID"/>
+                    </label>
+            <tr>
+            </tr>
             <tr id="creditDebitDetails" style="display: none;">
                 <th>Credit/Debit Card Details: </th>
                 <td>
