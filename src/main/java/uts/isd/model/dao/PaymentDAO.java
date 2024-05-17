@@ -74,7 +74,7 @@ public class PaymentDAO {
     public List<Payment> listAllPayments() throws SQLException {
         List<Payment> listPayments = new ArrayList<>();
 
-        String sql = "SELECT * FROM book";
+        String sql = "SELECT * FROM PaymentManagement";
 
         connect();
 

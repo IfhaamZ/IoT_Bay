@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Books Store Application</title>
+    <title>Payment Form</title>
 </head>
 <body>
     <center>
@@ -12,7 +12,8 @@
             <a href="/paymentForm.jsp">Add New Payment</a>
             &nbsp;&nbsp;&nbsp;
             <a href="/paymentListing.jsp">List All Payments</a>
-             
+            &nbsp;&nbsp;&nbsp;
+            <a href="/paymentSearch.jsp">Search Payment</a>
         </h2>
     </center>
     <div align="center">
