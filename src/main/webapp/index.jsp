@@ -18,6 +18,7 @@ import="java.util.Random"%>
           <ul>
             <li><a href="register.jsp">Register</a></li>
             <li><a href="login.jsp">Login</a></li>
+            <li><a href="UserManagement.jsp">User Management</a></li>
           </ul>
         </nav>
       </div>

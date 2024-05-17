@@ -9,11 +9,14 @@
     <center>
         <h1>User Management</h1>
         <h2>
+            <a href="index.jsp">Home</a>
+            &nbsp;&nbsp;&nbsp;
             <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
             <a href="/userlist">List All Users</a>
             &nbsp;&nbsp;&nbsp;
             <a href="SearchUser.jsp">Search User</a>
+            
         </h2>
     </center>
     <div align="center">
