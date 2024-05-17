@@ -52,17 +52,17 @@
             <tr id="creditDebitDetails" style="display: none;">
                 <th>Credit/Debit Card Details: </th>
                 <td>
-                    <input type="text" name="CardNum" size="45" placeholder="Card Number"/>
-                    <input type="text" name="ExpMonth" size="3" maxlength="2" placeholder="MM"/>
-                    <input type="text" name="ExpYear" size="5" maxlength="4" placeholder="YYYY"/>
-                    <input type="text" name="CVN" size="5" maxlength="3" placeholder="CVN"/>
+                    <input type="int" name="CardNum" size="45" placeholder="Card Number"/>
+                    <input type="int" name="ExpMonth" size="3" maxlength="2" placeholder="MM"/>
+                    <input type="int" name="ExpYear" size="5" maxlength="4" placeholder="YYYY"/>
+                    <input type="int" name="CVN" size="5" maxlength="3" placeholder="CVN"/>
                 </td>
             </tr>
             <tr id="giftCardDetails" style="display: none;">
                 <th>Gift Card Details: </th>
                 <td>
-                    <input type="text" name="GCNum" size="45" placeholder="Gift Card Number"/>
-                    <input type="text" name="PIN" size="5" placeholder="PIN"/>
+                    <input type="int" name="GCNum" size="45" placeholder="Gift Card Number"/>
+                    <input type="int" name="PIN" size="5" placeholder="PIN"/>
                 </td>
             </tr>
             <script>
@@ -86,7 +86,7 @@
             <tr>
                 <th>Amount: </th>
                 <td>
-                    <input type="text" name="amount" placeholder="$" oninput="formatCurrency(this)">
+                    <input type="float" name="amount" placeholder="$" oninput="formatCurrency(this)">
                 </td>
             </tr>
             <script>
