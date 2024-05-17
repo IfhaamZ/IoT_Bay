@@ -16,7 +16,7 @@ public class DBManager {
     // Order
     // Create
     public static boolean insertOrder(Order order) throws SQLException {
-        String sql = "INSERT INTO orders (datePlaced, status, customerID, shippingAddress, billingAddress, createdBy, createdDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `order` (datePlaced, status, customerID, shippingAddress, billingAddress, createdBy, createdDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, order.getDatePlaced());
@@ -37,7 +37,7 @@ public class DBManager {
     // Read
     public ArrayList<Order> fetchOrders() throws SQLException {
         ArrayList<Order> ListOfOrders = new ArrayList<>();
-        String sql = "SELECT * FROM orders";
+        String sql = "SELECT * FROM `order`";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql);
                 ResultSet rs = st.executeQuery()) {
@@ -60,7 +60,7 @@ public class DBManager {
     // Search orders by customerID
     public List<Order> getOrdersByCustomerID(int customerID) throws SQLException {
         List<Order> orderList = new ArrayList<>();
-        String sql = "SELECT * FROM orders WHERE customerID = ?";
+        String sql = "SELECT * FROM `order` WHERE customerID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, customerID);
@@ -84,7 +84,7 @@ public class DBManager {
 
     // Get Order by orderID
     public Order getOrder(int orderID) throws SQLException {
-        String sql = "SELECT * FROM orders WHERE orderID = ?";
+        String sql = "SELECT * FROM `order` WHERE orderID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, orderID);
@@ -107,7 +107,7 @@ public class DBManager {
 
     // Update
     public static boolean updateOrder(Order order) {
-        String sql = "UPDATE orders SET datePlaced = ?, status = ?, customerID = ?, shippingAddress = ?, billingAddress = ?, createdBy = ?, createdDate = ? WHERE orderID = ?";
+        String sql = "UPDATE `order` SET datePlaced = ?, status = ?, customerID = ?, shippingAddress = ?, billingAddress = ?, createdBy = ?, createdDate = ? WHERE orderID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setString(1, order.getDatePlaced());
@@ -128,7 +128,7 @@ public class DBManager {
 
     // Delete
     public boolean deleteOrder(int orderID) throws SQLException {
-        String sql = "DELETE FROM orders WHERE orderID = ?";
+        String sql = "DELETE FROM `order` WHERE orderID = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
             st.setInt(1, orderID);

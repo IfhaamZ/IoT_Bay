@@ -23,53 +23,10 @@ public class CreateDB {
             Connection con = DriverManager.getConnection(db_url + db_name, db_user, db_pass);
             createTables(con);
 
-            // Load sample data
-            loadTables(con);
-
             // close the connection after loading sample data
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    private static void loadTables(Connection conn) throws SQLException {
-        try (Statement stmt = conn.createStatement()) {
-            // Sample data for customer table
-            stmt.executeUpdate(
-                    "INSERT INTO customer (username, name, email, password, address, phoneNum, newsletterSub) VALUES "
-                            + "('alice_smith', 'Alice Smith', 'alice.smith@example.com', 'password123', '789 Maple St', '1234567890', TRUE),"
-                            + "('bob_johnson', 'Bob Johnson', 'bob.johnson@example.com', 'password123', '101 Pine St', '0987654321', FALSE)");
-
-            // Sample data for product table (Assuming productID 1 and 2 exist)
-            stmt.executeUpdate(
-                    "INSERT INTO product (productID, productName, description, price, stock, category, supplier, manuDate) VALUES "
-                            + "('P003', 'Smart Lock', 'WiFi enabled door lock', 75.99, 50, 'Security', 'HomeSecure Inc.', '2023-03-01'),"
-                            + "('P004', 'Smart Camera', 'WiFi enabled security camera', 150.00, 30, 'Security', 'HomeSecure Inc.', '2023-04-01')");
-
-            // Sample data for order table
-            stmt.executeUpdate(
-                    "INSERT INTO `order` (customerID, orderDate, orderStatus, orderTotal, shippingAddress, billingAddress, orderShippedDate, orderDeliveredDate, createdBy, createdDate) VALUES "
-                            + "(1, '2024-05-01', 'Pending', 225.00, '789 Maple St', '789 Maple St', NULL, NULL, 'alice_smith', '2024-05-01'),"
-                            + "(2, '2024-05-02', 'Shipped', 150.00, '101 Pine St', '101 Pine St', '2024-05-05', NULL, 'bob_johnson', '2024-05-02')");
-
-            // Sample data for orderLineItem table (Assuming orderID 1 and 2, productID 3
-            // and 4 exist)
-            stmt.executeUpdate(
-                    "INSERT INTO orderLineItem (orderID, productID, productQuantity, lineItemPrice, productSKU, lineItemStatus) VALUES "
-                            + "(1, 3, 2, 75.99, 'SKU003', 'Pending'),"
-                            + "(1, 4, 1, 150.00, 'SKU004', 'Pending'),"
-                            + "(2, 3, 2, 75.99, 'SKU003', 'Shipped')");
-
-            // Sample data for payment table (Assuming orderID 1 and 2 exist)
-            stmt.executeUpdate(
-                    "INSERT INTO payment (orderID, paymentMethod, paymentDate, paymentStatus, paymentAmount, paymentConfNo) VALUES "
-                            + "(1, 'Credit Card', '2024-05-01', 'Paid', 225.00, 'CONF789101'),"
-                            + "(2, 'Credit Card', '2024-05-02', 'Pending', 150.00, 'CONF789102')");
-
-            System.out.println("Sample data insertion successful.");
-
-            // System.out.println("Customer table creation successful.");
         }
     }
 

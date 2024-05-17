@@ -27,7 +27,9 @@
                     <label for="customerID">Customer ID:</label>
                     <input type="text" id="customerID" name="customerID" value="" required>
                 <% } %>
-                
+                <label for="orderID">Order ID:</label>
+                    <input type="text" id="orderID" name="orderID" value="<%= isUpdate ? order.getOrderID() : "" %>" required>
+
                 <label for="datePlaced">Date Placed:</label>
                 <input type="text" id="datePlaced" name="datePlaced" value="<%= isUpdate ? order.getDatePlaced() : "" %>" required>
                 

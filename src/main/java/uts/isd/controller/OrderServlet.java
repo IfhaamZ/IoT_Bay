@@ -91,6 +91,8 @@ public class OrderServlet extends HttpServlet {
 
     private void insertOrder(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
+
+        int orderID = Integer.parseInt(request.getParameter("orderID"));
         int customerID = Integer.parseInt(request.getParameter("customerID"));
         String datePlaced = request.getParameter("datePlaced");
         String status = request.getParameter("status");
@@ -99,11 +101,8 @@ public class OrderServlet extends HttpServlet {
         String createdBy = request.getParameter("createdBy");
         String createdDate = request.getParameter("createdDate");
 
-        Order newOrder = new Order(0, datePlaced, status, customerID);
-        newOrder.setShippingAddress(shippingAddress);
-        newOrder.setBillingAddress(billingAddress);
-        newOrder.setCreatedBy(createdBy);
-        newOrder.setCreatedDate(createdDate);
+        Order newOrder = new Order(orderID, datePlaced, status, customerID, shippingAddress, billingAddress, createdBy,
+                createdDate);
 
         dbManager.insertOrder(newOrder);
         response.sendRedirect("orderlist");
@@ -120,11 +119,8 @@ public class OrderServlet extends HttpServlet {
         String createdBy = request.getParameter("createdBy");
         String createdDate = request.getParameter("createdDate");
 
-        Order updateOrder = new Order(orderID, datePlaced, status, customerID);
-        updateOrder.setShippingAddress(shippingAddress);
-        updateOrder.setBillingAddress(billingAddress);
-        updateOrder.setCreatedBy(createdBy);
-        updateOrder.setCreatedDate(createdDate);
+        Order updateOrder = new Order(orderID, datePlaced, status, customerID, shippingAddress, billingAddress,
+                createdBy, createdDate);
 
         dbManager.updateOrder(updateOrder);
         response.sendRedirect("orderlist");
