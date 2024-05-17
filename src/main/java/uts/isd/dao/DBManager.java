@@ -136,4 +136,30 @@ public class DBManager {
             return rowDeleted;
         }
     }
+
+    // Search orders by customerID
+    public List<Order> searchOrdersByCustomerID(int customerID) throws SQLException {
+        List<Order> orderList = new ArrayList<>();
+        String sql = "SELECT * FROM `orders` WHERE customerID = ?";
+        try (Connection connection = DBConnector.getConnection();
+                PreparedStatement st = connection.prepareStatement(sql)) {
+            st.setInt(1, customerID);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Order order = new Order(
+                            rs.getInt("orderID"),
+                            rs.getString("datePlaced"),
+                            rs.getString("status"),
+                            rs.getInt("customerID"),
+                            rs.getString("shippingAddress"),
+                            rs.getString("billingAddress"),
+                            rs.getString("createdBy"),
+                            rs.getString("createdDate"));
+                    orderList.add(order);
+                }
+            }
+        }
+        return orderList;
+    }
+
 }
