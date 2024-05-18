@@ -3,11 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Payment Form</title>
+    <title>Payment</title>
 </head>
 <body>
     <center>
         <h1>Payment Management</h1>
+        <!-- links to payment management form, listing, and search pages -->
         <h2>
             <a href="/paymentForm.jsp">Add New Payment</a>
             &nbsp;&nbsp;&nbsp;
@@ -19,6 +20,7 @@
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of Payment History</h2></caption>
+            <!-- categories in each payment listing -->
             <tr>
                 <th>ID</th>
                 <th>OrderID</th>
@@ -34,6 +36,7 @@
                 <th>Actions</th>
             </tr>
             <c:forEach var="payment" items="${listPayments}">
+                <!-- getting each value of the payment in the database to view here -->
                 <tr>
                     <td><c:out value="${payment.paymentID}" /></td>
                     <!-- Order ID  -->

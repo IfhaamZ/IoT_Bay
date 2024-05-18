@@ -16,14 +16,12 @@ public class PaymentDAO {
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection con;
-    // private PreparedStatement readSt;
-    // private String readQuery = "SELECT Method, Card_Number, Exp_Month, Exp_Year,
-    // CVN, GiftCard_Number, PIN, Amount, Date FROM PaymentManagement";
+
+    // Constructor to initialize PaymentDAO with an existing database connection
 
     public PaymentDAO(Connection connection) throws SQLException {
         this.con = connection;
         connection.setAutoCommit(true);
-        // readSt = connection.prepareStatement(readQuery);
     }
 
     public PaymentDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
@@ -31,6 +29,11 @@ public class PaymentDAO {
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
     }
+
+//establishing a connection to the database
+//this method can be called by other methods to simply ensure
+//there is an active connection to the database before performing 
+//database operations
 
     protected void connect() throws SQLException {
         if (con == null || con.isClosed()) {
@@ -44,12 +47,16 @@ public class PaymentDAO {
         }
     }
 
+    //method that closes connection to database
+
     protected void disconnect() throws SQLException {
         if (con != null && !con.isClosed()) {
             con.close();
         }
     }
 
+
+    //inserts a new payment record into the database
     public boolean CreatePayment(Payment payment) throws SQLException {
         String sql = "INSERT INTO PaymentManagement (method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate) VALUES (?,?,?,?,?,?,?,?,?)";
         connect();
@@ -70,6 +77,8 @@ public class PaymentDAO {
         disconnect();
         return rowInserted;
     }
+
+    //method to retrieve all payment records and attributes from database 
 
     public List<Payment> listAllPayments() throws SQLException {
         List<Payment> listPayments = new ArrayList<>();
@@ -106,6 +115,8 @@ public class PaymentDAO {
         return listPayments;
     }
 
+    //Deletes a payment record from database, depending on the paymentID
+
     public boolean deletePayment(String paymentID) throws SQLException {
         String sql = "DELETE FROM PaymentManagement where paymentID = ?";
 
@@ -114,12 +125,15 @@ public class PaymentDAO {
         PreparedStatement statement = con.prepareStatement(sql);
         statement.setString(1, paymentID);
 
+        // returns true if row was deleted, returns false otherwise
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
         disconnect();
         return rowDeleted;
     }
 
+
+    //updates an existing payment record in the database, based on the paymentID
     public boolean updatePayment(Payment payment) throws SQLException {
         String sql = "UPDATE PaymentManagement SET method = ?, cardNum = ?, expMonth = ?, expYear = ?, cvn = ?, GCNum = ?, pin = ?, paymentAmount = ?, paymentDate = ?";
         sql += " WHERE paymentID = ?";
@@ -143,6 +157,8 @@ public class PaymentDAO {
         return rowUpdated;
     }
 
+    //retrieves a single payment record from the database
+    //fetches data connected to the specific paymentID
     public Payment getPayment(String paymentID) throws SQLException {
         Payment payment = null;
         String sql = "SELECT * FROM PaymentManagement WHERE paymentID = ?";
@@ -173,68 +189,4 @@ public class PaymentDAO {
 
         return payment;
     }
-
-    // public void CreatePayment(String method, String cardNum, String expMonth,
-    // String expYear, String cvn, String GCNum,
-    // String pin, String paymentAmount, String paymentDate) throws SQLException {
-    // PreparedStatement st = con
-    // .prepareStatement(
-    // "INSERT INTO PaymentManagement(Method, Card_Number, Exp_Month, Exp_Year, CVN,
-    // GiftCard_Number, PIN, Amount, Date) VALUES (?,?,?,?,?,?,?,?,?)");
-    // st.setString(1, method);
-    // st.setString(2, cardNum);
-    // st.setString(3, expMonth);
-    // st.setString(4, expYear);
-    // st.setString(5, cvn);
-    // st.setString(6, GCNum);
-    // st.setString(7, pin);
-    // st.setString(8, paymentAmount);
-    // st.setString(9, paymentDate);
-    // st.executeUpdate();
-    // st.close();
-    // }
-
-    // public boolean deletePayment(String paymentDate) throws SQLException {
-    // PreparedStatement dst = con.prepareStatement("DELETE FROM PaymentManagement
-    // WHERE Date = ?");
-    // dst.setString(1, paymentDate);
-    // int rowsAffected = dst.executeUpdate();
-    // dst.close();
-    // return rowsAffected > 0;
-    // }
-
-    // public ArrayList<Payment> fetchPayments() throws SQLException {
-    // ResultSet rs = readSt.executeQuery();
-
-    // ArrayList<Payment> payments = new ArrayList<Payment>();
-    // while (rs.next()) {
-    // String method = rs.getString(1);
-    // String cardNum = rs.getString(2);
-    // String expMonth = rs.getString(3);
-    // String expYear = rs.getString(4);
-    // String cvn = rs.getString(5);
-    // String GCNum = rs.getString(6);
-    // String pin = rs.getString(7);
-    // String paymentAmount = rs.getString(8);
-    // String paymentDate = rs.getString(9);
-
-    // Payment p = new Payment();
-    // p.setMethod(method);
-    // p.setCardNum(cardNum);
-    // p.setExpMonth(expMonth);
-    // p.setExpYear(expYear);
-    // p.setCVN(cvn);
-    // p.setGCNum(GCNum);
-    // p.setPIN(pin);
-    // p.setPaymentAmount(paymentAmount);
-    // p.setPaymentDate(paymentDate);
-
-    // System.out.println(p.getCardNum());
-
-    // payments.add(p);
-    // }
-
-    // return payments;
-    // }
-
 }

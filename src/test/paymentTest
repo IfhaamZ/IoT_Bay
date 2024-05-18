@@ -1,0 +1,82 @@
+// package uts.unit;
+
+// import org.junit.jupiter.api.*;
+// import uts.isd.dao.DBConnector;
+// import uts.isd.dao.DBManager;
+// import uts.isd.model.Staff;
+
+// import java.sql.Connection;
+// import java.sql.SQLException;
+// import java.util.List;
+
+// import static org.junit.jupiter.api.Assertions.*;
+
+// @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+// public class DBManagerTest {
+
+//     private Connection conn;
+//     private DBManager dbManager;
+
+//     @BeforeAll
+//     public void setup() throws ClassNotFoundException, SQLException {
+//         conn = DBConnector.getConnection();
+//         dbManager = new DBManager(conn);
+//     }
+
+//     @AfterAll
+//     public void tearDown() throws SQLException {
+//         if (conn != null) {
+//             conn.close();
+//         }
+//     }
+
+//     @BeforeEach
+//     public void beforeEachTest() throws SQLException {
+//         conn.createStatement().execute("DELETE FROM staff");
+//     }
+
+//     @Test
+//     public void testConnection() {
+//         assertNotNull(conn);
+//     }
+
+//     @Test
+//     public void testInsertPayment() throws SQLException {
+//         Payment pamyne = new Payment("PMT001", "Gift Card", "", "", "", "", "1234 5678", "1234", 123.45, 2020-10-10);
+//         boolean result = DBManager.insertPayment(payment);
+//         assertTrue(result);
+
+//         List<Payment> paymentList = dbManager.fetchPayment();
+//         assertEquals(1, paymentList.size());
+//         Payment insertedPayment = paymentList.get(0);
+//         assertEquals("PMT001", insertedPayment.getPaymentID());
+//         assertEquals("123.45", insertedPayment.getPaymentAmount());
+//     }
+
+//     @Test
+//     public void testUpdatePayment() throws SQLException {
+//         Payment payment = new Payment("PMT001", "Credit Card", "1234 56", "10", "2025", "789", "", "", "45.23", "2020-10-12");
+//         DBManager.insertPayment(payment);
+
+//         Payment updatedPayment = new Payment("PMT010", "Credit Card", "1234 56", "10", "2025", "789", "", "", "45.23", "2020-10-12");
+//         boolean result = DBManager.updatePayment(updatedPayment);
+//         assertTrue(result);
+
+//         List<Payment> paymentList = dbManager.fetchPayment();
+//         assertEquals(1, paymentList.size());
+//         Payment fetchedPayment = paymentList.get(0);
+//         assertEquals("PMT001", fetchedPayment.getPaymentID);
+//         assertFalse(fetchedPayment.isActive());
+//     }
+
+//     @Test
+//     public void testDeletePayment() throws SQLException {
+//         Payment payment = new Payment("PMT003", "Credit Card", "5656 5656", "10", "2020", "565", "", "", "56.56", "2020-10-10");
+//         DBManager.insertPayment(payment);
+
+//         boolean result = dbManager.deletePayment("PMT003");
+//         assertTrue(result);
+
+//         List<Staff> paymentList = dbManager.fetchPayment();
+//         assertEquals(0, paymentList.size());
+//     }

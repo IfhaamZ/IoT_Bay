@@ -3,6 +3,7 @@ package uts.isd.model;
 import java.io.Serializable;
 
 public class Payment implements Serializable {
+    //attributes for payment details
     protected String paymentID;
     protected String method;
     protected String cardNum;
@@ -14,19 +15,8 @@ public class Payment implements Serializable {
     protected String paymentAmount;
     protected String paymentDate;
 
-    // public Payment() {
-    // }
 
-    // public Payment(String paymentID) {
-    //     this.paymentID = paymentID;
-    // }
-
-    // public Payment(String paymentID, String method, String cardNum, String expMonth, String expYear, String cvn,
-    //         String GCNum, String pin, String paymentAmount, String paymentDate) {
-    //     this(method, cardNum, expMonth, expYear, cvn, GCNum, pin, paymentAmount, paymentDate);
-    //     this.paymentID = paymentID;
-    // }
-
+    //constructor to initialize a Payment object with the given attributes
     public Payment(String paymentID, String method, String cardNum, String expMonth, String expYear, String cvn,
             String GCNum, String pin, String paymentAmount, String paymentDate) {
         this.paymentID = paymentID;
@@ -40,6 +30,9 @@ public class Payment implements Serializable {
         this.paymentAmount = paymentAmount;
         this.paymentDate = paymentDate;
     }
+
+
+    //getter and setter methods for each attribute
 
     public String getPaymentID() {
         return this.paymentID;
