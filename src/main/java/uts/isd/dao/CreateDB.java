@@ -77,16 +77,13 @@ public class CreateDB {
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `order` ("
                     + "orderID INT AUTO_INCREMENT PRIMARY KEY,"
-                    + "customerID INT(10),"
-                    + "orderDate DATE,"
-                    + "orderStatus VARCHAR(10),"
-                    + "orderTotal DECIMAL(7, 2),"
-                    + "shippingAddress VARCHAR(300),"
-                    + "billingAddress VARCHAR(300),"
-                    + "orderShippedDate DATE,"
-                    + "orderDeliveredDate DATE,"
-                    + "createdBy VARCHAR(30),"
-                    + "createdDate DATE"
+                    + "datePlaced DATE NOT NULL,"
+                    + "status VARCHAR(50) NOT NULL,"
+                    + "customerID INT NOT NULL,"
+                    + "shippingAddress VARCHAR(255) NOT NULL,"
+                    + "billingAddress VARCHAR(255) NOT NULL,"
+                    + "createdBy VARCHAR(255) NOT NULL,"
+                    + "createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
                     + ")");
             System.out.println("Order table creation successful.");
         }
