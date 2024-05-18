@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
 <html>
   <head>
     <title>Order List</title>
@@ -41,16 +41,19 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <td>${order.createdBy}</td>
           <td>${order.createdDate}</td>
           <td>
-            <a style="color:black;"
+            <a
+              style="color: black"
               href="orderedit?orderID=${order.orderID}&customerID=${order.customerID}"
               >Edit</a
             >
-            <a style="color:black;"
+            <a
+              style="color: black"
               href="orderdelete?orderID=${order.orderID}&customerID=${order.customerID}"
               onclick="return confirm('Are you sure?')"
               >Delete</a
             >
-            <a style="color:black;"
+            <a
+              style="color: black"
               href="orderview?orderID=${order.orderID}&customerID=${order.customerID}"
               >View</a
             >
@@ -59,6 +62,5 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       </c:forEach>
     </table>
     <br />
-    <a href="ordernew">Create New Order</a>
   </body>
 </html>
