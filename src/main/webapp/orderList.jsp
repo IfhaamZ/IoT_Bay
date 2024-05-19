@@ -12,8 +12,6 @@ prefix="c" %>
     <!-- Linking external CSS -->
   </head>
   <body>
-    <% User user = (User) session.getAttribute("user"); %> <% String name =
-    (user != null) ? user.getName() : ""; %>
     <h2>Order List</h2>
     <div class="nav-links">
       <!-- Navigation links for different order management actions -->
