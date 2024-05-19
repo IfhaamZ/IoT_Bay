@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+0<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -110,18 +110,20 @@ nav ul li a:hover {
                     <input type="text" name="PIN" size="5" placeholder="PIN"/>
                 </td>
             </tr>
+            <!-- Getting the user input of gift or credit card method -->
+
             <script>
                 const creditDebitRadio = document.getElementById('creditDebitRadio');
                 const giftCardRadio = document.getElementById('giftCardRadio');
             
                 const creditDebitDetails = document.getElementById('creditDebitDetails');
                 const giftCardDetails = document.getElementById('giftCardDetails');
-            
+                //show credit/debit details and hide gift card details when the credit/debit radio button is selected
                 creditDebitRadio.addEventListener('change', function() {
                     creditDebitDetails.style.display = this.checked ? 'table-row' : 'none';
                     giftCardDetails.style.display = this.checked ? 'none' : 'table-row';
                 });
-            
+                //show gift card details and hide credit/debit details when the gift card radio button is selected
                 giftCardRadio.addEventListener('change', function() {
                     giftCardDetails.style.display = this.checked ? 'table-row' : 'none';
                     creditDebitDetails.style.display = this.checked ? 'none' : 'table-row';
@@ -134,6 +136,8 @@ nav ul li a:hover {
                     <input type="text" name="amount" placeholder="$" oninput="formatCurrency(this)">
                 </td>
             </tr>
+            <!-- ensuring that amount input is a floating int with max 2 decimal places -->
+
             <script>
                 function formatCurrency(input) {
                     input.value = input.value.replace(/[^0-9.]/g, '');

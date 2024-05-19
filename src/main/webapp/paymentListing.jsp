@@ -69,6 +69,8 @@ nav ul li a:hover {
 </header>
     <center>
         <h1>Payment Management</h1>
+        <!-- links to payment management form, listing, and search pages -->
+
         <h2>
             <a href="welcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="paymentnew">Add New Payment</a>
@@ -79,6 +81,7 @@ nav ul li a:hover {
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of Payment History</h2></caption>
+            <!-- categories in each payment listing -->
             <tr>
                 <th>ID</th>
                 <th>Payment Method</th>
@@ -87,6 +90,7 @@ nav ul li a:hover {
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
+                    <!-- getting each value of the payment in the database to view here -->
                     <%
                         ArrayList<Payment> payments = (ArrayList<Payment>) request.getAttribute("listPayments");
                         if (payments != null) {
