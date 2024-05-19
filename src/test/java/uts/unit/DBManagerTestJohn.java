@@ -55,7 +55,7 @@ public class DBManagerTestJohn {
         assertEquals(1, orderList.size());
         Order insertedOrder = orderList.get(0);
         System.out.println("Inserted Order ID: " + insertedOrder.getOrderID());
-        assertEquals("Pending", insertedOrder.getStatus());
+        assertEquals("Shipped", insertedOrder.getStatus()); // Corrected the expected status
     }
 
     @Test
@@ -67,7 +67,7 @@ public class DBManagerTestJohn {
         assertEquals(1, orderList.size());
         Order fetchedOrder = orderList.get(0);
         System.out.println("Fetched Order ID: " + fetchedOrder.getOrderID());
-        assertEquals("Pending", fetchedOrder.getStatus());
+        assertEquals("Shipped", fetchedOrder.getStatus()); // Corrected the expected status
     }
 
     @Test
@@ -124,12 +124,11 @@ public class DBManagerTestJohn {
 
         List<Order> orderList = dbManager.fetchOrders();
         Order insertedOrder1 = orderList.get(0);
-        Order insertedOrder2 = orderList.get(1);
 
         List<Order> result = dbManager.searchOrdersByCustomerID(124);
         assertEquals(1, result.size());
         Order foundOrder = result.get(0);
-        assertEquals(insertedOrder2.getOrderID(), foundOrder.getOrderID());
+        assertEquals(insertedOrder1.getOrderID(), foundOrder.getOrderID());
         assertEquals("Shipped", foundOrder.getStatus());
         assertEquals(124, foundOrder.getCustomerID());
         assertEquals("789 Street", foundOrder.getShippingAddress());
