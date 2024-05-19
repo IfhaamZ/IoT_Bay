@@ -14,12 +14,13 @@ public class DBManager {
         stmt = conn.createStatement();
     }
 
-    // Staff
+    // Staff Management
     // Create
     public static boolean insertStaff(Staff staff) throws SQLException {
         String sql = "INSERT INTO staff (email, name, password, phone, city, country, role, department, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameters for the prepared statement
             st.setString(1, staff.getEmail());
             st.setString(2, staff.getName());
             st.setString(3, staff.getPassword());
@@ -29,6 +30,7 @@ public class DBManager {
             st.setString(7, staff.getRole());
             st.setString(8, staff.getDepartment());
             st.setBoolean(9, staff.isActive());
+            // Execute update and return result
             boolean rowInserted = st.executeUpdate() > 0;
             return rowInserted;
         } catch (SQLException e) {
@@ -44,6 +46,7 @@ public class DBManager {
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql);
                 ResultSet rs = st.executeQuery()) {
+            // Iterate through result set and add staff to the list
             while (rs.next()) {
                 Staff staff = new Staff(
                         rs.getString("email"),
@@ -67,10 +70,12 @@ public class DBManager {
         String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff WHERE name LIKE ? AND role LIKE ? AND department LIKE ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameters for the prepared statement
             st.setString(1, "%" + name + "%");
             st.setString(2, "%" + role + "%");
             st.setString(3, "%" + department + "%");
             try (ResultSet rs = st.executeQuery()) {
+                // Iterate through result set and add staff to the list
                 while (rs.next()) {
                     Staff staff = new Staff(
                             rs.getString("email"),
@@ -94,8 +99,10 @@ public class DBManager {
         String sql = "SELECT email, name, password, phone, city, country, role, department, status FROM staff WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameter for the prepared statement
             st.setString(1, email);
             try (ResultSet rs = st.executeQuery()) {
+                // Check if a result exists and create a staff object
                 if (rs.next()) {
                     return new Staff(
                             rs.getString("email"),
@@ -118,6 +125,7 @@ public class DBManager {
         String sql = "UPDATE staff SET name = ?, password = ?, phone = ?, city = ?, country = ?, role = ?, department = ?, status = ? WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameters for the prepared statement
             st.setString(1, staff.getName());
             st.setString(2, staff.getPassword());
             st.setString(3, staff.getPhone());
@@ -127,6 +135,7 @@ public class DBManager {
             st.setString(7, staff.getDepartment());
             st.setBoolean(8, staff.isActive());
             st.setString(9, staff.getEmail());
+            // Execute update and return result
             boolean rowUpdated = st.executeUpdate() > 0;
             return rowUpdated;
         } catch (SQLException e) {
@@ -140,7 +149,9 @@ public class DBManager {
         String sql = "UPDATE staff SET status = true WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameter for the prepared statement
             st.setString(1, email);
+            // Execute update and return result
             int rowsUpdated = st.executeUpdate();
             return rowsUpdated > 0;
         }
@@ -151,7 +162,9 @@ public class DBManager {
         String sql = "UPDATE staff SET status = false WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameter for the prepared statement
             st.setString(1, email);
+            // Execute update and return result
             int rowsUpdated = st.executeUpdate();
             return rowsUpdated > 0;
         }
@@ -162,7 +175,9 @@ public class DBManager {
         String sql = "DELETE FROM staff WHERE email = ?";
         try (Connection connection = DBConnector.getConnection();
                 PreparedStatement st = connection.prepareStatement(sql)) {
+            // Set parameter for the prepared statement
             st.setString(1, email);
+            // Execute update and return result
             boolean rowDeleted = st.executeUpdate() > 0;
             return rowDeleted;
         }
