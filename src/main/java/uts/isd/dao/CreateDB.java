@@ -15,15 +15,15 @@ public class CreateDB {
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(db_url, db_user, db_pass);
                 Statement stmt = conn.createStatement();) {
-            // create database
+            // Create the database if it doesn't already exist
             stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + db_name);
             conn.close();
 
-            // create tables
+            // Create tables within the newly created database
             Connection con = DriverManager.getConnection(db_url + db_name, db_user, db_pass);
             createTables(con);
 
-            // close the connection after loading sample data
+            // Close the connection after creating the tables
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class CreateDB {
     }
 
     private static void createTables(Connection conn) throws SQLException {
-        // create customer table
+        // Create the customer table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS customer ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -45,7 +45,8 @@ public class CreateDB {
                     + ")");
             System.out.println("Customer table creation successful.");
         }
-        // create staff table
+
+        // Create the staff table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS staff ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -58,7 +59,8 @@ public class CreateDB {
                     + ")");
             System.out.println("Staff table creation successful.");
         }
-        // create product table
+
+        // Create the product table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS product ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -73,7 +75,8 @@ public class CreateDB {
                     + ")");
             System.out.println("Product table creation successful.");
         }
-        // create order table
+
+        // Create the order table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS `order` ("
                     + "orderID INT AUTO_INCREMENT PRIMARY KEY,"
@@ -87,7 +90,8 @@ public class CreateDB {
                     + ")");
             System.out.println("Order table creation successful.");
         }
-        // create OrderLineItem table
+
+        // Create the orderLineItem table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS orderLineItem ("
                     + "lineItemID INT AUTO_INCREMENT PRIMARY KEY,"
@@ -100,7 +104,8 @@ public class CreateDB {
                     + ")");
             System.out.println("OrderLineItem table creation successful.");
         }
-        // create payment table
+
+        // Create the payment table
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS payment ("
                     + "paymentID INT AUTO_INCREMENT PRIMARY KEY,"

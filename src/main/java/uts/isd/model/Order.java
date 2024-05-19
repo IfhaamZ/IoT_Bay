@@ -13,36 +13,42 @@ public class Order {
   private String createdDate;
   private ArrayList<LineItem> lineItems;
 
+  // Constructor with essential fields
   public Order(int orderID, String datePlaced, String status, int customerID) {
     this.orderID = orderID;
     this.datePlaced = datePlaced;
     this.status = status;
     this.customerID = customerID;
-    this.lineItems = new ArrayList<>();
+    this.lineItems = new ArrayList<>(); // Initialize lineItems list
   }
 
+  // Constructor with all fields
   public Order(int orderID, String datePlaced, String status, int customerID, String shippingAddress,
       String billingAddress, String createdBy, String createdDate) {
-    this(orderID, datePlaced, status, customerID);
+    this(orderID, datePlaced, status, customerID); // Call the other constructor
     this.shippingAddress = shippingAddress;
     this.billingAddress = billingAddress;
     this.createdBy = createdBy;
     this.createdDate = createdDate;
   }
 
+  // Add a line item to the order
   public boolean addLineItem(LineItem lineItem) {
     return lineItems.add(lineItem);
   }
 
+  // Remove a line item from the order
   public boolean removeLineItem(LineItem lineItem) {
     return lineItems.remove(lineItem);
   }
 
+  // Update the status of the order
   public boolean updateStatus(String newStatus) {
     this.status = newStatus;
     return true;
   }
 
+  // Calculate the total price of all line items in the order
   public float calculateTotal() {
     float total = 0.0f;
     for (LineItem item : lineItems) {
@@ -51,6 +57,7 @@ public class Order {
     return total;
   }
 
+  // Getters and setters
   public int getOrderID() {
     return orderID;
   }
