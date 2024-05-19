@@ -304,6 +304,8 @@ public class DBManager {
     }
 
     //User
+
+    //insert user
     public boolean insertUser(User user) throws SQLException {
         String sql = "INSERT INTO account (name, password, email) VALUES (?, ?, ?)";
          
@@ -320,7 +322,8 @@ public class DBManager {
             return false;
         }
     }
-     
+    
+    //list user
     public List<User> listAllUsers() throws SQLException {
         List<User> listUser = new ArrayList<>();
         String sql = "SELECT * FROM account";
@@ -341,7 +344,8 @@ public class DBManager {
         } 
         return listUser;
     }
-     
+    
+    //delete user
     public boolean deleteUser(String email) throws SQLException {
         String sql = "DELETE FROM account where email = ?";
 
@@ -352,7 +356,8 @@ public class DBManager {
             return rowDeleted;
         }
     }
-     
+    
+    //update user
     public boolean updateUser(User user) throws SQLException {
         String sql = "UPDATE account SET name = ?, password = ?, email = ? WHERE AccountID = ?";
          
@@ -371,7 +376,8 @@ public class DBManager {
             return false;
         }
     }
-     
+    
+    //getting user data
     public User getUser(int id) throws SQLException {
         User user = null;
         String sql = "SELECT * FROM account WHERE AccountID = ?";
@@ -395,6 +401,7 @@ public class DBManager {
         return user;
     }
     
+    //searching for user
     public List<User> searchUser(String name, String phone) throws SQLException {
         List<User> userList = new ArrayList<>();
         String sql = "SELECT * FROM account WHERE name LIKE ? AND phone LIKE ?";
@@ -421,7 +428,7 @@ public class DBManager {
         return userList;
     }
 
-        
+    //activate user    
     public boolean activateUser(int id) throws SQLException {
         String sql = "UPDATE account SET status = true WHERE AccountID = ?";
         try (Connection connection = DBConnector.getConnection();
@@ -434,6 +441,7 @@ public class DBManager {
         }
     }
     
+    //activate user
     public boolean deactivateUser(int id) throws SQLException {
         String sql = "UPDATE account SET status = false WHERE AccountID = ?";
         try (Connection connection = DBConnector.getConnection();

@@ -9,6 +9,7 @@
     <center>
         <h1>User Management</h1>
         <h2>
+            <!-- links to different sections of website.  -->
             <a href="adminWelcome.jsp" style="background: lightgreen;">Go Back</a>
             <a href="/usernew">Add New User</a>
             &nbsp;&nbsp;&nbsp;
@@ -35,6 +36,7 @@
                     <td><c:out value="${user.password}" /></td>
                     <td><c:out value="${user.email}" /></td>
                     <td><c:out value="${user.status}" /></td>
+                    <!-- links leading to different functions.  -->
                     <td>
                         <a href="/useredit?email=<c:out value='${user.email}' />">Edit</a>
                         <br>

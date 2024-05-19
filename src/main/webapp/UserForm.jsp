@@ -39,6 +39,7 @@
                     <input type="hidden" name="AccountID" value="<c:out value='${user.id}' />" />
                 </c:if>           
             <tr>
+                <!-- name  -->
                 <th>Name: </th>
                 <td>
                     <input type="text" name="name" size="45"
@@ -47,6 +48,7 @@
                 </td>
             </tr>
             <tr>
+                <!-- password  -->
                 <th>Password: </th>
                 <td>
                     <input type="text" name="password" size="45"
@@ -55,6 +57,7 @@
                 </td>
             </tr>
             <tr>
+                <!-- email  -->
                 <th>Email: </th>
                 <td>
                     <input type="text" name="email" size="45"

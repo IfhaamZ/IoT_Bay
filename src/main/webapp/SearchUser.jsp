@@ -21,6 +21,7 @@
     <div align="center">
         <div class="search-container">
             <h2>Search User Members</h2>
+            <!-- search user function from user servlet -->
             <form action="usersearch" method="get">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name">
